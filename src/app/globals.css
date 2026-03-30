@@ -1,26 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: var(--c-navy);
+  --color-navy-dark: var(--c-navy-dark);
+  --color-steel: var(--c-steel);
+  --color-accent-blue: var(--c-accent-blue);
+  --color-surface: var(--c-surface);
+  --color-background: var(--c-background);
+  --color-border: var(--c-border);
+  --color-text-primary: var(--c-text-primary);
+  --color-text-secondary: var(--c-text-secondary);
+  --color-success: #27AE60;
+  --color-danger: #C0392B;
+  --color-warning: #D4A017;
+  --color-badge-blue: var(--c-badge-blue);
+  --color-badge-green: var(--c-badge-green);
+  --font-sans: "DM Sans", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --c-navy: #1B3A4B;
+  --c-navy-dark: #142E3D;
+  --c-steel: #4A6B7A;
+  --c-accent-blue: #2E86C1;
+  --c-surface: #FFFFFF;
+  --c-background: #F8F9FA;
+  --c-border: #E2E8F0;
+  --c-text-primary: #1A202C;
+  --c-text-secondary: #718096;
+  --c-badge-blue: #D6EAF8;
+  --c-badge-green: #D5F5E3;
+  --c-card-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.dark {
+  --c-navy: #93C5FD;
+  --c-navy-dark: #7DB8F5;
+  --c-steel: #94A3B8;
+  --c-accent-blue: #60A5FA;
+  --c-surface: #1E293B;
+  --c-background: #0F172A;
+  --c-border: #334155;
+  --c-text-primary: #F1F5F9;
+  --c-text-secondary: #94A3B8;
+  --c-badge-blue: #1E3A5F;
+  --c-badge-green: #14532D;
+  --c-card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--c-background);
+  color: var(--c-text-primary);
+  font-family: var(--font-sans);
+}
+
+/* Recharts dark mode overrides */
+.dark .recharts-cartesian-grid line {
+  stroke: var(--c-border);
+}
+.dark .recharts-xAxis .recharts-text,
+.dark .recharts-yAxis .recharts-text {
+  fill: var(--c-text-secondary);
+}
+.dark .recharts-default-tooltip {
+  background-color: var(--c-surface) !important;
+  border-color: var(--c-border) !important;
+  color: var(--c-text-primary) !important;
+}
+.dark .recharts-tooltip-item {
+  color: var(--c-text-primary) !important;
 }
