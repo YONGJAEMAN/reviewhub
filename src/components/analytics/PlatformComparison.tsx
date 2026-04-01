@@ -1,6 +1,6 @@
-import { platformComparison } from '@/data/mockData';
 import { formatNumber } from '@/lib/utils';
 import { Star, MessageSquare, Clock, Reply } from 'lucide-react';
+import type { PlatformComparisonData } from '@/types';
 
 const platformIcons: Record<string, { letter: string }> = {
   google: { letter: 'G' },
@@ -9,12 +9,16 @@ const platformIcons: Record<string, { letter: string }> = {
   whatsapp: { letter: 'W' },
 };
 
-export default function PlatformComparison() {
+interface Props {
+  data: PlatformComparisonData[];
+}
+
+export default function PlatformComparison({ data }: Props) {
   return (
     <div>
       <h2 className="text-xl font-semibold text-text-primary mb-4">Platform Comparison</h2>
       <div className="grid grid-cols-4 gap-4">
-        {platformComparison.map((p) => {
+        {data.map((p) => {
           const icon = platformIcons[p.platform];
           return (
             <div
@@ -26,7 +30,7 @@ export default function PlatformComparison() {
                   className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm font-bold"
                   style={{ backgroundColor: p.color }}
                 >
-                  {icon.letter}
+                  {icon?.letter ?? p.platform[0].toUpperCase()}
                 </div>
                 <span className="text-base font-semibold text-text-primary">{p.name}</span>
               </div>

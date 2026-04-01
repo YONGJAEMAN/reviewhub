@@ -18,7 +18,16 @@ model User {
   password      String?
   accounts      Account[]
   sessions      Session[]
-  businesses    Business[]
+  businesses     Business[]
+  userBusinesses UserBusiness[]
+  aiUsages       AiUsage[]
+  emailLogs      EmailLog[]
+  referrals      Referral[] @relation("referrer")
+  referredBy     Referral?  @relation("referred")
+  onboardingCompleted Boolean @default(false)
+  marketingOptOut     Boolean @default(false)
+  referralCode        String? @unique
+  locale              String  @default("ko")
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -64,35 +73,49 @@ model Business {
   name        String
   email       String?
   description String?
+  industry    String?
+  location    String?
   ownerId     String
   owner       User       @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  platforms   Platform[]
-  reviews     Review[]
-  settings    Settings?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  userBusinesses  UserBusiness[]
+  platforms       Platform[]
+  reviews         Review[]
+  reviewRequests  ReviewRequest[]
+  notifications   Notification[]
+  competitors     Competitor[]
+  qrCodes         QrCode[]
+  settings        Settings?
+  subscription    Subscription?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
 
   @@index([ownerId])
 }
 
 model Platform {
-  id         String           @id @default(cuid())
-  type       PlatformType
-  name       String
-  status     ConnectionStatus @default(DISCONNECTED)
-  detail     String?
-  lastSynced DateTime?
-  businessId String
-  business   Business         @relation(fields: [businessId], references: [id], onDelete: Cascade)
-  reviews    Review[]
-  createdAt  DateTime         @default(now())
-  updatedAt  DateTime         @updatedAt
+  id           String           @id @default(cuid())
+  type         PlatformType
+  name         String
+  status       ConnectionStatus @default(DISCONNECTED)
+  detail       String?
+  lastSynced   DateTime?
+  externalId   String?          // Yelp business_id, Facebook page_id
+  accessToken  String?          // Platform-specific access token (e.g. FB page token)
+  refreshToken String?          // For token refresh
+  accountId    String?          // Google Business Account ID
+  locationId   String?          // Google Business Location ID
+  businessId   String
+  business     Business         @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  reviews      Review[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
 
   @@index([businessId])
 }
 
 model Review {
   id             String       @id @default(cuid())
+  externalId     String?      @unique // External review ID for dedup (Google review name, etc.)
   platform       PlatformType
   authorName     String
   authorAvatar   String?
@@ -104,6 +127,10 @@ model Review {
   title          String?
   content        String
   tags           String[]
+  sentimentScore    Float?
+  sentimentLabel    String?       // "positive", "neutral", "negative"
+  sentimentKeywords String[]
+  urgency           String?       // "high", "medium", "low"
   status         ReviewStatus @default(ACTION_REQUIRED)
   postedAt       DateTime     @default(now())
   businessId     String
@@ -118,6 +145,9 @@ model Review {
   @@index([status])
   @@index([platform])
   @@index([rating])
+  @@index([businessId, postedAt])
+  @@index([businessId, status])
+  @@index([businessId, platform])
 }
 
 model Reply {
@@ -134,8 +164,52 @@ model Settings {
   reviewAlerts      Boolean @default(true)
   weeklySummary     Boolean @default(true)
   negativeSentiment Boolean @default(true)
+  autoMonthlyReport Boolean @default(false)
   businessId        String  @unique
   business          Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+}
+
+model ReviewRequest {
+  id              String        @id @default(cuid())
+  phone           String
+  customerName    String
+  platform        PlatformType
+  status          RequestStatus @default(SENT)
+  reviewCompleted Boolean       @default(false)
+  messageId       String?       // WhatsApp message ID for status tracking
+  sentAt          DateTime      @default(now())
+  businessId      String
+  business        Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@index([businessId])
+  @@index([status])
+  @@index([businessId, sentAt])
+}
+
+model Subscription {
+  id                   String    @id @default(cuid())
+  stripeCustomerId     String    @unique
+  stripeSubscriptionId String?   @unique
+  plan                 Plan      @default(FREE)
+  status               SubStatus @default(TRIALING)
+  currentPeriodEnd     DateTime?
+  trialEndsAt          DateTime?
+  businessId           String    @unique
+  business             Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}
+
+model AiUsage {
+  id     String @id @default(cuid())
+  userId String
+  type   String // "suggest_reply", "sentiment"
+  month  String // "2026-03"
+  count  Int    @default(0)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, type, month])
+  @@index([userId])
 }
 
 // ─── Enums ─────────────────────────────────────────────
@@ -157,4 +231,202 @@ enum ReviewStatus {
   HIGH_PRIORITY
   REPLIED
   PENDING
+}
+
+enum RequestStatus {
+  SENT
+  DELIVERED
+  READ
+  FAILED
+}
+
+enum Plan {
+  FREE
+  STARTER
+  GROWTH
+  PRO
+}
+
+enum SubStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  TRIALING
+}
+
+enum BusinessRole {
+  OWNER
+  ADMIN
+  VIEWER
+}
+
+enum NotificationType {
+  NEW_REVIEW
+  NEGATIVE_REVIEW
+  REPLY_REMINDER
+  SYNC_ERROR
+  PLAN_LIMIT
+}
+
+// ─── Multi-tenancy ──────────────────────────────────────
+
+model UserBusiness {
+  userId     String
+  businessId String
+  role       BusinessRole @default(VIEWER)
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business   Business     @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  createdAt  DateTime     @default(now())
+
+  @@id([userId, businessId])
+  @@index([userId])
+  @@index([businessId])
+}
+
+// ─── Notifications ──────────────────────────────────────
+
+model Notification {
+  id         String           @id @default(cuid())
+  type       NotificationType
+  title      String
+  message    String
+  isRead     Boolean          @default(false)
+  actionUrl  String?
+  businessId String
+  business   Business         @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  createdAt  DateTime         @default(now())
+
+  @@index([businessId])
+  @@index([isRead])
+}
+
+// ─── Competitor Benchmarking ────────────────────────────
+
+model Competitor {
+  id            String              @id @default(cuid())
+  name          String
+  googlePlaceId String
+  address       String?
+  rating        Float?
+  totalReviews  Int?
+  lastFetched   DateTime?
+  businessId    String
+  business      Business            @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  snapshots     CompetitorSnapshot[]
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  @@unique([businessId, googlePlaceId])
+  @@index([businessId])
+}
+
+model CompetitorSnapshot {
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  rating       Float
+  totalReviews Int
+  capturedAt   DateTime   @default(now())
+
+  @@index([competitorId])
+}
+
+// ─── QR Code Review Kit ─────────────────────────────────
+
+model QrCode {
+  id         String       @id @default(cuid())
+  code       String       @unique
+  platform   PlatformType
+  reviewUrl  String
+  scanCount  Int          @default(0)
+  businessId String
+  business   Business     @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  createdAt  DateTime     @default(now())
+
+  @@index([businessId])
+}
+
+// ─── Launch Preparation ──────────────────────────────
+
+model InviteCode {
+  id        String    @id @default(cuid())
+  code      String    @unique
+  usedBy    String?
+  usedAt    DateTime?
+  maxUses   Int       @default(1)
+  useCount  Int       @default(0)
+  expiresAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([code])
+}
+
+model Waitlist {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  company   String?
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+}
+
+model Feedback {
+  id        String   @id @default(cuid())
+  category  String
+  content   String
+  email     String?
+  userId    String?
+  status    String   @default("NEW")
+  createdAt DateTime @default(now())
+
+  @@index([status])
+}
+
+model AccountDeletion {
+  id          String    @id @default(cuid())
+  userId      String    @unique
+  reason      String?
+  scheduledAt DateTime
+  cancelledAt DateTime?
+  completedAt DateTime?
+  status      String    @default("PENDING")
+  createdAt   DateTime  @default(now())
+
+  @@index([status])
+  @@index([scheduledAt])
+}
+
+// ─── Growth (User Acquisition) ─────────────────────────
+
+model EmailLog {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  templateKey String
+  sentAt      DateTime @default(now())
+
+  @@unique([userId, templateKey])
+  @@index([userId])
+}
+
+model Referral {
+  id         String         @id @default(cuid())
+  code       String
+  referrerId String
+  referrer   User           @relation("referrer", fields: [referrerId], references: [id], onDelete: Cascade)
+  referredId String         @unique
+  referred   User           @relation("referred", fields: [referredId], references: [id], onDelete: Cascade)
+  status     ReferralStatus @default(PENDING)
+  rewardedAt DateTime?
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  @@index([referrerId])
+  @@index([code])
+}
+
+enum ReferralStatus {
+  PENDING
+  COMPLETED
+  REWARDED
 }

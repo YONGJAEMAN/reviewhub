@@ -1,8 +1,10 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
+import Facebook from 'next-auth/providers/facebook';
 import Credentials from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@/lib/prisma';
+import { GOOGLE_BUSINESS_SCOPE } from '@/lib/google';
 import bcrypt from 'bcryptjs';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -11,6 +13,22 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          scope: `openid email profile ${GOOGLE_BUSINESS_SCOPE}`,
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
+    }),
+    Facebook({
+      clientId: process.env.FACEBOOK_CLIENT_ID!,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          scope: 'email,pages_read_engagement,pages_manage_engagement,pages_show_list',
+        },
+      },
     }),
     Credentials({
       name: 'credentials',
@@ -43,15 +61,32 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: '/login',
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account, trigger }) {
       if (user) {
         token.id = user.id;
+        const dbUser = await prisma.user.findUnique({
+          where: { id: user.id },
+          select: { onboardingCompleted: true },
+        });
+        token.onboardingCompleted = dbUser?.onboardingCompleted ?? false;
+      }
+      if (trigger === 'update') {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+          select: { onboardingCompleted: true },
+        });
+        token.onboardingCompleted = dbUser?.onboardingCompleted ?? false;
+      }
+      // Store Google access_token in JWT for easy access
+      if (account?.provider === 'google') {
+        token.googleAccessToken = account.access_token;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
+        session.user.onboardingCompleted = token.onboardingCompleted as boolean;
       }
       return session;
     },

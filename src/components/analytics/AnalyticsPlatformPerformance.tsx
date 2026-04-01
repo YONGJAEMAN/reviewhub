@@ -1,4 +1,4 @@
-import { analyticsPlatforms } from '@/data/mockData';
+import type { AnalyticsPlatform } from '@/types';
 
 const platformIcons: Record<string, { letter: string; bg: string }> = {
   google: { letter: 'G', bg: '#4285F4' },
@@ -7,7 +7,11 @@ const platformIcons: Record<string, { letter: string; bg: string }> = {
   whatsapp: { letter: 'W', bg: '#25D366' },
 };
 
-export default function AnalyticsPlatformPerformance() {
+interface Props {
+  data: AnalyticsPlatform[];
+}
+
+export default function AnalyticsPlatformPerformance({ data }: Props) {
   return (
     <div className="bg-surface rounded-xl shadow-sm border border-border p-6">
       <div className="flex items-center justify-between mb-6">
@@ -22,7 +26,7 @@ export default function AnalyticsPlatformPerformance() {
         </div>
       </div>
       <div className="space-y-5">
-        {analyticsPlatforms.map((p) => {
+        {data.map((p) => {
           const icon = platformIcons[p.platform];
           return (
             <div key={p.platform}>
@@ -30,9 +34,9 @@ export default function AnalyticsPlatformPerformance() {
                 <div className="flex items-center gap-2.5">
                   <div
                     className="w-7 h-7 rounded-md flex items-center justify-center text-white text-xs font-bold"
-                    style={{ backgroundColor: icon.bg }}
+                    style={{ backgroundColor: icon?.bg ?? '#888' }}
                   >
-                    {icon.letter}
+                    {icon?.letter ?? p.platform[0].toUpperCase()}
                   </div>
                   <span className="text-sm font-medium text-text-primary capitalize">
                     {p.platform}

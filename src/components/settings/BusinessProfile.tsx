@@ -1,13 +1,34 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function BusinessProfile() {
-  const [name, setName] = useState('The Artisan Collective');
-  const [email, setEmail] = useState('hello@artisancollective.com');
-  const [description, setDescription] = useState(
-    'Curating the finest local handmade goods for the modern home.\nEstablished 2018.'
-  );
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [description, setDescription] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/settings/profile')
+      .then((res) => res.json())
+      .then((json) => {
+        setName(json.data.name);
+        setEmail(json.data.email);
+        setDescription(json.data.description);
+      })
+      .catch(console.error);
+  }, []);
+
+  const handleSave = () => {
+    setSaving(true);
+    fetch('/api/settings/profile', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, description }),
+    })
+      .catch(console.error)
+      .finally(() => setSaving(false));
+  };
 
   return (
     <div className="bg-surface rounded-xl shadow-sm border border-border p-6">
@@ -51,8 +72,12 @@ export default function BusinessProfile() {
       </div>
 
       <div className="flex justify-end">
-        <button className="bg-navy text-white rounded-lg px-6 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors">
-          Save Profile Changes
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="bg-navy text-white rounded-lg px-6 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors disabled:opacity-50"
+        >
+          {saving ? 'Saving...' : 'Save Profile Changes'}
         </button>
       </div>
     </div>

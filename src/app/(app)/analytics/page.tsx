@@ -1,14 +1,60 @@
 'use client';
 
-import { useState } from 'react';
-import { TrendingUp, AlertTriangle, BarChart3 } from 'lucide-react';
-import SentimentChart from '@/components/analytics/SentimentChart';
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import { TrendingUp, AlertTriangle, BarChart3, Download } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useBusinessContext } from '@/components/BusinessContext';
+import ExportReportModal from '@/components/export/ExportReportModal';
+
+const SentimentChart = dynamic(() => import('@/components/analytics/SentimentChart'), {
+  ssr: false,
+  loading: () => <div className="bg-surface rounded-xl shadow-sm border border-border p-6 h-[340px] animate-pulse" />,
+});
 import RatingDistribution from '@/components/analytics/RatingDistribution';
 import PlatformComparison from '@/components/analytics/PlatformComparison';
 import TopKeywords from '@/components/analytics/TopKeywords';
+import CompetitorBenchmark from '@/components/analytics/CompetitorBenchmark';
+import type {
+  SentimentTrendPoint,
+  RatingDistItem,
+  PlatformComparisonData,
+  TopKeyword,
+} from '@/types';
 
 export default function AnalyticsPage() {
+  const t = useTranslations('analytics');
   const [period, setPeriod] = useState<'30d' | 'quarterly'>('30d');
+  const [sentimentTrend, setSentimentTrend] = useState<SentimentTrendPoint[]>([]);
+  const [ratingDist, setRatingDist] = useState<RatingDistItem[]>([]);
+  const [platformComp, setPlatformComp] = useState<PlatformComparisonData[]>([]);
+  const [keywords, setKeywords] = useState<TopKeyword[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showExport, setShowExport] = useState(false);
+  const { activeBusiness } = useBusinessContext();
+  const bid = activeBusiness?.businessId;
+
+  useEffect(() => {
+    if (!bid) return;
+    fetch(`/api/analytics?businessId=${bid}`)
+      .then((res) => res.json())
+      .then((json) => {
+        setSentimentTrend(json.data.sentimentTrend);
+        setRatingDist(json.data.ratingDistribution);
+        setPlatformComp(json.data.platformComparison);
+        setKeywords(json.data.topKeywords);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [bid]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="w-8 h-8 border-2 border-accent-blue border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -16,13 +62,19 @@ export default function AnalyticsPage() {
         <div>
           <div className="flex items-center gap-3">
             <div className="w-[3px] h-8 bg-accent-blue rounded-full" />
-            <h1 className="text-[28px] font-bold text-text-primary">Analytics</h1>
+            <h1 className="text-[28px] font-bold text-text-primary">{t('title')}</h1>
           </div>
           <p className="text-sm text-text-secondary mt-1 ml-[15px]">
-            In-depth insights into sentiment trends, platform-specific performance, and common
-            keywords.
+            {t('subtitle')}
           </p>
         </div>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowExport(true)}
+            className="flex items-center gap-2 border border-border rounded-lg px-4 py-2 bg-surface text-sm text-text-secondary hover:text-text-primary transition-colors"
+          >
+            <Download size={16} />
+          </button>
         <div className="flex rounded-lg border border-border overflow-hidden">
           <button
             onClick={() => setPeriod('30d')}
@@ -45,30 +97,36 @@ export default function AnalyticsPage() {
             Quarterly
           </button>
         </div>
+        </div>
       </div>
 
       {/* Section 1: Sentiment Over Time */}
       <div className="mb-6">
-        <SentimentChart />
+        <SentimentChart data={sentimentTrend} />
       </div>
 
       {/* Section 2: Rating Distribution */}
       <div className="mb-6">
-        <RatingDistribution />
+        <RatingDistribution data={ratingDist} />
       </div>
 
       {/* Section 3: Platform Comparison */}
       <div className="mb-6">
-        <PlatformComparison />
+        <PlatformComparison data={platformComp} />
       </div>
 
       {/* Section 4: Top Keywords */}
       <div className="mb-6">
-        <TopKeywords />
+        <TopKeywords data={keywords} />
+      </div>
+
+      {/* Section 5: Competitor Benchmark */}
+      <div className="mb-6">
+        <CompetitorBenchmark />
       </div>
 
       {/* Bottom stats */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-surface rounded-xl shadow-sm border border-border p-6 flex items-center gap-4">
           <div className="w-11 h-11 rounded-lg bg-accent-blue/10 flex items-center justify-center">
             <BarChart3 size={20} className="text-accent-blue" />
@@ -108,6 +166,8 @@ export default function AnalyticsPage() {
           </div>
         </div>
       </div>
+
+      {showExport && <ExportReportModal onClose={() => setShowExport(false)} />}
     </div>
   );
 }

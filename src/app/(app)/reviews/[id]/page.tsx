@@ -1,29 +1,47 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, Send, Star } from 'lucide-react';
-import { reviews, reviewerHistories } from '@/data/mockData';
+import Image from 'next/image';
+import { ArrowLeft, Calendar, Send, Sparkles } from 'lucide-react';
 import { renderStars, ratingLabel, platformLabel } from '@/lib/utils';
-
-const platformIcons: Record<string, { letter: string; bg: string }> = {
-  google: { letter: 'G', bg: '#4285F4' },
-  yelp: { letter: 'Y', bg: '#D32323' },
-  facebook: { letter: 'f', bg: '#1877F2' },
-  whatsapp: { letter: 'W', bg: '#25D366' },
-};
+import { platformConfig } from '@/lib/platformConfig';
+import type { Review, ReviewerHistory } from '@/types';
 
 export default function ReviewDetailPage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
 
-  const review = reviews.find((r) => r.id === id);
-  const history = reviewerHistories[id] ?? [];
-
+  const [review, setReview] = useState<Review | null>(null);
+  const [history, setHistory] = useState<ReviewerHistory[]>([]);
+  const [loading, setLoading] = useState(true);
   const [replyText, setReplyText] = useState('');
-  const [localReply, setLocalReply] = useState(review?.reply ?? null);
+  const [localReply, setLocalReply] = useState<Review['reply'] | null>(null);
+  const [aiGenerating, setAiGenerating] = useState(false);
+
+  useEffect(() => {
+    fetch(`/api/reviews/${id}`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.data) {
+          setReview(json.data.review);
+          setHistory(json.data.history ?? []);
+          setLocalReply(json.data.review.reply ?? null);
+        }
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="w-8 h-8 border-2 border-accent-blue border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   if (!review) {
     return (
@@ -36,12 +54,49 @@ export default function ReviewDetailPage() {
     );
   }
 
-  const pIcon = platformIcons[review.platform];
+  const pIcon = platformConfig[review.platform];
 
   const handleSend = () => {
     if (!replyText.trim()) return;
-    setLocalReply({ content: replyText.trim(), repliedAt: 'Just now' });
+    fetch(`/api/reviews/${id}/reply`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: replyText.trim() }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.data?.reply) {
+          setLocalReply(json.data.reply);
+        }
+      })
+      .catch(console.error);
     setReplyText('');
+  };
+
+  const handleAiSuggest = async () => {
+    if (!review) return;
+    setAiGenerating(true);
+    try {
+      const res = await fetch('/api/ai/suggest-reply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          reviewContent: review.content,
+          reviewRating: review.rating,
+          reviewerName: review.authorName,
+          businessName: 'Our Business',
+          tone: review.rating <= 2 ? 'apologetic' : 'professional',
+        }),
+      });
+      const json = await res.json();
+      if (res.ok && json.data?.reply) {
+        setReplyText(json.data.reply);
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setAiGenerating(false);
+    }
   };
 
   return (
@@ -54,17 +109,20 @@ export default function ReviewDetailPage() {
         Back to Review Feed
       </button>
 
-      <div className="flex gap-6">
+      <div className="flex flex-col lg:flex-row gap-6">
         {/* Left 70% - Review content */}
         <div className="flex-1 min-w-0">
           <div className="bg-surface rounded-xl shadow-sm border border-border p-8">
             {/* Profile header */}
             <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
               {review.authorAvatar ? (
-                <img
+                <Image
                   src={review.authorAvatar}
                   alt={review.authorName}
-                  className="w-16 h-16 rounded-full object-cover"
+                  width={64}
+                  height={64}
+                  className="rounded-full object-cover"
+                  unoptimized
                 />
               ) : (
                 <div className="w-16 h-16 rounded-full bg-steel text-white flex items-center justify-center font-bold text-lg">
@@ -108,9 +166,9 @@ export default function ReviewDetailPage() {
               <div className="flex items-center gap-2">
                 <div
                   className="w-7 h-7 rounded-md flex items-center justify-center text-white text-xs font-bold"
-                  style={{ backgroundColor: pIcon.bg }}
+                  style={{ backgroundColor: pIcon?.color ?? '#888' }}
                 >
-                  {pIcon.letter}
+                  {pIcon?.letter ?? '?'}
                 </div>
                 <span className="text-sm text-text-primary">{platformLabel(review.platform)}</span>
               </div>
@@ -161,10 +219,18 @@ export default function ReviewDetailPage() {
                   rows={4}
                   className="w-full bg-surface text-text-primary border border-border rounded-lg px-4 py-3 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-accent-blue resize-none mb-3"
                 />
-                <div className="flex justify-end">
+                <div className="flex justify-between">
+                  <button
+                    onClick={handleAiSuggest}
+                    disabled={aiGenerating}
+                    className="flex items-center gap-2 border border-accent-blue text-accent-blue rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-accent-blue/5 transition-colors disabled:opacity-50"
+                  >
+                    <Sparkles size={14} className={aiGenerating ? 'animate-spin' : ''} />
+                    {aiGenerating ? 'Generating...' : 'AI Suggest'}
+                  </button>
                   <button
                     onClick={handleSend}
-                    disabled={!replyText.trim()}
+                    disabled={!replyText.trim() || aiGenerating}
                     className="flex items-center gap-2 bg-navy text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     <Send size={14} />
@@ -177,7 +243,7 @@ export default function ReviewDetailPage() {
         </div>
 
         {/* Right 30% - Reviewer history sidebar */}
-        <div className="w-[300px] shrink-0">
+        <div className="w-full lg:w-[300px] shrink-0">
           <div className="bg-surface rounded-xl shadow-sm border border-border p-6 sticky top-20">
             <h3 className="text-base font-semibold text-text-primary mb-4">
               Previous Reviews by {review.authorName.split(' ')[0]}

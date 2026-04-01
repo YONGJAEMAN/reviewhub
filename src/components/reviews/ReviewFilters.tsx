@@ -23,7 +23,7 @@ export default function ReviewFilters({ filters, sort, onChange, onSortChange }:
     filters.platform !== 'all' || filters.rating !== 'all' || filters.status !== 'all';
 
   return (
-    <div className="flex items-center gap-3 mb-6">
+    <div className="flex items-center gap-3 mb-6 overflow-x-auto pb-2">
       <div className="flex items-center gap-2 text-sm font-medium text-text-primary border border-border rounded-lg px-3 py-2.5">
         <SlidersHorizontal size={16} />
         Filters

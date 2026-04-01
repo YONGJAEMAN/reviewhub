@@ -13,7 +13,9 @@ export default function SignupPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [inviteCode, setInviteCode] = useState('');
   const [loading, setLoading] = useState(false);
+  const betaMode = process.env.NEXT_PUBLIC_FEATURE_BETA_INVITE === 'true';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ export default function SignupPage() {
       const res = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, password, inviteCode: betaMode ? inviteCode : undefined }),
       });
 
       const data = await res.json();
@@ -46,7 +48,7 @@ export default function SignupPage() {
         // Account created but auto-login failed, redirect to login
         router.push('/login');
       } else {
-        router.push('/dashboard');
+        router.push('/onboarding');
       }
     } catch {
       setError('Something went wrong. Please try again.');
@@ -55,7 +57,7 @@ export default function SignupPage() {
   };
 
   const handleGoogleSignup = () => {
-    signIn('google', { callbackUrl: '/dashboard' });
+    signIn('google', { callbackUrl: '/onboarding' });
   };
 
   return (
@@ -151,6 +153,28 @@ export default function SignupPage() {
                 </button>
               </div>
             </div>
+
+            {betaMode && (
+              <div>
+                <label className="block text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary mb-2">
+                  Invite Code
+                </label>
+                <input
+                  type="text"
+                  value={inviteCode}
+                  onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
+                  placeholder="BETA-XXXXXX"
+                  required
+                  className="w-full px-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent-blue"
+                />
+                <p className="text-xs text-text-secondary mt-1">
+                  초대 코드가 없으신가요?{' '}
+                  <Link href="/waitlist" className="text-accent-blue hover:underline">
+                    대기 리스트에 등록하세요
+                  </Link>
+                </p>
+              </div>
+            )}
 
             <button
               type="submit"

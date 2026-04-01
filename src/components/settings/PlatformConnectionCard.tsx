@@ -1,22 +1,16 @@
 import type { PlatformConnection } from '@/types';
-
-const platformIcons: Record<string, { emoji: string; bg: string }> = {
-  google: { emoji: 'G', bg: '#4285F4' },
-  yelp: { emoji: 'Y', bg: '#D32323' },
-  facebook: { emoji: 'f', bg: '#1877F2' },
-  whatsapp: { emoji: 'W', bg: '#25D366' },
-};
+import { platformConfig } from '@/lib/platformConfig';
 
 export default function PlatformConnectionCard({ connection }: { connection: PlatformConnection }) {
-  const icon = platformIcons[connection.platform];
+  const icon = platformConfig[connection.platform];
 
   return (
     <div className="bg-surface rounded-xl shadow-sm border border-border p-6 flex flex-col items-center text-center">
       <div
         className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg mb-3"
-        style={{ backgroundColor: icon.bg }}
+        style={{ backgroundColor: icon.color }}
       >
-        {icon.emoji}
+        {icon.letter}
       </div>
 
       {connection.connected ? (
@@ -30,7 +24,11 @@ export default function PlatformConnectionCard({ connection }: { connection: Pla
       )}
 
       <h3 className="text-sm font-semibold text-text-primary mb-1">{connection.name}</h3>
-      <p className="text-xs text-text-secondary mb-4">{connection.detail}</p>
+      <p className="text-xs text-text-secondary mb-1">{connection.detail}</p>
+      {connection.platform === 'yelp' && (
+        <p className="text-[10px] text-text-secondary/60 mb-3">Free tier: 3 most recent reviews</p>
+      )}
+      {connection.platform !== 'yelp' && <div className="mb-3" />}
 
       {connection.connected ? (
         <button className="w-full border border-border rounded-lg px-4 py-2.5 text-sm font-medium text-text-primary hover:bg-background transition-colors">

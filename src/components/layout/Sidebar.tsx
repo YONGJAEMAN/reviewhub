@@ -1,29 +1,59 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 import {
   LayoutDashboard,
   MessageSquareText,
   BarChart3,
+  MessageCircle,
   Settings,
   Link2,
   HelpCircle,
   LogOut,
+  Crown,
+  QrCode,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import BusinessSwitcher from './BusinessSwitcher';
+import { useBusinessContext } from '@/components/BusinessContext';
 
-const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/reviews', label: 'Review Feed', icon: MessageSquareText },
-  { href: '/analytics', label: 'Analytics', icon: BarChart3 },
-  { href: '/settings', label: 'Settings', icon: Settings },
-];
+interface SubInfo {
+  plan: string;
+  status: string;
+  trialDaysLeft: number;
+  trialExpired: boolean;
+}
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const { activeBusiness } = useBusinessContext();
+  const [sub, setSub] = useState<SubInfo | null>(null);
+  const t = useTranslations('nav');
+
+  const navItems = [
+    { href: '/dashboard', label: t('dashboard'), icon: LayoutDashboard },
+    { href: '/reviews', label: t('reviews'), icon: MessageSquareText },
+    { href: '/analytics', label: t('analytics'), icon: BarChart3 },
+    { href: '/review-requests', label: t('reviewRequests'), icon: MessageCircle },
+    { href: '/review-requests/qr', label: 'QR Cards', icon: QrCode },
+    { href: '/settings', label: t('settings'), icon: Settings },
+  ];
+
+  useEffect(() => {
+    if (!activeBusiness) return;
+    fetch(`/api/subscription?businessId=${activeBusiness.businessId}`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.data) setSub(json.data);
+      })
+      .catch(() => {});
+  }, [activeBusiness]);
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-[240px] bg-surface border-r border-border flex flex-col z-20">
+    <aside className="fixed left-0 top-0 h-screen w-[240px] bg-surface border-r border-border hidden md:flex flex-col z-20">
       <Link href="/dashboard" className="block p-6 pb-2">
         <h1 className="text-xl font-bold text-navy">ReviewHub</h1>
         <p className="text-[11px] font-medium tracking-widest text-text-secondary uppercase">
@@ -31,7 +61,9 @@ export default function Sidebar() {
         </p>
       </Link>
 
-      <nav className="flex-1 mt-6 px-3">
+      <BusinessSwitcher />
+
+      <nav className="flex-1 px-3">
         {navItems.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
           return (
@@ -52,6 +84,40 @@ export default function Sidebar() {
       </nav>
 
       <div className="px-3 pb-6 space-y-2">
+        {/* Trial Badge */}
+        {sub?.status === 'TRIALING' && !sub.trialExpired && (
+          <div
+            className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium ${
+              sub.trialDaysLeft <= 3
+                ? 'bg-amber-50 text-amber-700'
+                : 'bg-blue-50 text-blue-700'
+            }`}
+          >
+            <Crown size={14} />
+            <span>
+              Trial: {sub.trialDaysLeft} day{sub.trialDaysLeft !== 1 ? 's' : ''} left
+              {sub.trialDaysLeft <= 3 && (
+                <>
+                  {' — '}
+                  <Link href="/pricing" className="underline font-semibold">
+                    Upgrade now
+                  </Link>
+                </>
+              )}
+            </span>
+          </div>
+        )}
+
+        {sub?.trialExpired && sub.plan === 'FREE' && (
+          <Link
+            href="/pricing"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium bg-red-50 text-red-700"
+          >
+            <Crown size={14} />
+            Trial expired — Choose a plan
+          </Link>
+        )}
+
         <button className="w-full flex items-center justify-center gap-2 bg-navy text-surface rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors dark:text-background">
           <Link2 size={16} />
           Connect Account
@@ -62,7 +128,10 @@ export default function Sidebar() {
             <HelpCircle size={18} />
             Support
           </button>
-          <button className="flex items-center gap-3 px-3 py-2 text-sm text-text-secondary hover:text-text-primary w-full rounded-lg hover:bg-background transition-colors">
+          <button
+            onClick={() => signOut({ callbackUrl: '/login' })}
+            className="flex items-center gap-3 px-3 py-2 text-sm text-text-secondary hover:text-text-primary w-full rounded-lg hover:bg-background transition-colors"
+          >
             <LogOut size={18} />
             Logout
           </button>

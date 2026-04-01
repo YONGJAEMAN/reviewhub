@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { platformPerformance } from '@/data/mockData';
 import { formatNumber } from '@/lib/utils';
+import type { PlatformPerformanceData } from '@/types';
 
 const platformIcons: Record<string, { letter: string; bg: string }> = {
   google: { letter: 'G', bg: '#4285F4' },
@@ -9,7 +9,11 @@ const platformIcons: Record<string, { letter: string; bg: string }> = {
   whatsapp: { letter: 'W', bg: '#25D366' },
 };
 
-export default function PlatformPerformance() {
+interface Props {
+  data: PlatformPerformanceData[];
+}
+
+export default function PlatformPerformance({ data }: Props) {
   return (
     <div className="bg-surface rounded-xl shadow-sm border border-border p-6 flex flex-col">
       <div className="flex items-center justify-between mb-6">
@@ -24,7 +28,7 @@ export default function PlatformPerformance() {
         </div>
       </div>
       <div className="space-y-4 flex-1">
-        {platformPerformance.map((p) => {
+        {data.map((p) => {
           const icon = platformIcons[p.platform];
           return (
             <div key={p.platform}>
@@ -32,9 +36,9 @@ export default function PlatformPerformance() {
                 <div className="flex items-center gap-2.5">
                   <div
                     className="w-7 h-7 rounded-md flex items-center justify-center text-white text-xs font-bold"
-                    style={{ backgroundColor: icon.bg }}
+                    style={{ backgroundColor: icon?.bg ?? p.color }}
                   >
-                    {icon.letter}
+                    {icon?.letter ?? p.platform[0].toUpperCase()}
                   </div>
                   <span className="text-sm font-medium text-text-primary capitalize">
                     {p.platform}
@@ -52,7 +56,7 @@ export default function PlatformPerformance() {
                   className="h-full rounded-full"
                   style={{
                     width: `${(p.rating / 5) * 100}%`,
-                    backgroundColor: icon.bg,
+                    backgroundColor: icon?.bg ?? p.color,
                   }}
                 />
               </div>

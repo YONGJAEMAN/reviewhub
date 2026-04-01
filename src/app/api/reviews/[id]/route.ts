@@ -1,5 +1,6 @@
 import type { NextRequest } from 'next/server';
-import { getReviewById, updateReviewStatus } from '@/services/reviewService';
+import { auth } from '@/lib/auth';
+import { getReviewById, updateReviewStatus, getReviewerHistory } from '@/services/reviewService';
 import { successResponse, errorResponse } from '@/lib/api';
 
 export async function GET(
@@ -7,10 +8,16 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) return errorResponse('Unauthorized', 401);
+
     const { id } = await params;
-    const review = await getReviewById(id);
+    const [review, history] = await Promise.all([
+      getReviewById(id),
+      getReviewerHistory(id),
+    ]);
     if (!review) return errorResponse('Review not found', 404);
-    return successResponse(review);
+    return successResponse({ review, history });
   } catch {
     return errorResponse('Failed to fetch review', 500);
   }
@@ -21,6 +28,9 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) return errorResponse('Unauthorized', 401);
+
     const { id } = await params;
     const body = await request.json();
     const { status } = body;

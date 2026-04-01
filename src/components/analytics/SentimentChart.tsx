@@ -11,9 +11,13 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { sentimentTrend } from '@/data/mockData';
+import type { SentimentTrendPoint } from '@/types';
 
-export default function SentimentChart() {
+interface Props {
+  data: SentimentTrendPoint[];
+}
+
+export default function SentimentChart({ data }: Props) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -36,7 +40,7 @@ export default function SentimentChart() {
         </div>
       </div>
       <ResponsiveContainer width="100%" height={280}>
-        <LineChart data={sentimentTrend}>
+        <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={gridColor} />
           <XAxis
             dataKey="month"

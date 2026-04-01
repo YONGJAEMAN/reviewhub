@@ -1,22 +1,14 @@
 'use client';
 
-import { Suspense, useState, useMemo, useEffect } from 'react';
+import { Suspense, useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { useBusinessContext } from '@/components/BusinessContext';
 import ReviewCard from '@/components/reviews/ReviewCard';
 import ReviewFilters, { type FilterState, type SortOption } from '@/components/reviews/ReviewFilters';
 import Pagination from '@/components/reviews/Pagination';
 import ReplyModal from '@/components/reviews/ReplyModal';
-import { reviews as initialReviews } from '@/data/mockData';
 import type { Review } from '@/types';
-
-const sortOrder: Record<string, number> = {
-  '2 hours ago': 1,
-  '5 hours ago': 2,
-  '1 day ago': 3,
-  '2 days ago': 4,
-  '3 days ago': 5,
-  '4 days ago': 6,
-};
 
 export default function ReviewsPage() {
   return (
@@ -27,10 +19,14 @@ export default function ReviewsPage() {
 }
 
 function ReviewsContent() {
+  const t = useTranslations('reviews');
   const searchParams = useSearchParams();
   const highlightId = searchParams.get('highlight');
 
-  const [reviewList, setReviewList] = useState<Review[]>(initialReviews);
+  const [reviewList, setReviewList] = useState<Review[]>([]);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<FilterState>({
     platform: 'all',
     rating: 'all',
@@ -39,39 +35,51 @@ function ReviewsContent() {
   const [sort, setSort] = useState<SortOption>('newest');
   const [currentPage, setCurrentPage] = useState(1);
   const [replyTarget, setReplyTarget] = useState<Review | null>(null);
+  const { activeBusiness } = useBusinessContext();
+  const bid = activeBusiness?.businessId;
+
+  const fetchReviews = useCallback(() => {
+    if (!bid) return;
+    const params = new URLSearchParams();
+    params.set('businessId', bid);
+    if (filters.platform !== 'all') params.set('platform', filters.platform);
+    if (filters.rating !== 'all') params.set('rating', filters.rating);
+    if (filters.status !== 'all') params.set('status', filters.status);
+
+    const sortMap: Record<SortOption, { field: string; order: string }> = {
+      newest: { field: 'postedAt', order: 'desc' },
+      oldest: { field: 'postedAt', order: 'asc' },
+      highest: { field: 'rating', order: 'desc' },
+      lowest: { field: 'rating', order: 'asc' },
+    };
+    const s = sortMap[sort];
+    params.set('sortField', s.field);
+    params.set('sortOrder', s.order);
+    params.set('page', String(currentPage));
+    params.set('limit', '10');
+
+    setLoading(true);
+    fetch(`/api/reviews?${params}`)
+      .then((res) => res.json())
+      .then((json) => {
+        setReviewList(json.data.data);
+        setTotal(json.data.total);
+        setTotalPages(json.data.totalPages);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [filters, sort, currentPage, bid]);
+
+  useEffect(() => {
+    fetchReviews();
+  }, [fetchReviews]);
 
   useEffect(() => {
     if (highlightId) {
       const el = document.getElementById(`review-${highlightId}`);
       el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }, [highlightId]);
-
-  const filtered = useMemo(() => {
-    let result = reviewList.filter((r) => {
-      if (filters.platform !== 'all' && r.platform !== filters.platform) return false;
-      if (filters.rating !== 'all' && r.rating !== Number(filters.rating)) return false;
-      if (filters.status !== 'all' && r.status !== filters.status) return false;
-      return true;
-    });
-
-    result = [...result].sort((a, b) => {
-      switch (sort) {
-        case 'newest':
-          return (sortOrder[a.postedAt] ?? 99) - (sortOrder[b.postedAt] ?? 99);
-        case 'oldest':
-          return (sortOrder[b.postedAt] ?? 0) - (sortOrder[a.postedAt] ?? 0);
-        case 'highest':
-          return b.rating - a.rating;
-        case 'lowest':
-          return a.rating - b.rating;
-        default:
-          return 0;
-      }
-    });
-
-    return result;
-  }, [reviewList, filters, sort]);
+  }, [highlightId, reviewList]);
 
   const avgRating =
     reviewList.length > 0
@@ -79,27 +87,38 @@ function ReviewsContent() {
       : '0';
 
   const handleSendReply = (reviewId: string, replyContent: string) => {
-    setReviewList((prev) =>
-      prev.map((r) =>
-        r.id === reviewId
-          ? {
-              ...r,
-              status: 'replied' as const,
-              reply: { content: replyContent, repliedAt: 'Just now' },
-            }
-          : r
-      )
-    );
+    fetch(`/api/reviews/${reviewId}/reply`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: replyContent }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.data) {
+          setReviewList((prev) =>
+            prev.map((r) => (r.id === reviewId ? json.data : r))
+          );
+        }
+      })
+      .catch(console.error);
     setReplyTarget(null);
   };
+
+  if (loading && reviewList.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="w-8 h-8 border-2 border-accent-blue border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div>
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h1 className="text-[28px] font-bold text-text-primary">Review Feed</h1>
+          <h1 className="text-[28px] font-bold text-text-primary">{t('title')}</h1>
           <p className="text-sm text-text-secondary mt-1">
-            Manage and respond to feedback across all connected channels.
+            {t('subtitle')}
           </p>
         </div>
         <div className="flex items-center gap-6 text-sm">
@@ -116,7 +135,7 @@ function ReviewsContent() {
             <span className="text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary">
               Total Reviews
             </span>
-            <p className="text-lg font-bold text-navy">1,284</p>
+            <p className="text-lg font-bold text-navy">{total.toLocaleString()}</p>
           </div>
         </div>
       </div>
@@ -124,13 +143,13 @@ function ReviewsContent() {
       <ReviewFilters
         filters={filters}
         sort={sort}
-        onChange={setFilters}
+        onChange={(f) => { setFilters(f); setCurrentPage(1); }}
         onSortChange={setSort}
       />
 
       <div className="space-y-4">
-        {filtered.length > 0 ? (
-          filtered.map((review) => (
+        {reviewList.length > 0 ? (
+          reviewList.map((review) => (
             <div key={review.id} id={`review-${review.id}`}>
               <ReviewCard
                 review={review}
@@ -141,12 +160,12 @@ function ReviewsContent() {
           ))
         ) : (
           <div className="bg-surface rounded-xl shadow-sm border border-border p-12 text-center">
-            <p className="text-text-secondary">No reviews match your filters.</p>
+            <p className="text-text-secondary">{t('noReviews')}</p>
           </div>
         )}
       </div>
 
-      <Pagination current={currentPage} total={24} onChange={setCurrentPage} />
+      <Pagination current={currentPage} total={totalPages} onChange={setCurrentPage} />
 
       {replyTarget && (
         <ReplyModal

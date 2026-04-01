@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { reviews } from '@/data/mockData';
+import Image from 'next/image';
 import { renderStars } from '@/lib/utils';
+import type { Review } from '@/types';
 
 const platformIcons: Record<string, { letter: string; bg: string }> = {
   google: { letter: 'G', bg: '#4285F4' },
@@ -9,9 +10,11 @@ const platformIcons: Record<string, { letter: string; bg: string }> = {
   whatsapp: { letter: 'W', bg: '#25D366' },
 };
 
-export default function RecentActivity() {
-  const recent = reviews.slice(0, 3);
+interface Props {
+  data: Review[];
+}
 
+export default function RecentActivity({ data }: Props) {
   return (
     <div className="bg-surface rounded-xl shadow-sm border border-border p-6">
       <div className="flex items-center justify-between mb-6">
@@ -21,16 +24,19 @@ export default function RecentActivity() {
         </Link>
       </div>
       <div className="divide-y divide-border">
-        {recent.map((review) => {
+        {data.map((review) => {
           const pIcon = platformIcons[review.platform];
           return (
             <div key={review.id} className="py-5 first:pt-0 last:pb-0">
               <div className="flex items-start gap-4">
                 {review.authorAvatar ? (
-                  <img
+                  <Image
                     src={review.authorAvatar}
                     alt={review.authorName}
-                    className="w-11 h-11 rounded-full object-cover shrink-0"
+                    width={44}
+                    height={44}
+                    className="rounded-full object-cover shrink-0"
+                    unoptimized
                   />
                 ) : (
                   <div className="w-11 h-11 rounded-full bg-steel text-white flex items-center justify-center font-bold text-sm shrink-0">
@@ -53,9 +59,9 @@ export default function RecentActivity() {
                       <span>{review.postedAt} on</span>
                       <div
                         className="w-5 h-5 rounded flex items-center justify-center text-white text-[9px] font-bold"
-                        style={{ backgroundColor: pIcon.bg }}
+                        style={{ backgroundColor: pIcon?.bg ?? '#888' }}
                       >
-                        {pIcon.letter}
+                        {pIcon?.letter ?? '?'}
                       </div>
                     </div>
                   </div>

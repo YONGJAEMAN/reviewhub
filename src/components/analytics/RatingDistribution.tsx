@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { ratingDistribution } from '@/data/mockData';
 import { formatNumber } from '@/lib/utils';
+import type { RatingDistItem } from '@/types';
 
-export default function RatingDistribution() {
+interface Props {
+  data: RatingDistItem[];
+}
+
+export default function RatingDistribution({ data }: Props) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -22,7 +26,7 @@ export default function RatingDistribution() {
     <div className="bg-surface rounded-xl shadow-sm border border-border p-6">
       <h2 className="text-xl font-semibold text-text-primary mb-6">Rating Distribution</h2>
       <div className="space-y-4">
-        {ratingDistribution.map((item) => (
+        {data.map((item) => (
           <div key={item.stars} className="flex items-center gap-3">
             <span className="w-8 text-sm font-semibold text-text-primary text-right">
               {item.stars}★

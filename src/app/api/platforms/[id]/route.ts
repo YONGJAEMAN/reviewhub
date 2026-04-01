@@ -1,4 +1,5 @@
 import type { NextRequest } from 'next/server';
+import { auth } from '@/lib/auth';
 import {
   connectPlatform,
   disconnectPlatform,
@@ -11,6 +12,9 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) return errorResponse('Unauthorized', 401);
+
     const { id } = await params;
     const platform = await connectPlatform(id);
     if (!platform) return errorResponse('Platform not found', 404);
@@ -25,6 +29,9 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) return errorResponse('Unauthorized', 401);
+
     const { id } = await params;
     const platform = await disconnectPlatform(id);
     if (!platform) return errorResponse('Platform not found', 404);
@@ -39,6 +46,9 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) return errorResponse('Unauthorized', 401);
+
     const { id } = await params;
     const result = await syncPlatform(id);
     return successResponse(result);

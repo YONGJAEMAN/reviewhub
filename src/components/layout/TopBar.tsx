@@ -2,17 +2,25 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
-import { Search, Bell, Moon, Sun } from 'lucide-react';
-import { reviews } from '@/data/mockData';
+import Image from 'next/image';
+import { Search, Moon, Sun } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { renderStars } from '@/lib/utils';
+import NotificationDropdown from './NotificationDropdown';
+import LanguageSwitcher from './LanguageSwitcher';
+import type { Review } from '@/types';
 
 export default function TopBar() {
   const router = useRouter();
+  const { data: session } = useSession();
   const { theme, setTheme } = useTheme();
+  const t = useTranslations('common');
   const [mounted, setMounted] = useState(false);
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [results, setResults] = useState<Review[]>([]);
   const [showResults, setShowResults] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -33,18 +41,16 @@ export default function TopBar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const results = debouncedQuery.trim()
-    ? reviews
-        .filter((r) => {
-          const q = debouncedQuery.toLowerCase();
-          return (
-            r.authorName.toLowerCase().includes(q) ||
-            (r.title?.toLowerCase().includes(q) ?? false) ||
-            r.content.toLowerCase().includes(q)
-          );
-        })
-        .slice(0, 5)
-    : [];
+  useEffect(() => {
+    if (!debouncedQuery.trim()) {
+      setResults([]);
+      return;
+    }
+    fetch(`/api/reviews?search=${encodeURIComponent(debouncedQuery)}&limit=5`)
+      .then((res) => res.json())
+      .then((json) => setResults(json.data?.data ?? []))
+      .catch(() => setResults([]));
+  }, [debouncedQuery]);
 
   const handleSelect = (reviewId: string) => {
     setQuery('');
@@ -52,9 +58,17 @@ export default function TopBar() {
     router.push(`/reviews?highlight=${reviewId}`);
   };
 
+  const userName = session?.user?.name ?? 'User';
+  const initials = userName
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
-    <header className="sticky top-0 z-10 bg-surface border-b border-border px-8 py-3 flex items-center justify-between">
-      <div ref={wrapperRef} className="relative w-96">
+    <header className="sticky top-0 z-10 bg-surface border-b border-border px-4 md:px-8 py-3 flex items-center justify-between gap-4">
+      <div ref={wrapperRef} className="relative w-full md:w-96">
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
         <input
           type="text"
@@ -64,7 +78,7 @@ export default function TopBar() {
             setShowResults(true);
           }}
           onFocus={() => setShowResults(true)}
-          placeholder="Search reviews, customers, or keywords..."
+          placeholder={t('search')}
           className="w-full pl-9 pr-4 py-2 bg-surface border border-border rounded-lg text-sm text-text-primary placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent-blue"
         />
 
@@ -77,10 +91,13 @@ export default function TopBar() {
                 className="w-full flex items-center gap-3 px-4 py-3 hover:bg-background transition-colors text-left"
               >
                 {r.authorAvatar ? (
-                  <img
+                  <Image
                     src={r.authorAvatar}
                     alt={r.authorName}
-                    className="w-8 h-8 rounded-full object-cover shrink-0"
+                    width={32}
+                    height={32}
+                    className="rounded-full object-cover shrink-0"
+                    unoptimized
                   />
                 ) : (
                   <div className="w-8 h-8 rounded-full bg-steel text-white flex items-center justify-center text-xs font-bold shrink-0">
@@ -108,7 +125,7 @@ export default function TopBar() {
         )}
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4 shrink-0">
         {/* Dark mode toggle */}
         {mounted && (
           <button
@@ -120,16 +137,14 @@ export default function TopBar() {
           </button>
         )}
 
-        <button className="relative p-2 text-text-secondary hover:text-navy transition-colors">
-          <Bell size={20} />
-          <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-danger rounded-full border-2 border-surface" />
-        </button>
-        <div className="flex items-center gap-3">
+        <LanguageSwitcher />
+        <NotificationDropdown />
+        <div className="hidden md:flex items-center gap-3">
           <div className="w-9 h-9 rounded-full bg-navy text-surface flex items-center justify-center text-sm font-bold dark:bg-accent-blue dark:text-background">
-            JM
+            {initials}
           </div>
           <div className="text-right">
-            <p className="text-sm font-semibold text-text-primary leading-tight">James Miller</p>
+            <p className="text-sm font-semibold text-text-primary leading-tight">{userName}</p>
             <p className="text-xs text-text-secondary leading-tight">Owner</p>
           </div>
         </div>

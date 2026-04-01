@@ -1,15 +1,25 @@
 'use client';
 
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import { sentimentData } from '@/data/mockData';
 import { Contrast } from 'lucide-react';
 import { formatNumber } from '@/lib/utils';
 
-export default function SentimentAnalysis() {
-  const data = [
-    { name: 'Positive', value: sentimentData.positive, color: '#1B3A4B' },
-    { name: 'Neutral', value: sentimentData.neutral, color: '#CBD5E0' },
-    { name: 'Negative', value: sentimentData.negative, color: '#E2E8F0' },
+interface SentimentData {
+  positive: number;
+  neutral: number;
+  negative: number;
+  percentage: number;
+}
+
+interface Props {
+  data: SentimentData;
+}
+
+export default function SentimentAnalysis({ data }: Props) {
+  const chartData = [
+    { name: 'Positive', value: data.positive, color: '#1B3A4B' },
+    { name: 'Neutral', value: data.neutral, color: '#CBD5E0' },
+    { name: 'Negative', value: data.negative, color: '#E2E8F0' },
   ];
 
   return (
@@ -24,7 +34,7 @@ export default function SentimentAnalysis() {
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
-                data={data}
+                data={chartData}
                 cx="50%"
                 cy="50%"
                 innerRadius={60}
@@ -34,14 +44,14 @@ export default function SentimentAnalysis() {
                 dataKey="value"
                 stroke="none"
               >
-                {data.map((entry) => (
+                {chartData.map((entry) => (
                   <Cell key={entry.name} fill={entry.color} />
                 ))}
               </Pie>
             </PieChart>
           </ResponsiveContainer>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-3xl font-bold text-navy">{sentimentData.percentage}%</span>
+            <span className="text-3xl font-bold text-navy">{data.percentage}%</span>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-text-secondary">
               Positive
             </span>
@@ -54,19 +64,19 @@ export default function SentimentAnalysis() {
           <p className="text-[10px] font-semibold uppercase tracking-wider text-text-secondary mb-1">
             Positive
           </p>
-          <p className="text-lg font-bold text-navy">{formatNumber(sentimentData.positive)}</p>
+          <p className="text-lg font-bold text-navy">{formatNumber(data.positive)}</p>
         </div>
         <div className="text-center">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-text-secondary mb-1">
             Neutral
           </p>
-          <p className="text-lg font-bold text-text-primary">{formatNumber(sentimentData.neutral)}</p>
+          <p className="text-lg font-bold text-text-primary">{formatNumber(data.neutral)}</p>
         </div>
         <div className="text-center">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-text-secondary mb-1">
             Negative
           </p>
-          <p className="text-lg font-bold text-danger">{formatNumber(sentimentData.negative)}</p>
+          <p className="text-lg font-bold text-danger">{formatNumber(data.negative)}</p>
         </div>
       </div>
     </div>

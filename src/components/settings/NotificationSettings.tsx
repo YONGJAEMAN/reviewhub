@@ -1,16 +1,30 @@
 'use client';
 
-import { useState } from 'react';
-import { notificationSettings as initialSettings } from '@/data/mockData';
+import { useState, useEffect } from 'react';
 import { Info } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import type { NotificationSetting } from '@/types';
 
 export default function NotificationSettings() {
-  const [settings, setSettings] = useState(initialSettings);
+  const t = useTranslations('settings');
+  const [settings, setSettings] = useState<NotificationSetting[]>([]);
+  const [autoReport, setAutoReport] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/settings/notifications')
+      .then((res) => res.json())
+      .then((json) => setSettings(json.data))
+      .catch(console.error);
+  }, []);
 
   const toggle = (id: string) => {
-    setSettings((prev) =>
-      prev.map((s) => (s.id === id ? { ...s, enabled: !s.enabled } : s))
-    );
+    const updated = settings.map((s) => (s.id === id ? { ...s, enabled: !s.enabled } : s));
+    setSettings(updated);
+    fetch('/api/settings/notifications', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updated),
+    }).catch(console.error);
   };
 
   return (
@@ -38,6 +52,33 @@ export default function NotificationSettings() {
             </button>
           </div>
         ))}
+      </div>
+
+      {/* Auto Monthly Report */}
+      <div className="mt-5 flex items-center justify-between pt-5 border-t border-border">
+        <div>
+          <p className="text-sm font-medium text-text-primary">{t('autoMonthlyReport')}</p>
+          <p className="text-xs text-text-secondary">{t('autoMonthlyReportDesc')}</p>
+        </div>
+        <button
+          onClick={() => {
+            setAutoReport(!autoReport);
+            fetch('/api/settings/notifications', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ autoMonthlyReport: !autoReport }),
+            }).catch(console.error);
+          }}
+          className={`relative w-11 h-6 rounded-full transition-colors ${
+            autoReport ? 'bg-success' : 'bg-border'
+          }`}
+        >
+          <span
+            className={`absolute top-0.5 w-5 h-5 rounded-full bg-surface shadow-sm transition-transform ${
+              autoReport ? 'left-[22px]' : 'left-0.5'
+            }`}
+          />
+        </button>
       </div>
 
       <div className="mt-6 bg-badge-blue border border-accent-blue/20 rounded-lg p-4 flex gap-3">
