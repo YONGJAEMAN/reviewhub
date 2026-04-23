@@ -1,8 +1,16 @@
 import { prisma } from '@/lib/prisma';
 import { successResponse, errorResponse } from '@/lib/api';
+import { rateLimitOrResponse } from '@/lib/rateLimit';
 
 export async function POST(request: Request) {
   try {
+    const limited = rateLimitOrResponse(request, {
+      name: 'waitlist',
+      windowMs: 60 * 60 * 1000, // 1 hour
+      max: 5,
+    });
+    if (limited) return limited;
+
     const { email, name, company } = await request.json();
     if (!email) return errorResponse('Email is required');
 

@@ -1,6 +1,15 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { auth } from '@/lib/auth';
+import { isAdminEmail } from '@/lib/adminAuth';
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const session = await auth();
+  // Server-side guard — route is invisible to non-admins. API routes have
+  // their own requireAdmin() check as defense in depth.
+  if (!session?.user?.id) redirect('/login?callbackUrl=/admin');
+  if (!isAdminEmail(session.user.email)) redirect('/dashboard');
+
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-surface border-b border-border">

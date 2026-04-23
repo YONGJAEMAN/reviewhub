@@ -1,9 +1,17 @@
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { successResponse, errorResponse } from '@/lib/api';
+import { rateLimitOrResponse } from '@/lib/rateLimit';
 
 export async function POST(request: Request) {
   try {
+    const limited = rateLimitOrResponse(request, {
+      name: 'feedback',
+      windowMs: 10 * 60 * 1000, // 10 min
+      max: 10,
+    });
+    if (limited) return limited;
+
     const session = await auth();
     const { category, content, email } = await request.json();
 

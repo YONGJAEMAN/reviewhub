@@ -1,12 +1,11 @@
-import { auth } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
 import { createInviteCode, listInviteCodes } from '@/services/inviteCodeService';
 import { successResponse, errorResponse } from '@/lib/api';
+import { requireAdmin } from '@/lib/adminAuth';
 
 export async function GET() {
   try {
-    const session = await auth();
-    if (!session?.user?.id) return errorResponse('Unauthorized', 401);
+    const guard = await requireAdmin();
+    if (guard) return guard;
 
     const codes = await listInviteCodes();
     return successResponse(codes);
@@ -17,8 +16,8 @@ export async function GET() {
 
 export async function POST() {
   try {
-    const session = await auth();
-    if (!session?.user?.id) return errorResponse('Unauthorized', 401);
+    const guard = await requireAdmin();
+    if (guard) return guard;
 
     const [code] = await createInviteCode(1);
     return successResponse(code, 201);

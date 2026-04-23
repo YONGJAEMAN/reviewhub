@@ -6,9 +6,17 @@ import { features } from '@/lib/features';
 import { validateInviteCode, redeemInviteCode } from '@/services/inviteCodeService';
 import { generateReferralCode } from '@/services/referralService';
 import { successResponse, errorResponse } from '@/lib/api';
+import { rateLimitOrResponse } from '@/lib/rateLimit';
 
 export async function POST(request: NextRequest) {
   try {
+    const limited = rateLimitOrResponse(request, {
+      name: 'register',
+      windowMs: 60 * 60 * 1000, // 1 hour
+      max: 10,
+    });
+    if (limited) return limited;
+
     const { name, email, password, inviteCode } = await request.json();
 
     if (!email || !password) {
@@ -129,7 +137,7 @@ export async function POST(request: NextRequest) {
         userName: name || 'there',
         unsubscribeUrl: getUnsubscribeUrl(user.id),
       });
-      await sendEmail({ to: email, subject: 'ReviewHub에 오신 것을 환영합니다!', html });
+      await sendEmail({ to: email, subject: 'Welcome to ReviewHub!', html });
       await prisma.emailLog.create({
         data: { userId: user.id, templateKey: 'welcome' },
       });

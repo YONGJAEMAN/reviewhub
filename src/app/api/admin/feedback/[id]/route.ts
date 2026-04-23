@@ -1,14 +1,14 @@
-import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { successResponse, errorResponse } from '@/lib/api';
+import { requireAdmin } from '@/lib/adminAuth';
 
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await auth();
-    if (!session?.user?.id) return errorResponse('Unauthorized', 401);
+    const guard = await requireAdmin();
+    if (guard) return guard;
 
     const { id } = await params;
     const { status } = await request.json();
