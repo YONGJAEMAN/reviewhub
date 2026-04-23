@@ -2,12 +2,12 @@ import type { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { refreshCompetitorData } from '@/services/competitorService';
 import { successResponse, errorResponse } from '@/lib/api';
+import { verifyCronAuth } from '@/lib/cronAuth';
+import { captureError } from '@/lib/observability';
 
 export async function GET(request: NextRequest) {
-  const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-    return errorResponse('Unauthorized', 401);
-  }
+  const authGuard = verifyCronAuth(request);
+  if (authGuard) return authGuard;
 
   try {
     const competitors = await prisma.competitor.findMany({
@@ -25,14 +25,17 @@ export async function GET(request: NextRequest) {
       try {
         await refreshCompetitorData(c.id);
         refreshed++;
-      } catch {
-        console.error(`Failed to refresh competitor ${c.name}`);
+      } catch (err) {
+        captureError(err, {
+          tag: 'cron:sync-competitors',
+          extra: { competitorId: c.id, name: c.name },
+        });
       }
     }
 
     return successResponse({ refreshed, total: competitors.length });
   } catch (error) {
-    console.error('Competitor sync cron error:', error);
+    captureError(error, { tag: 'cron:sync-competitors' });
     return errorResponse('Cron failed', 500);
   }
 }

@@ -1,13 +1,11 @@
 import { Resend } from 'resend';
+import { requireEnv } from '@/lib/env';
 
 let _resend: Resend | null = null;
 
 function getResend(): Resend {
   if (!_resend) {
-    if (!process.env.RESEND_API_KEY) {
-      throw new Error('RESEND_API_KEY is not configured');
-    }
-    _resend = new Resend(process.env.RESEND_API_KEY);
+    _resend = new Resend(requireEnv('RESEND_API_KEY'));
   }
   return _resend;
 }

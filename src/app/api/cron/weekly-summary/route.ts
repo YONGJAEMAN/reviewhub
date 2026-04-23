@@ -3,12 +3,12 @@ import { prisma } from '@/lib/prisma';
 import { sendEmail } from '@/lib/email';
 import { renderWeeklySummaryEmail } from '@/emails/WeeklySummaryEmail';
 import { successResponse, errorResponse } from '@/lib/api';
+import { verifyCronAuth } from '@/lib/cronAuth';
+import { captureError } from '@/lib/observability';
 
 export async function GET(request: NextRequest) {
-  const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-    return errorResponse('Unauthorized', 401);
-  }
+  const authGuard = verifyCronAuth(request);
+  if (authGuard) return authGuard;
 
   try {
     const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
@@ -57,14 +57,17 @@ export async function GET(request: NextRequest) {
           html,
         });
         sent++;
-      } catch {
-        console.error(`Failed to send weekly summary to ${ownerEmail}`);
+      } catch (err) {
+        captureError(err, {
+          tag: 'cron:weekly-summary',
+          extra: { businessId: business.id, ownerEmail },
+        });
       }
     }
 
     return successResponse({ sent });
   } catch (error) {
-    console.error('Weekly summary cron error:', error);
+    captureError(error, { tag: 'cron:weekly-summary' });
     return errorResponse('Cron failed', 500);
   }
 }

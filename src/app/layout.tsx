@@ -7,6 +7,11 @@ import JsonLd from '@/components/JsonLd';
 import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
 import SessionProvider from '@/components/SessionProvider';
+import { validateEnv } from '@/lib/env';
+
+// Validate env on server boot. Throws on missing CRITICAL vars so deploy
+// fails fast rather than the first request 500-ing. Idempotent.
+validateEnv();
 
 export const metadata: Metadata = {
   title: {
@@ -47,7 +52,7 @@ export default async function RootLayout({
         <meta name="theme-color" content="#0F1B2D" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       </head>
-      <body className="h-full">
+      <body className="h-full" suppressHydrationWarning>
         <JsonLd type="organization" />
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>

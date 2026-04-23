@@ -1,13 +1,11 @@
 import Stripe from 'stripe';
+import { requireEnv } from '@/lib/env';
 
 let _stripe: Stripe | null = null;
 
 export function getStripe(): Stripe {
   if (!_stripe) {
-    if (!process.env.STRIPE_SECRET_KEY) {
-      throw new Error('STRIPE_SECRET_KEY is not configured');
-    }
-    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    _stripe = new Stripe(requireEnv('STRIPE_SECRET_KEY'), {
       typescript: true,
     });
   }

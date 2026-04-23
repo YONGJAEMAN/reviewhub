@@ -3,12 +3,12 @@ import { prisma } from '@/lib/prisma';
 import { getReportData } from '@/services/reportService';
 import { generateCSV } from '@/lib/csvExport';
 import { sendEmail } from '@/lib/email';
+import { verifyCronAuth } from '@/lib/cronAuth';
+import { captureError } from '@/lib/observability';
 
 export async function GET(request: Request) {
-  const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const authGuard = verifyCronAuth(request);
+  if (authGuard) return authGuard;
 
   try {
     // Find businesses with autoMonthlyReport enabled
@@ -51,13 +51,16 @@ export async function GET(request: Request) {
 
         sent++;
       } catch (err) {
-        console.error(`Monthly report error for business ${s.businessId}:`, err);
+        captureError(err, {
+          tag: 'cron:monthly-report',
+          extra: { businessId: s.businessId },
+        });
       }
     }
 
     return NextResponse.json({ sent, total: settings.length });
   } catch (error) {
-    console.error('Monthly report cron error:', error);
+    captureError(error, { tag: 'cron:monthly-report' });
     return NextResponse.json({ error: 'Failed' }, { status: 500 });
   }
 }
