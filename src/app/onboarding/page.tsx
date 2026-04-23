@@ -3,36 +3,42 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { Check, ArrowRight, ArrowLeft, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import AddressAutocomplete from '@/components/AddressAutocomplete';
 
-const industries = [
-  '식당/카페',
-  '미용/뷰티',
-  '의료/치과',
-  '숙박/호텔',
-  '리테일/쇼핑',
-  '전문서비스',
-  '학원/교육',
-  '기타',
-];
+const industryKeys = [
+  'restaurant',
+  'beauty',
+  'medical',
+  'hospitality',
+  'retail',
+  'professional',
+  'education',
+  'other',
+] as const;
 
 const platformCards = [
-  { key: 'google', name: 'Google', letter: 'G', bg: '#4285F4', desc: 'Google Business Profile' },
-  { key: 'yelp', name: 'Yelp', letter: 'Y', bg: '#D32323', desc: 'Yelp Fusion API' },
-  { key: 'facebook', name: 'Facebook', letter: 'f', bg: '#1877F2', desc: 'Facebook Page Reviews' },
-  { key: 'whatsapp', name: 'WhatsApp', letter: 'W', bg: '#25D366', desc: 'WhatsApp Business' },
+  { key: 'google', nameKey: 'platforms.google', letter: 'G', bg: '#4285F4', descKey: 'platforms.googleDesc' },
+  { key: 'yelp', nameKey: 'platforms.yelp', letter: 'Y', bg: '#D32323', descKey: 'platforms.yelpDesc' },
+  { key: 'facebook', nameKey: 'platforms.facebook', letter: 'f', bg: '#1877F2', descKey: 'platforms.facebookDesc' },
+  { key: 'whatsapp', nameKey: 'platforms.whatsapp', letter: 'W', bg: '#25D366', descKey: 'platforms.whatsappDesc' },
 ];
 
 export default function OnboardingPage() {
   const router = useRouter();
   const { update } = useSession();
+  const t = useTranslations('onboarding');
+  const tc = useTranslations('common');
   const [step, setStep] = useState(0);
+  const [error, setError] = useState('');
 
   // Step 1 state
   const [businessName, setBusinessName] = useState('');
   const [industry, setIndustry] = useState('');
   const [location, setLocation] = useState('');
+  const [createdBusinessId, setCreatedBusinessId] = useState<string | null>(null);
 
   // Step 2 state
   const [connectedPlatforms, setConnectedPlatforms] = useState<string[]>([]);
@@ -54,23 +60,39 @@ export default function OnboardingPage() {
   }, [step]);
 
   const handleNext = async () => {
+    setError('');
     if (step === 0 && businessName) {
-      // Save business info (optional API call)
       try {
-        await fetch('/api/settings/profile', {
-          method: 'PUT',
+        const res = await fetch('/api/businesses', {
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: businessName, industry, location }),
+          body: JSON.stringify({ name: businessName }),
         });
-      } catch {}
+        const json = await res.json();
+        if (!res.ok) {
+          setError(json.error || t('failedToCreateBusiness'));
+          return;
+        }
+        if (json.data?.businessId) {
+          setCreatedBusinessId(json.data.businessId);
+          await fetch('/api/settings/profile', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: businessName, industry, location, businessId: json.data.businessId }),
+          }).catch(() => {});
+        }
+      } catch {
+        setError(t('somethingWentWrong'));
+        return;
+      }
     }
-    if (step === 2) {
-      // Save notification settings
+    if (step === 2 && createdBusinessId) {
       try {
         await fetch('/api/settings/notifications', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            businessId: createdBusinessId,
             settings: [
               { id: 'reviewAlerts', enabled: reviewAlerts },
               { id: 'weeklySummary', enabled: weeklySummary },
@@ -85,7 +107,7 @@ export default function OnboardingPage() {
 
   const handleComplete = async () => {
     await fetch('/api/account/onboarding-complete', { method: 'POST' });
-    await update(); // Refresh JWT
+    await update();
     router.push('/dashboard');
   };
 
@@ -97,7 +119,7 @@ export default function OnboardingPage() {
         {/* Progress bar */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-text-secondary">Step {step + 1} of 4</span>
+            <span className="text-sm font-medium text-text-secondary">{t('stepOf', { step: step + 1, total: 4 })}</span>
             <span className="text-sm text-text-secondary">{Math.round(progress)}%</span>
           </div>
           <div className="h-2 bg-border rounded-full overflow-hidden">
@@ -109,46 +131,49 @@ export default function OnboardingPage() {
         </div>
 
         <div className="bg-surface rounded-2xl shadow-sm border border-border p-8">
+          {error && (
+            <div className="mb-4 p-3 rounded-lg bg-danger/10 text-danger text-sm">{error}</div>
+          )}
+
           {/* Step 1: Welcome + Business Info */}
           {step === 0 && (
             <div>
               <h1 className="text-2xl font-bold text-text-primary mb-2">
-                ReviewHub에 오신 것을 환영합니다! 🎉
+                {t('step1.title')}
               </h1>
               <p className="text-sm text-text-secondary mb-8">
-                비즈니스 정보를 입력하면 맞춤 설정이 됩니다.
+                {t('step1.subtitle')}
               </p>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-text-primary mb-2">비즈니스 이름 *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">{t('step1.businessNameLabel')}</label>
                   <input
                     type="text"
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
-                    placeholder="예: 강남 카페"
+                    placeholder={t('step1.businessNamePlaceholder')}
                     className="w-full px-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-text-primary mb-2">업종</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">{t('step1.industryLabel')}</label>
                   <select
                     value={industry}
                     onChange={(e) => setIndustry(e.target.value)}
                     className="w-full px-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue"
                   >
-                    <option value="">선택하세요</option>
-                    {industries.map((ind) => (
-                      <option key={ind} value={ind}>{ind}</option>
+                    <option value="">{t('step1.selectIndustry')}</option>
+                    {industryKeys.map((key) => (
+                      <option key={key} value={t(`industries.${key}`)}>{t(`industries.${key}`)}</option>
                     ))}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-text-primary mb-2">위치</label>
-                  <input
-                    type="text"
+                  <label className="block text-sm font-medium text-text-primary mb-2">{t('step1.locationLabel')}</label>
+                  <AddressAutocomplete
                     value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    placeholder="예: 서울 강남구"
+                    onChange={setLocation}
+                    placeholder={t('step1.locationPlaceholder')}
                     className="w-full px-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue"
                   />
                 </div>
@@ -160,10 +185,10 @@ export default function OnboardingPage() {
           {step === 1 && (
             <div>
               <h2 className="text-xl font-bold text-text-primary mb-2">
-                리뷰를 가져올 플랫폼을 연결하세요
+                {t('step2.title')}
               </h2>
               <p className="text-sm text-text-secondary mb-6">
-                나중에 Settings에서도 연결할 수 있습니다.
+                {t('step2.subtitle')}
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {platformCards.map((p) => {
@@ -187,12 +212,12 @@ export default function OnboardingPage() {
                         {p.letter}
                       </div>
                       <div className="text-center">
-                        <div className="text-sm font-semibold text-text-primary">{p.name}</div>
-                        <div className="text-[10px] text-text-secondary">{p.desc}</div>
+                        <div className="text-sm font-semibold text-text-primary">{t(p.nameKey)}</div>
+                        <div className="text-[10px] text-text-secondary">{t(p.descKey)}</div>
                       </div>
                       {connected && (
                         <span className="flex items-center gap-1 text-xs font-semibold text-success">
-                          <Check size={14} /> Connected
+                          <Check size={14} /> {t('step2.connected')}
                         </span>
                       )}
                     </button>
@@ -206,16 +231,16 @@ export default function OnboardingPage() {
           {step === 2 && (
             <div>
               <h2 className="text-xl font-bold text-text-primary mb-2">
-                어떤 알림을 받고 싶으세요?
+                {t('step3.title')}
               </h2>
               <p className="text-sm text-text-secondary mb-6">
-                언제든 Settings에서 변경할 수 있습니다.
+                {t('step3.subtitle')}
               </p>
               <div className="space-y-4">
                 {[
-                  { label: '새 리뷰 즉시 알림', desc: '새 리뷰가 등록되면 바로 알려드립니다.', value: reviewAlerts, setter: setReviewAlerts },
-                  { label: '주간 요약 이메일', desc: '매주 월요일 리뷰 요약을 보내드립니다.', value: weeklySummary, setter: setWeeklySummary },
-                  { label: '부정 리뷰 긴급 알림', desc: '부정적인 리뷰가 감지되면 즉시 알려드립니다.', value: negativeSentiment, setter: setNegativeSentiment },
+                  { label: t('step3.newReviewAlerts'), desc: t('step3.newReviewAlertsDesc'), value: reviewAlerts, setter: setReviewAlerts },
+                  { label: t('step3.weeklySummary'), desc: t('step3.weeklySummaryDesc'), value: weeklySummary, setter: setWeeklySummary },
+                  { label: t('step3.negativeAlerts'), desc: t('step3.negativeAlertsDesc'), value: negativeSentiment, setter: setNegativeSentiment },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between p-4 rounded-xl border border-border">
                     <div>
@@ -243,14 +268,14 @@ export default function OnboardingPage() {
             <div className="text-center">
               <div className="text-5xl mb-4">🎊</div>
               <h2 className="text-2xl font-bold text-text-primary mb-2">
-                모든 준비가 완료되었습니다!
+                {t('step4.title')}
               </h2>
               <p className="text-sm text-text-secondary mb-6">
-                이제 대시보드에서 리뷰를 관리할 수 있습니다.
+                {t('step4.subtitle')}
               </p>
               {connectedPlatforms.length > 0 && (
                 <div className="mb-6">
-                  <p className="text-xs text-text-secondary uppercase tracking-wide mb-3">연결된 플랫폼</p>
+                  <p className="text-xs text-text-secondary uppercase tracking-wide mb-3">{t('step4.connectedPlatforms')}</p>
                   <div className="flex justify-center gap-3">
                     {connectedPlatforms.map((key) => {
                       const p = platformCards.find((pc) => pc.key === key)!;
@@ -278,7 +303,7 @@ export default function OnboardingPage() {
                 className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
               >
                 <ArrowLeft size={16} />
-                이전
+                {tc('back')}
               </button>
             ) : (
               <div />
@@ -289,7 +314,7 @@ export default function OnboardingPage() {
                 disabled={step === 0 && !businessName}
                 className="flex items-center gap-2 bg-navy text-white rounded-lg px-6 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors disabled:opacity-40"
               >
-                {step === 1 && connectedPlatforms.length === 0 ? '나중에 하기' : '다음'}
+                {step === 1 && connectedPlatforms.length === 0 ? t('skipForNow') : tc('next')}
                 <ArrowRight size={16} />
               </button>
             ) : (
@@ -298,7 +323,7 @@ export default function OnboardingPage() {
                 className="flex items-center gap-2 bg-navy text-white rounded-lg px-8 py-3 text-sm font-semibold hover:bg-navy-dark transition-colors mx-auto"
               >
                 <Sparkles size={16} />
-                대시보드로 이동
+                {t('step4.goToDashboard')}
               </button>
             )}
           </div>

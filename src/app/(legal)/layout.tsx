@@ -1,16 +1,19 @@
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import Footer from '@/components/landing/Footer';
 
-export default function LegalLayout({ children }: { children: React.ReactNode }) {
+export default async function LegalLayout({ children }: { children: React.ReactNode }) {
+  const t = await getTranslations('common');
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="border-b border-border bg-surface">
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold text-navy">
-            ReviewHub
+            {t('reviewHub')}
           </Link>
           <Link href="/" className="text-sm text-text-secondary hover:text-navy transition-colors">
-            홈으로
+            {t('home')}
           </Link>
         </div>
       </header>

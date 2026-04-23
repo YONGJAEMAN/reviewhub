@@ -23,48 +23,48 @@ const DRIP_SEQUENCE: CampaignStep[] = [
   {
     dayOffset: 0,
     templateKey: 'welcome',
-    subject: 'ReviewHub에 오신 것을 환영합니다!',
+    subject: 'Welcome to ReviewHub!',
     render: ({ userName, unsubscribeUrl }) => renderWelcomeEmail({ userName, unsubscribeUrl }),
   },
   {
     dayOffset: 3,
     templateKey: 'tips_day3',
-    subject: '첫 리뷰에 답변해 보셨나요?',
+    subject: 'Have you replied to your first review?',
     render: ({ userName, unsubscribeUrl }) =>
       renderTrialReminderEmail({ userName, daysLeft: 11, unsubscribeUrl }),
   },
   {
     dayOffset: 7,
     templateKey: 'tips_day7',
-    subject: 'AI 답변 기능을 사용해 보셨나요?',
+    subject: 'Have you tried the AI reply feature?',
     render: ({ userName, unsubscribeUrl }) =>
       renderTrialReminderEmail({ userName, daysLeft: 7, unsubscribeUrl }),
   },
   {
     dayOffset: 10,
     templateKey: 'trial_reminder_10',
-    subject: '트라이얼 만료까지 4일 남았습니다',
+    subject: '4 days left until your trial expires',
     render: ({ userName, unsubscribeUrl }) =>
       renderTrialReminderEmail({ userName, daysLeft: 4, unsubscribeUrl }),
   },
   {
     dayOffset: 13,
     templateKey: 'trial_reminder_13',
-    subject: '트라이얼이 내일 만료됩니다',
+    subject: 'Your trial expires tomorrow',
     render: ({ userName, unsubscribeUrl }) =>
       renderTrialReminderEmail({ userName, daysLeft: 1, unsubscribeUrl }),
   },
   {
     dayOffset: 14,
     templateKey: 'upgrade_prompt',
-    subject: '트라이얼이 종료되었습니다 - 지금 업그레이드하세요',
+    subject: 'Your trial has ended - upgrade now',
     render: ({ userName, unsubscribeUrl }) =>
       renderUpgradePromptEmail({ userName, unsubscribeUrl }),
   },
   {
     dayOffset: 21,
     templateKey: 'winback',
-    subject: '아직 ReviewHub를 고민 중이시라면',
+    subject: 'Still considering ReviewHub?',
     render: ({ userName, unsubscribeUrl }) =>
       renderWinbackEmail({ userName, unsubscribeUrl }),
   },

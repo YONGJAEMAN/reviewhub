@@ -7,12 +7,15 @@ function toFrontendPlatform(p: {
   name: string;
   status: string;
   detail: string | null;
+  lastSynced: Date | null;
 }): PlatformConnection {
   return {
+    id: p.id,
     platform: p.type.toLowerCase() as PlatformConnection['platform'],
     name: p.name,
     connected: p.status === 'CONNECTED',
     detail: p.detail ?? '',
+    lastSynced: p.lastSynced?.toISOString(),
   };
 }
 

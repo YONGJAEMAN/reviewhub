@@ -5,9 +5,13 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function SignupPage() {
   const router = useRouter();
+  const t = useTranslations('auth.signup');
+  const tCommon = useTranslations('common');
+  const tNav = useTranslations('nav');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +36,7 @@ export default function SignupPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || 'Failed to create account');
+        setError(data.error || t('failedToCreate'));
         setLoading(false);
         return;
       }
@@ -51,7 +55,7 @@ export default function SignupPage() {
         router.push('/onboarding');
       }
     } catch {
-      setError('Something went wrong. Please try again.');
+      setError(t('somethingWentWrong'));
       setLoading(false);
     }
   };
@@ -65,19 +69,19 @@ export default function SignupPage() {
       <div className="w-full max-w-[420px]">
         {/* Logo */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-navy">ReviewHub</h1>
+          <h1 className="text-2xl font-bold text-navy">{tCommon('reviewHub')}</h1>
           <p className="text-[11px] font-medium tracking-widest text-text-secondary uppercase">
-            Small Biz Portal
+            {tNav('tagline')}
           </p>
         </div>
 
         {/* Card */}
         <div className="bg-surface rounded-xl shadow-sm border border-border p-8">
           <h2 className="text-xl font-bold text-text-primary mb-1">
-            Create your account
+            {t('title')}
           </h2>
           <p className="text-sm text-text-secondary mb-6">
-            Start managing your reviews today
+            {t('subtitle')}
           </p>
 
           {error && (
@@ -89,7 +93,7 @@ export default function SignupPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary mb-2">
-                Full Name
+                {t('fullNameLabel')}
               </label>
               <div className="relative">
                 <User
@@ -100,7 +104,7 @@ export default function SignupPage() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="James Miller"
+                  placeholder={t('fullNamePlaceholder')}
                   className="w-full pl-10 pr-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent-blue"
                 />
               </div>
@@ -108,7 +112,7 @@ export default function SignupPage() {
 
             <div>
               <label className="block text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary mb-2">
-                Email
+                {t('emailLabel')}
               </label>
               <div className="relative">
                 <Mail
@@ -119,7 +123,7 @@ export default function SignupPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
+                  placeholder={t('emailPlaceholder')}
                   required
                   className="w-full pl-10 pr-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent-blue"
                 />
@@ -128,7 +132,7 @@ export default function SignupPage() {
 
             <div>
               <label className="block text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary mb-2">
-                Password
+                {t('passwordLabel')}
               </label>
               <div className="relative">
                 <Lock
@@ -139,7 +143,7 @@ export default function SignupPage() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="At least 6 characters"
+                  placeholder={t('passwordPlaceholder')}
                   required
                   minLength={6}
                   className="w-full pl-10 pr-10 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent-blue"
@@ -157,20 +161,20 @@ export default function SignupPage() {
             {betaMode && (
               <div>
                 <label className="block text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary mb-2">
-                  Invite Code
+                  {t('inviteCodeLabel')}
                 </label>
                 <input
                   type="text"
                   value={inviteCode}
                   onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
-                  placeholder="BETA-XXXXXX"
+                  placeholder={t('inviteCodePlaceholder')}
                   required
                   className="w-full px-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent-blue"
                 />
                 <p className="text-xs text-text-secondary mt-1">
-                  초대 코드가 없으신가요?{' '}
+                  {t('noInviteCode')}{' '}
                   <Link href="/waitlist" className="text-accent-blue hover:underline">
-                    대기 리스트에 등록하세요
+                    {t('joinWaitlist')}
                   </Link>
                 </p>
               </div>
@@ -181,14 +185,14 @@ export default function SignupPage() {
               disabled={loading}
               className="w-full bg-navy text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors disabled:opacity-50"
             >
-              {loading ? 'Creating account...' : 'Create Account'}
+              {loading ? t('creatingAccount') : t('createAccount')}
             </button>
           </form>
 
           {/* Divider */}
           <div className="flex items-center gap-3 my-6">
             <div className="flex-1 h-px bg-border" />
-            <span className="text-xs text-text-secondary">or continue with</span>
+            <span className="text-xs text-text-secondary">{t('orContinueWith')}</span>
             <div className="flex-1 h-px bg-border" />
           </div>
 
@@ -215,17 +219,17 @@ export default function SignupPage() {
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
               />
             </svg>
-            Sign up with Google
+            {t('signUpWithGoogle')}
           </button>
 
           {/* Login link */}
           <p className="text-center text-sm text-text-secondary mt-6">
-            Already have an account?{' '}
+            {t('hasAccount')}{' '}
             <Link
               href="/login"
               className="text-accent-blue hover:underline font-medium"
             >
-              Sign in
+              {t('signIn')}
             </Link>
           </p>
         </div>

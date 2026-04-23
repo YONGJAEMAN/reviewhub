@@ -1,31 +1,33 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { getAllPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
-  title: '블로그',
-  description: '소규모 비즈니스를 위한 리뷰 관리 팁과 인사이트',
+  title: 'Blog',
+  description: 'Review management tips and insights for small businesses',
   openGraph: {
-    title: 'ReviewHub 블로그',
-    description: '소규모 비즈니스를 위한 리뷰 관리 팁과 인사이트',
-    images: [{ url: '/api/og?title=ReviewHub%20Blog&description=리뷰%20관리%20팁과%20인사이트', width: 1200, height: 630 }],
+    title: 'ReviewHub Blog',
+    description: 'Review management tips and insights for small businesses',
+    images: [{ url: '/api/og?title=ReviewHub%20Blog&description=Review%20management%20tips%20and%20insights', width: 1200, height: 630 }],
   },
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const t = await getTranslations('blog');
   const posts = getAllPosts();
 
   return (
     <div>
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-text-primary mb-2">Blog</h1>
+        <h1 className="text-3xl font-bold text-text-primary mb-2">{t('title')}</h1>
         <p className="text-text-secondary">
-          소규모 비즈니스를 위한 리뷰 관리 팁과 인사이트
+          {t('subtitle')}
         </p>
       </div>
 
       {posts.length === 0 ? (
-        <p className="text-text-secondary">아직 게시된 글이 없습니다.</p>
+        <p className="text-text-secondary">{t('noPosts')}</p>
       ) : (
         <div className="space-y-8">
           {posts.map((post) => (
@@ -36,7 +38,7 @@ export default function BlogPage() {
             >
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-xs text-text-secondary">
-                  {new Date(post.date).toLocaleDateString('ko-KR', {
+                  {new Date(post.date).toLocaleDateString(undefined, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',

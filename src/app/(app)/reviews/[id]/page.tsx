@@ -5,11 +5,13 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, Calendar, Send, Sparkles } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { renderStars, ratingLabel, platformLabel } from '@/lib/utils';
 import { platformConfig } from '@/lib/platformConfig';
 import type { Review, ReviewerHistory } from '@/types';
 
 export default function ReviewDetailPage() {
+  const t = useTranslations('reviews');
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
@@ -46,9 +48,9 @@ export default function ReviewDetailPage() {
   if (!review) {
     return (
       <div className="text-center py-20">
-        <p className="text-text-secondary mb-4">Review not found.</p>
+        <p className="text-text-secondary mb-4">{t('notFound')}</p>
         <Link href="/reviews" className="text-accent-blue hover:underline text-sm">
-          ← Back to Review Feed
+          {t('backToFeed')}
         </Link>
       </div>
     );
@@ -106,7 +108,7 @@ export default function ReviewDetailPage() {
         className="flex items-center gap-2 text-sm text-text-secondary hover:text-navy mb-6 transition-colors"
       >
         <ArrowLeft size={16} />
-        Back to Review Feed
+        {t('backToFeed')}
       </button>
 
       <div className="flex flex-col lg:flex-row gap-6">
@@ -133,14 +135,14 @@ export default function ReviewDetailPage() {
                 <h2 className="text-lg font-bold text-text-primary">{review.authorName}</h2>
                 <p className="text-sm text-text-secondary">
                   {review.localGuide
-                    ? `Local Guide · ${review.reviewCount} reviews`
+                    ? `${t('localGuide')} · ${review.reviewCount} reviews`
                     : review.reviewCount
                       ? `${review.reviewCount} reviews`
-                      : 'New Reviewer'}
+                      : t('newReviewer')}
                 </p>
                 {review.isVerified && (
                   <span className="inline-block mt-1 text-[10px] font-semibold text-success bg-badge-green rounded-full px-2 py-0.5 uppercase">
-                    Verified
+                    {t('verified')}
                   </span>
                 )}
               </div>
@@ -197,9 +199,9 @@ export default function ReviewDetailPage() {
                   <div className="w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center text-[10px] font-bold">
                     JM
                   </div>
-                  <span className="text-sm font-semibold text-text-primary">Your Reply</span>
+                  <span className="text-sm font-semibold text-text-primary">{t('yourReply')}</span>
                   <span className="text-xs text-text-secondary">
-                    Replied {localReply.repliedAt}
+                    {t('repliedAt', { date: localReply.repliedAt })}
                   </span>
                 </div>
                 <p className="text-sm text-text-secondary italic ml-[42px]">
@@ -211,11 +213,11 @@ export default function ReviewDetailPage() {
             {/* New reply textarea */}
             {!localReply && (
               <div>
-                <h3 className="text-sm font-semibold text-text-primary mb-3">Write a Reply</h3>
+                <h3 className="text-sm font-semibold text-text-primary mb-3">{t('writeReply')}</h3>
                 <textarea
                   value={replyText}
                   onChange={(e) => setReplyText(e.target.value)}
-                  placeholder="Write your response..."
+                  placeholder={t('writePlaceholder')}
                   rows={4}
                   className="w-full bg-surface text-text-primary border border-border rounded-lg px-4 py-3 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-accent-blue resize-none mb-3"
                 />
@@ -226,7 +228,7 @@ export default function ReviewDetailPage() {
                     className="flex items-center gap-2 border border-accent-blue text-accent-blue rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-accent-blue/5 transition-colors disabled:opacity-50"
                   >
                     <Sparkles size={14} className={aiGenerating ? 'animate-spin' : ''} />
-                    {aiGenerating ? 'Generating...' : 'AI Suggest'}
+                    {aiGenerating ? t('generating') : t('aiSuggest')}
                   </button>
                   <button
                     onClick={handleSend}
@@ -234,7 +236,7 @@ export default function ReviewDetailPage() {
                     className="flex items-center gap-2 bg-navy text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     <Send size={14} />
-                    Send Reply
+                    {t('sendReply')}
                   </button>
                 </div>
               </div>
@@ -246,7 +248,7 @@ export default function ReviewDetailPage() {
         <div className="w-full lg:w-[300px] shrink-0">
           <div className="bg-surface rounded-xl shadow-sm border border-border p-6 sticky top-20">
             <h3 className="text-base font-semibold text-text-primary mb-4">
-              Previous Reviews by {review.authorName.split(' ')[0]}
+              {t('previousReviewsBy', { name: review.authorName.split(' ')[0] })}
             </h3>
             {history.length > 0 ? (
               <div className="space-y-4">
@@ -261,7 +263,7 @@ export default function ReviewDetailPage() {
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-text-secondary">No previous reviews found.</p>
+              <p className="text-sm text-text-secondary">{t('noPreviousReviews')}</p>
             )}
           </div>
         </div>

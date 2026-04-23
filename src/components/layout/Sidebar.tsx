@@ -38,7 +38,7 @@ export default function Sidebar() {
     { href: '/reviews', label: t('reviews'), icon: MessageSquareText },
     { href: '/analytics', label: t('analytics'), icon: BarChart3 },
     { href: '/review-requests', label: t('reviewRequests'), icon: MessageCircle },
-    { href: '/review-requests/qr', label: 'QR Cards', icon: QrCode },
+    { href: '/review-requests/qr', label: t('qrCards'), icon: QrCode },
     { href: '/settings', label: t('settings'), icon: Settings },
   ];
 
@@ -57,7 +57,7 @@ export default function Sidebar() {
       <Link href="/dashboard" className="block p-6 pb-2">
         <h1 className="text-xl font-bold text-navy">ReviewHub</h1>
         <p className="text-[11px] font-medium tracking-widest text-text-secondary uppercase">
-          Small Biz Portal
+          {t('tagline')}
         </p>
       </Link>
 
@@ -95,12 +95,12 @@ export default function Sidebar() {
           >
             <Crown size={14} />
             <span>
-              Trial: {sub.trialDaysLeft} day{sub.trialDaysLeft !== 1 ? 's' : ''} left
+              {t('trial', { daysLeft: sub.trialDaysLeft })}
               {sub.trialDaysLeft <= 3 && (
                 <>
                   {' — '}
                   <Link href="/pricing" className="underline font-semibold">
-                    Upgrade now
+                    {t('upgrade')}
                   </Link>
                 </>
               )}
@@ -114,26 +114,26 @@ export default function Sidebar() {
             className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium bg-red-50 text-red-700"
           >
             <Crown size={14} />
-            Trial expired — Choose a plan
+            {t('trialExpired')}
           </Link>
         )}
 
         <button className="w-full flex items-center justify-center gap-2 bg-navy text-surface rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors dark:text-background">
           <Link2 size={16} />
-          Connect Account
+          {t('connectAccount')}
         </button>
 
         <div className="border-t border-border pt-3 mt-3 space-y-1">
           <button className="flex items-center gap-3 px-3 py-2 text-sm text-text-secondary hover:text-text-primary w-full rounded-lg hover:bg-background transition-colors">
             <HelpCircle size={18} />
-            Support
+            {t('support')}
           </button>
           <button
             onClick={() => signOut({ callbackUrl: '/login' })}
             className="flex items-center gap-3 px-3 py-2 text-sm text-text-secondary hover:text-text-primary w-full rounded-lg hover:bg-background transition-colors"
           >
             <LogOut size={18} />
-            Logout
+            {t('logout')}
           </button>
         </div>
       </div>

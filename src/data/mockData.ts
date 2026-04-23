@@ -221,24 +221,28 @@ export const platformPerformance: PlatformPerformanceData[] = [
 
 export const platformConnections: PlatformConnection[] = [
   {
+    id: 'mock-google',
     platform: 'google',
     name: 'Google Business',
     connected: true,
     detail: 'Last synced 2 hours ago',
   },
   {
+    id: 'mock-yelp',
     platform: 'yelp',
     name: 'Yelp',
     connected: true,
     detail: '32 new reviews pending',
   },
   {
+    id: 'mock-facebook',
     platform: 'facebook',
     name: 'Facebook Page',
     connected: false,
     detail: 'Authorization expired',
   },
   {
+    id: 'mock-whatsapp',
     platform: 'whatsapp',
     name: 'WhatsApp',
     connected: true,

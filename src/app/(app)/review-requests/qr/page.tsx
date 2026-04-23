@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { QrCode, Plus, Trash2, Printer, Copy, Check } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useBusinessContext } from '@/components/BusinessContext';
 
 interface QrCodeItem {
@@ -20,6 +21,8 @@ const PLATFORM_LABELS: Record<string, string> = {
 };
 
 export default function QrManagementPage() {
+  const t = useTranslations('reviewRequests.qr');
+  const tc = useTranslations('common');
   const { activeBusiness } = useBusinessContext();
   const bid = activeBusiness?.businessId;
   const [qrCodes, setQrCodes] = useState<QrCodeItem[]>([]);
@@ -86,9 +89,9 @@ export default function QrManagementPage() {
       <body>
         <div class="card">
           <h2>${activeBusiness?.businessName ?? 'Our Business'}</h2>
-          <p>We value your feedback!</p>
+          <p>${t('weValueFeedback')}</p>
           <img src="/api/qr/${qr.id}" alt="QR Code" />
-          <p class="scan">Scan to leave a review</p>
+          <p class="scan">${t('scanToLeaveReview')}</p>
           <p class="url">${window.location.origin}/r/${qr.code}</p>
         </div>
         <script>window.onload = () => { window.print(); window.close(); }</script>
@@ -112,26 +115,26 @@ export default function QrManagementPage() {
         <div>
           <div className="flex items-center gap-3">
             <div className="w-[3px] h-8 bg-accent-blue rounded-full" />
-            <h1 className="text-[28px] font-bold text-text-primary">QR Review Cards</h1>
+            <h1 className="text-[28px] font-bold text-text-primary">{t('title')}</h1>
           </div>
           <p className="text-sm text-text-secondary mt-1 ml-[15px]">
-            Generate QR codes to collect reviews from customers.
+            {t('subtitle')}
           </p>
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
           className="flex items-center gap-2 px-4 py-2 bg-navy text-white text-sm rounded-lg hover:bg-navy/90"
         >
-          <Plus size={16} /> Create QR Code
+          <Plus size={16} /> {t('createQrCode')}
         </button>
       </div>
 
       {showForm && (
         <div className="bg-surface rounded-xl shadow-sm border border-border p-6 mb-6">
-          <h3 className="text-lg font-semibold text-text-primary mb-4">New QR Code</h3>
+          <h3 className="text-lg font-semibold text-text-primary mb-4">{t('newQrCode')}</h3>
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-text-primary mb-1">Platform</label>
+              <label className="block text-sm font-medium text-text-primary mb-1">{t('platform')}</label>
               <select
                 value={platform}
                 onChange={(e) => setPlatform(e.target.value)}
@@ -143,12 +146,12 @@ export default function QrManagementPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-text-primary mb-1">Review Page URL</label>
+              <label className="block text-sm font-medium text-text-primary mb-1">{t('reviewPageUrl')}</label>
               <input
                 type="url"
                 value={reviewUrl}
                 onChange={(e) => setReviewUrl(e.target.value)}
-                placeholder="https://g.page/r/..."
+                placeholder={t('reviewPageUrlPlaceholder')}
                 className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background focus:ring-2 focus:ring-accent-blue/20 focus:border-accent-blue outline-none"
               />
             </div>
@@ -159,13 +162,13 @@ export default function QrManagementPage() {
               disabled={!reviewUrl}
               className="px-4 py-2 bg-navy text-white text-sm rounded-lg hover:bg-navy/90 disabled:opacity-50"
             >
-              Create
+              {tc('create')}
             </button>
             <button
               onClick={() => setShowForm(false)}
               className="px-4 py-2 text-sm text-text-secondary hover:text-text-primary"
             >
-              Cancel
+              {tc('cancel')}
             </button>
           </div>
         </div>
@@ -174,7 +177,7 @@ export default function QrManagementPage() {
       {qrCodes.length === 0 ? (
         <div className="bg-surface rounded-xl shadow-sm border border-border p-12 text-center">
           <QrCode size={48} className="text-text-secondary mx-auto mb-4" />
-          <p className="text-text-secondary">No QR codes yet. Create one to start collecting reviews.</p>
+          <p className="text-text-secondary">{t('noQrCodes')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-3 gap-6">
@@ -184,7 +187,7 @@ export default function QrManagementPage() {
                 <span className="text-xs font-semibold px-2 py-1 bg-accent-blue/10 text-accent-blue rounded">
                   {PLATFORM_LABELS[qr.platform] ?? qr.platform}
                 </span>
-                <span className="text-xs text-text-secondary">{qr.scanCount} scans</span>
+                <span className="text-xs text-text-secondary">{t('scans', { count: qr.scanCount })}</span>
               </div>
 
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -204,13 +207,13 @@ export default function QrManagementPage() {
                   className="flex-1 flex items-center justify-center gap-1 py-2 text-sm text-text-secondary hover:text-text-primary border border-border rounded-lg"
                 >
                   {copied === qr.code ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
-                  {copied === qr.code ? 'Copied' : 'Copy Link'}
+                  {copied === qr.code ? tc('copied') : tc('copyLink')}
                 </button>
                 <button
                   onClick={() => printCard(qr)}
                   className="flex-1 flex items-center justify-center gap-1 py-2 text-sm text-text-secondary hover:text-text-primary border border-border rounded-lg"
                 >
-                  <Printer size={14} /> Print
+                  <Printer size={14} /> {t('printCard')}
                 </button>
                 <button
                   onClick={() => handleDelete(qr.id)}

@@ -10,6 +10,7 @@ import {
   Eye,
   Truck,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useBusinessContext } from '@/components/BusinessContext';
 
 interface ReviewRequest {
@@ -22,14 +23,16 @@ interface ReviewRequest {
   sentAt: string;
 }
 
-const statusConfig: Record<string, { label: string; color: string; icon: typeof Clock }> = {
-  SENT: { label: 'Sent', color: 'text-blue-600 bg-blue-50', icon: Send },
-  DELIVERED: { label: 'Delivered', color: 'text-emerald-600 bg-emerald-50', icon: Truck },
-  READ: { label: 'Read', color: 'text-purple-600 bg-purple-50', icon: Eye },
-  FAILED: { label: 'Failed', color: 'text-red-600 bg-red-50', icon: XCircle },
+const statusConfig: Record<string, { labelKey: string; color: string; icon: typeof Clock }> = {
+  SENT: { labelKey: 'status.sent', color: 'text-blue-600 bg-blue-50', icon: Send },
+  DELIVERED: { labelKey: 'status.delivered', color: 'text-emerald-600 bg-emerald-50', icon: Truck },
+  READ: { labelKey: 'status.read', color: 'text-purple-600 bg-purple-50', icon: Eye },
+  FAILED: { labelKey: 'status.failed', color: 'text-red-600 bg-red-50', icon: XCircle },
 };
 
 export default function ReviewRequestsPage() {
+  const t = useTranslations('reviewRequests');
+  const tc = useTranslations('common');
   const { activeBusiness } = useBusinessContext();
   const bid = activeBusiness?.businessId;
   // ─── Individual Send ───
@@ -90,15 +93,15 @@ export default function ReviewRequestsPage() {
       });
       const json = await res.json();
       if (res.ok) {
-        setSendResult({ ok: true, message: 'Message sent successfully!' });
+        setSendResult({ ok: true, message: t('sendIndividual.messageSent') });
         setPhone('');
         setCustomerName('');
         fetchHistory();
       } else {
-        setSendResult({ ok: false, message: json.error || 'Failed to send' });
+        setSendResult({ ok: false, message: json.error || t('sendIndividual.failedToSend') });
       }
     } catch {
-      setSendResult({ ok: false, message: 'Network error' });
+      setSendResult({ ok: false, message: t('sendIndividual.networkError') });
     } finally {
       setSending(false);
     }
@@ -166,9 +169,9 @@ export default function ReviewRequestsPage() {
       <div className="flex items-center gap-3 mb-8">
         <div className="w-[3px] h-8 bg-accent-blue rounded-full" />
         <div>
-          <h1 className="text-[28px] font-bold text-text-primary">Review Requests</h1>
+          <h1 className="text-[28px] font-bold text-text-primary">{t('title')}</h1>
           <p className="text-sm text-text-secondary mt-1">
-            Send review requests via WhatsApp and track their status.
+            {t('subtitle')}
           </p>
         </div>
       </div>
@@ -178,38 +181,38 @@ export default function ReviewRequestsPage() {
         <div className="bg-surface border border-border rounded-xl p-6">
           <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
             <Send size={18} className="text-accent-blue" />
-            Send Individual Request
+            {t('sendIndividual.title')}
           </h2>
           <form onSubmit={handleSend} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-text-secondary mb-1">
-                Customer Name
+                {t('sendIndividual.customerName')}
               </label>
               <input
                 type="text"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                placeholder="John Doe"
+                placeholder={t('sendIndividual.customerNamePlaceholder')}
                 required
                 className="w-full px-3 py-2 border border-border rounded-lg bg-background text-text-primary text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue/20 focus:border-accent-blue"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-text-secondary mb-1">
-                Phone Number
+                {t('sendIndividual.phoneNumber')}
               </label>
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="+1234567890"
+                placeholder={t('sendIndividual.phonePlaceholder')}
                 required
                 className="w-full px-3 py-2 border border-border rounded-lg bg-background text-text-primary text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue/20 focus:border-accent-blue"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-text-secondary mb-1">
-                Review Platform
+                {t('sendIndividual.reviewPlatform')}
               </label>
               <select
                 value={platform}
@@ -231,7 +234,7 @@ export default function ReviewRequestsPage() {
               ) : (
                 <Send size={16} />
               )}
-              {sending ? 'Sending...' : 'Send Request'}
+              {sending ? t('sendIndividual.sending') : t('sendIndividual.sendRequest')}
             </button>
             {sendResult && (
               <div
@@ -252,10 +255,10 @@ export default function ReviewRequestsPage() {
         <div className="bg-surface border border-border rounded-xl p-6">
           <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
             <Upload size={18} className="text-accent-blue" />
-            Bulk Send (CSV)
+            {t('bulkSend.title')}
           </h2>
           <p className="text-sm text-text-secondary mb-4">
-            Upload a CSV file with columns: <code className="bg-background px-1 py-0.5 rounded text-xs">phone, customerName</code>
+            {t('bulkSend.description')}
           </p>
           <input
             ref={fileRef}
@@ -267,14 +270,14 @@ export default function ReviewRequestsPage() {
           {bulkRows.length > 0 && !bulkSending && (
             <div className="space-y-3">
               <p className="text-sm text-text-primary">
-                <span className="font-semibold">{bulkRows.length}</span> contacts ready to send
+                {t('bulkSend.contactsReady', { count: bulkRows.length })}
               </p>
               <button
                 onClick={handleBulkSend}
                 className="w-full flex items-center justify-center gap-2 bg-navy text-surface rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors"
               >
                 <Send size={16} />
-                Send All
+                {t('bulkSend.sendAll')}
               </button>
             </div>
           )}
@@ -289,7 +292,7 @@ export default function ReviewRequestsPage() {
                 />
               </div>
               <p className="text-sm text-text-secondary">
-                Sent: {bulkProgress.sent} / Failed: {bulkProgress.failed} / Total: {bulkProgress.total}
+                {t('bulkSend.sent', { count: bulkProgress.sent })} / {t('bulkSend.failed', { count: bulkProgress.failed })} / {t('bulkSend.total', { count: bulkProgress.total })}
               </p>
             </div>
           )}
@@ -300,7 +303,7 @@ export default function ReviewRequestsPage() {
       <div className="bg-surface border border-border rounded-xl p-6">
         <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
           <Clock size={18} className="text-accent-blue" />
-          Send History
+          {t('history.title')}
         </h2>
         {historyLoading ? (
           <div className="flex items-center justify-center h-32">
@@ -308,7 +311,7 @@ export default function ReviewRequestsPage() {
           </div>
         ) : history.length === 0 ? (
           <p className="text-sm text-text-secondary text-center py-8">
-            No review requests sent yet.
+            {t('history.noRequests')}
           </p>
         ) : (
           <>
@@ -316,11 +319,11 @@ export default function ReviewRequestsPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="text-left py-3 px-4 font-medium text-text-secondary">Customer</th>
-                    <th className="text-left py-3 px-4 font-medium text-text-secondary">Phone</th>
-                    <th className="text-left py-3 px-4 font-medium text-text-secondary">Platform</th>
-                    <th className="text-left py-3 px-4 font-medium text-text-secondary">Status</th>
-                    <th className="text-left py-3 px-4 font-medium text-text-secondary">Sent At</th>
+                    <th className="text-left py-3 px-4 font-medium text-text-secondary">{t('history.customer')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-text-secondary">{t('history.phone')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-text-secondary">{t('history.platform')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-text-secondary">{t('history.status')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-text-secondary">{t('history.sentAt')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -337,7 +340,7 @@ export default function ReviewRequestsPage() {
                         <td className="py-3 px-4">
                           <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${cfg.color}`}>
                             <StatusIcon size={12} />
-                            {cfg.label}
+                            {t(cfg.labelKey)}
                           </span>
                         </td>
                         <td className="py-3 px-4 text-text-secondary">
@@ -361,17 +364,17 @@ export default function ReviewRequestsPage() {
                   disabled={page === 1}
                   className="px-3 py-1.5 text-sm border border-border rounded-lg disabled:opacity-40 hover:bg-background"
                 >
-                  Previous
+                  {tc('previous')}
                 </button>
                 <span className="text-sm text-text-secondary">
-                  Page {page} of {totalPages}
+                  {tc('page', { current: page, total: totalPages })}
                 </span>
                 <button
                   onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
                   className="px-3 py-1.5 text-sm border border-border rounded-lg disabled:opacity-40 hover:bg-background"
                 >
-                  Next
+                  {tc('next')}
                 </button>
               </div>
             )}

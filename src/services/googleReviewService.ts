@@ -5,7 +5,8 @@ import {
   replyToGoogleReviewAPI,
 } from '@/lib/google';
 import { analyzeSentiment, determineStatusFromSentiment } from '@/services/sentimentService';
-import { notifyNewReview } from '@/services/notificationService';
+import { notifyNewReview, createNotification } from '@/services/notificationService';
+import { withRetry } from '@/lib/retry';
 
 interface GoogleReview {
   reviewId: string;
@@ -86,18 +87,46 @@ export async function syncGoogleReviews(platformId: string): Promise<{
   const accessToken = await getGoogleAccessToken(userId);
 
   if (!accessToken) {
-    return { synced: 0, errors: ['No valid Google access token'] };
+    await prisma.platform.update({
+      where: { id: platformId },
+      data: { status: 'DISCONNECTED', detail: 'Google access revoked. Please reconnect.' },
+    });
+    await createNotification({
+      type: 'SYNC_ERROR',
+      title: 'Google connection lost',
+      message: `Google access for "${platform.name}" was revoked. Please reconnect in Settings.`,
+      actionUrl: '/settings',
+      businessId: platform.businessId,
+    });
+    return { synced: 0, errors: ['Google access token revoked — platform disconnected'] };
   }
 
   const locationName = `accounts/${platform.accountId}/locations/${platform.locationId}`;
   let googleReviews: GoogleReview[];
 
   try {
-    googleReviews = await fetchGoogleReviewsAPI(accessToken, locationName);
+    googleReviews = await withRetry(
+      () => fetchGoogleReviewsAPI(accessToken, locationName),
+      { maxRetries: 3, baseDelayMs: 2000, retryOn: (err) => err.message === 'RATE_LIMITED' }
+    ) as GoogleReview[];
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown error';
+    if (message === 'AUTH_ERROR') {
+      await prisma.platform.update({
+        where: { id: platformId },
+        data: { status: 'DISCONNECTED', detail: 'Google access revoked. Please reconnect.' },
+      });
+      await createNotification({
+        type: 'SYNC_ERROR',
+        title: 'Google connection lost',
+        message: `Google access for "${platform.name}" was revoked. Please reconnect in Settings.`,
+        actionUrl: '/settings',
+        businessId: platform.businessId,
+      });
+      return { synced: 0, errors: ['Google access revoked — platform disconnected'] };
+    }
     if (message === 'RATE_LIMITED') {
-      return { synced: 0, errors: ['Google API rate limit exceeded. Will retry later.'] };
+      return { synced: 0, errors: ['Google API rate limit exceeded after retries'] };
     }
     return { synced: 0, errors: [message] };
   }
@@ -224,9 +253,15 @@ export async function replyToGoogleReview(
   }
 
   try {
-    await replyToGoogleReviewAPI(accessToken, review.externalId, content);
+    await withRetry(
+      () => replyToGoogleReviewAPI(accessToken, review.externalId!, content),
+      { maxRetries: 2, baseDelayMs: 2000, retryOn: (err) => err.message === 'RATE_LIMITED' }
+    );
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown error';
+    if (message === 'AUTH_ERROR') {
+      return { success: false, error: 'Google access revoked. Please reconnect in Settings.' };
+    }
     if (message === 'RATE_LIMITED') {
       return { success: false, error: 'Google API rate limit. Please try again later.' };
     }

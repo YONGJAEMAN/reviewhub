@@ -45,10 +45,12 @@ export interface PlatformPerformanceData {
 }
 
 export interface PlatformConnection {
+  id: string;
   platform: Platform;
   name: string;
   connected: boolean;
   detail: string;
+  lastSynced?: string;
 }
 
 export interface NotificationSetting {

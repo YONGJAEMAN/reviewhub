@@ -2,14 +2,16 @@
 
 import Link from 'next/link';
 import { LayoutDashboard, MessageSquare, Sparkles, Bell, Check, Star } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { FadeIn } from './LandingPage';
 
 /* ───── Pain Points ───── */
 function PainPointsSection() {
+  const t = useTranslations('landing');
   const points = [
-    { emoji: '😩', title: '시간 낭비', desc: '여러 플랫폼을 하나씩 확인하느라 매일 30분 이상 소비' },
-    { emoji: '😡', title: '늦은 대응', desc: '부정 리뷰를 늦게 발견해서 대응 시기를 놓치고 평점 하락' },
-    { emoji: '📉', title: '비싼 비용', desc: '리뷰 관리 툴은 $44~$399, 소규모 비즈니스에겐 부담' },
+    { emoji: '😩', title: t('painPoints.wastedTime'), desc: t('painPoints.wastedTimeDesc') },
+    { emoji: '😡', title: t('painPoints.lateResponses'), desc: t('painPoints.lateResponsesDesc') },
+    { emoji: '📉', title: t('painPoints.expensiveTools'), desc: t('painPoints.expensiveToolsDesc') },
   ];
 
   return (
@@ -17,10 +19,10 @@ function PainPointsSection() {
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <h2 className="text-3xl font-bold text-navy text-center mb-4">
-            소규모 비즈니스 사장님,<br className="md:hidden" /> 이런 고민 있으시죠?
+            {t('painPoints.title')}
           </h2>
           <p className="text-text-secondary text-center mb-12 max-w-xl mx-auto">
-            리뷰 하나가 매출을 바꿉니다. 하지만 관리는 너무 번거롭습니다.
+            {t('painPoints.subtitle')}
           </p>
         </FadeIn>
         <div className="grid md:grid-cols-3 gap-6">
@@ -41,26 +43,27 @@ function PainPointsSection() {
 
 /* ───── Solutions ───── */
 function SolutionsSection() {
+  const t = useTranslations('landing');
   const features = [
     {
       icon: LayoutDashboard,
-      title: '통합 대시보드',
-      desc: '모든 플랫폼 리뷰를 한 화면에서 실시간으로 확인하고 관리하세요.',
+      title: t('solutions.unifiedDashboard'),
+      desc: t('solutions.unifiedDashboardDesc'),
     },
     {
       icon: MessageSquare,
-      title: 'WhatsApp 리뷰 요청',
-      desc: '98% 열람률의 WhatsApp으로 고객에게 리뷰를 요청하세요. 리뷰 수 폭발적 증가.',
+      title: t('solutions.whatsappRequests'),
+      desc: t('solutions.whatsappRequestsDesc'),
     },
     {
       icon: Sparkles,
-      title: 'AI 답변 생성',
-      desc: '클릭 한 번으로 전문적인 답변을 자동 생성. 톤 선택과 길이 조절까지.',
+      title: t('solutions.aiReplyGeneration'),
+      desc: t('solutions.aiReplyGenerationDesc'),
     },
     {
       icon: Bell,
-      title: '실시간 알림',
-      desc: '부정 리뷰를 즉시 감지하고 이메일 알림으로 빠르게 대응하세요.',
+      title: t('solutions.realTimeAlerts'),
+      desc: t('solutions.realTimeAlertsDesc'),
     },
   ];
 
@@ -69,10 +72,10 @@ function SolutionsSection() {
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <h2 className="text-3xl font-bold text-navy text-center mb-4">
-            ReviewHub이 해결합니다
+            {t('solutions.title')}
           </h2>
           <p className="text-text-secondary text-center mb-12 max-w-xl mx-auto">
-            복잡한 리뷰 관리를 하나의 도구로 간단하게.
+            {t('solutions.subtitle')}
           </p>
         </FadeIn>
         <div className="grid md:grid-cols-2 gap-6">
@@ -97,13 +100,14 @@ function SolutionsSection() {
 
 /* ───── Comparison ───── */
 function ComparisonSection() {
+  const t = useTranslations('landing');
   const rows = [
-    { feature: '리뷰 통합', brightlocal: true, podium: true, reviewhub: true },
-    { feature: 'WhatsApp 자동화', brightlocal: false, podium: false, reviewhub: true },
-    { feature: 'AI 답변 생성', brightlocal: false, podium: '제한적', reviewhub: true },
-    { feature: '소규모 맞춤 가격', brightlocal: false, podium: false, reviewhub: true },
-    { feature: '감성 분석', brightlocal: true, podium: true, reviewhub: true },
-    { feature: '경쟁사 벤치마킹', brightlocal: true, podium: false, reviewhub: true },
+    { feature: t('comparison.reviewAggregation'), brightlocal: true, podium: true, reviewhub: true },
+    { feature: t('comparison.whatsappAutomation'), brightlocal: false, podium: false, reviewhub: true },
+    { feature: t('comparison.aiReplyGeneration'), brightlocal: false, podium: t('comparison.limited'), reviewhub: true },
+    { feature: t('comparison.smallBusinessPricing'), brightlocal: false, podium: false, reviewhub: true },
+    { feature: t('comparison.sentimentAnalysis'), brightlocal: true, podium: true, reviewhub: true },
+    { feature: t('comparison.competitorBenchmarking'), brightlocal: true, podium: false, reviewhub: true },
   ];
 
   const renderCell = (val: boolean | string) => {
@@ -117,10 +121,10 @@ function ComparisonSection() {
       <div className="max-w-4xl mx-auto px-6">
         <FadeIn>
           <h2 className="text-3xl font-bold text-navy text-center mb-4">
-            왜 ReviewHub인가요?
+            {t('comparison.title')}
           </h2>
           <p className="text-text-secondary text-center mb-12">
-            경쟁사 대비 확실한 가치를 제공합니다.
+            {t('comparison.subtitle')}
           </p>
         </FadeIn>
         <FadeIn delay={0.1}>
@@ -128,15 +132,15 @@ function ComparisonSection() {
             <table className="w-full border-collapse">
               <thead>
                 <tr>
-                  <th className="text-left text-sm font-semibold text-text-primary p-4 border-b border-border">기능</th>
+                  <th className="text-left text-sm font-semibold text-text-primary p-4 border-b border-border">{t('comparison.feature')}</th>
                   <th className="text-center text-sm font-semibold text-text-secondary p-4 border-b border-border">
-                    BrightLocal<br /><span className="text-xs font-normal">$44+/월</span>
+                    BrightLocal<br /><span className="text-xs font-normal">$44+/mo</span>
                   </th>
                   <th className="text-center text-sm font-semibold text-text-secondary p-4 border-b border-border">
-                    Podium<br /><span className="text-xs font-normal">$399+/월</span>
+                    Podium<br /><span className="text-xs font-normal">$399+/mo</span>
                   </th>
                   <th className="text-center text-sm font-bold text-navy p-4 border-b-2 border-accent-blue bg-accent-blue/5 rounded-t-xl">
-                    ReviewHub<br /><span className="text-xs font-semibold text-accent-blue">$19/월</span>
+                    ReviewHub<br /><span className="text-xs font-semibold text-accent-blue">$19/mo</span>
                   </th>
                 </tr>
               </thead>
@@ -160,34 +164,40 @@ function ComparisonSection() {
 
 /* ───── Pricing ───── */
 function PricingSection() {
+  const t = useTranslations('landing');
   const plans = [
     {
       name: 'Starter',
       price: 19,
       popular: false,
-      features: ['1 Business Location', '10 AI Replies / month', '100 WhatsApp Requests', 'Google & Yelp Integration', 'Basic Analytics'],
+      features: ['locations', 'aiReplies', 'whatsapp', 'integrations', 'analytics'] as const,
+      planKey: 'starter' as const,
     },
     {
       name: 'Growth',
       price: 39,
       popular: true,
-      features: ['3 Business Locations', '50 AI Replies / month', '500 WhatsApp Requests', 'All Platform Integrations', 'Advanced Analytics', 'Sentiment Analysis', '3 Competitor Tracking'],
+      features: ['locations', 'aiReplies', 'whatsapp', 'integrations', 'analytics', 'sentiment', 'competitors'] as const,
+      planKey: 'growth' as const,
     },
     {
       name: 'Pro',
       price: 69,
       popular: false,
-      features: ['10 Business Locations', 'Unlimited AI Replies', 'Unlimited WhatsApp', 'All Integrations', 'Advanced Analytics & Reports', 'Sentiment Analysis', '10 Competitor Tracking', 'Priority Support'],
+      features: ['locations', 'aiReplies', 'whatsapp', 'integrations', 'analytics', 'sentiment', 'competitors', 'support'] as const,
+      planKey: 'pro' as const,
     },
   ];
+
+  const tp = useTranslations('pricing');
 
   return (
     <section id="pricing" className="py-20 bg-background">
       <div className="max-w-5xl mx-auto px-6">
         <FadeIn>
-          <h2 className="text-3xl font-bold text-navy text-center mb-4">합리적인 가격</h2>
+          <h2 className="text-3xl font-bold text-navy text-center mb-4">{t('pricing.title')}</h2>
           <p className="text-text-secondary text-center mb-12">
-            14일 무료 체험, 카드 등록 불필요
+            {t('pricing.subtitle')}
           </p>
         </FadeIn>
         <div className="grid md:grid-cols-3 gap-6">
@@ -200,11 +210,11 @@ function PricingSection() {
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="bg-accent-blue text-white text-xs font-bold px-4 py-1 rounded-full flex items-center gap-1">
                       <Sparkles size={12} />
-                      MOST POPULAR
+                      {tp('mostPopular')}
                     </span>
                   </div>
                 )}
-                <h3 className="text-xl font-bold text-text-primary">{plan.name}</h3>
+                <h3 className="text-xl font-bold text-text-primary">{tp(`plans.${plan.planKey}.name`)}</h3>
                 <div className="mt-4 mb-6">
                   <div className="flex items-baseline gap-1">
                     <span className="text-4xl font-bold text-navy">${plan.price}</span>
@@ -212,10 +222,10 @@ function PricingSection() {
                   </div>
                 </div>
                 <ul className="space-y-3 flex-1">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm">
+                  {plan.features.map((featureKey) => (
+                    <li key={featureKey} className="flex items-start gap-2 text-sm">
                       <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" />
-                      <span className="text-text-secondary">{f}</span>
+                      <span className="text-text-secondary">{tp(`plans.${plan.planKey}.features.${featureKey}`)}</span>
                     </li>
                   ))}
                 </ul>
@@ -227,7 +237,7 @@ function PricingSection() {
                       : 'bg-background text-text-primary border border-border hover:bg-border/50'
                   }`}
                 >
-                  무료로 시작하기
+                  {t('pricing.startForFree')}
                 </Link>
               </div>
             </FadeIn>
@@ -240,26 +250,27 @@ function PricingSection() {
 
 /* ───── Testimonials ───── */
 function TestimonialsSection() {
+  const t = useTranslations('landing');
   const reviews = [
     {
-      name: '김○○',
-      business: '카페 운영',
+      name: t('testimonials.review1Name'),
+      business: t('testimonials.review1Business'),
       rating: 5,
-      text: '리뷰 응답 시간이 평균 6시간에서 30분으로 줄었어요. AI 답변 기능 덕분에 전문적인 답변을 빠르게 보낼 수 있습니다.',
+      text: t('testimonials.review1Text'),
       initials: 'KM',
     },
     {
-      name: '이○○',
-      business: '미용실',
+      name: t('testimonials.review2Name'),
+      business: t('testimonials.review2Business'),
       rating: 5,
-      text: 'WhatsApp으로 리뷰 요청했더니 한 달 만에 Google 리뷰 40개 늘었습니다. 신규 고객이 눈에 띄게 증가했어요.',
+      text: t('testimonials.review2Text'),
       initials: 'LJ',
     },
     {
-      name: '박○○',
-      business: '음식점',
+      name: t('testimonials.review3Name'),
+      business: t('testimonials.review3Business'),
       rating: 5,
-      text: '월 $19에 이 정도면 가성비 최고입니다. 부정 리뷰 알림 덕분에 바로 대응할 수 있어서 평점이 4.2에서 4.7로 올랐습니다.',
+      text: t('testimonials.review3Text'),
       initials: 'PS',
     },
   ];
@@ -268,9 +279,9 @@ function TestimonialsSection() {
     <section id="testimonials" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
-          <h2 className="text-3xl font-bold text-navy text-center mb-4">사장님들의 후기</h2>
+          <h2 className="text-3xl font-bold text-navy text-center mb-4">{t('testimonials.title')}</h2>
           <p className="text-text-secondary text-center mb-12">
-            실제로 사용하고 계신 사장님들의 이야기
+            {t('testimonials.subtitle')}
           </p>
         </FadeIn>
         <div className="grid md:grid-cols-3 gap-6">

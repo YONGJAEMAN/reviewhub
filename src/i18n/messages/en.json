@@ -5,7 +5,15 @@
     "analytics": "Analytics",
     "reviewRequests": "Review Requests",
     "settings": "Settings",
-    "help": "Help"
+    "help": "Help",
+    "qrCards": "QR Cards",
+    "trial": "Trial: {daysLeft} day(s) left",
+    "trialExpired": "Trial expired — Choose a plan",
+    "upgrade": "Upgrade now",
+    "connectAccount": "Connect Account",
+    "support": "Support",
+    "logout": "Logout",
+    "tagline": "Small Biz Portal"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -23,7 +31,20 @@
     "period": {
       "7": "Last 7 days",
       "30": "Last 30 days",
-      "90": "Last 90 days"
+      "90": "Last 90 days",
+      "365": "This Year"
+    },
+    "trialExpiredBanner": "Your free trial has ended. Subscribe to continue using all features.",
+    "choosePlan": "Choose Plan",
+    "tour": {
+      "kpiTitle": "KPIs at a Glance",
+      "kpiDescription": "View total reviews, average rating, and other key metrics in real time.",
+      "chartTitle": "Review Trends",
+      "chartDescription": "Track review volume over time with interactive charts.",
+      "platformTitle": "Platform Performance",
+      "platformDescription": "Compare review stats across Google, Yelp, and other platforms.",
+      "activityTitle": "Recent Activity",
+      "activityDescription": "See the latest reviews and respond to them right away."
     }
   },
   "reviews": {
@@ -54,7 +75,17 @@
     "aiSuggest": "AI Suggest",
     "generating": "Generating...",
     "sendReply": "Send Reply",
-    "previousReviews": "Previous Reviews"
+    "previousReviews": "Previous Reviews",
+    "averageRating": "Average Rating",
+    "localGuide": "Local Guide",
+    "topReviewer": "Top Reviewer",
+    "newReviewer": "New Reviewer",
+    "platform": "Platform",
+    "posted": "Posted",
+    "verified": "Verified",
+    "repliedAt": "Replied {date}",
+    "noPreviousReviews": "No previous reviews found.",
+    "previousReviewsBy": "Previous Reviews by {name}"
   },
   "analytics": {
     "title": "Analytics",
@@ -67,7 +98,17 @@
     "topKeywords": "Top Keywords",
     "competitorBenchmark": "Competitor Benchmark",
     "responseTime": "Avg Response Time",
-    "responseRate": "Response Rate"
+    "responseRate": "Response Rate",
+    "last30Days": "Last 30 Days",
+    "quarterly": "Quarterly",
+    "topPlatform": "Top Platform",
+    "criticalAction": "Critical Action",
+    "unreadNegatives": "{count} Unread Negatives",
+    "requiresAttention": "Requires immediate attention",
+    "sentimentTrend": "Sentiment Trend",
+    "growth": "+{percent}% Growth",
+    "positiveMentionsIncreasing": "Positive mentions increasing",
+    "ofTotalVolume": "{percent}% of total volume"
   },
   "settings": {
     "title": "Settings",
@@ -110,6 +151,666 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "close": "Close"
+    "close": "Close",
+    "noResults": "No results found",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode",
+    "home": "Home",
+    "owner": "Owner",
+    "ok": "OK",
+    "create": "Create",
+    "print": "Print",
+    "copyLink": "Copy Link",
+    "copied": "Copied",
+    "copy": "Copy",
+    "sending": "Sending...",
+    "submit": "Submit",
+    "processing": "Processing...",
+    "redirecting": "Redirecting...",
+    "page": "Page {current} of {total}",
+    "perMonth": "/month",
+    "reviewHub": "ReviewHub"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to manage your reviews",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "signIn": "Sign In",
+      "signingIn": "Signing in...",
+      "orContinueWith": "or continue with",
+      "signInWithGoogle": "Sign in with Google",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "invalidCredentials": "Invalid email or password"
+    },
+    "signup": {
+      "title": "Create your account",
+      "subtitle": "Start managing your reviews today",
+      "fullNameLabel": "Full Name",
+      "fullNamePlaceholder": "James Miller",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "At least 6 characters",
+      "inviteCodeLabel": "Invite Code",
+      "inviteCodePlaceholder": "BETA-XXXXXX",
+      "noInviteCode": "Don't have an invite code?",
+      "joinWaitlist": "Join the waitlist",
+      "createAccount": "Create Account",
+      "creatingAccount": "Creating account...",
+      "orContinueWith": "or continue with",
+      "signUpWithGoogle": "Sign up with Google",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "failedToCreate": "Failed to create account",
+      "somethingWentWrong": "Something went wrong. Please try again."
+    }
+  },
+  "onboarding": {
+    "stepOf": "Step {step} of {total}",
+    "step1": {
+      "title": "Welcome to ReviewHub!",
+      "subtitle": "Enter your business details to get personalized settings.",
+      "businessNameLabel": "Business Name *",
+      "businessNamePlaceholder": "e.g. Downtown Cafe",
+      "industryLabel": "Industry",
+      "selectIndustry": "Select an industry",
+      "locationLabel": "Location",
+      "locationPlaceholder": "e.g. New York, NY"
+    },
+    "step2": {
+      "title": "Connect your review platforms",
+      "subtitle": "You can always connect more later in Settings.",
+      "connected": "Connected"
+    },
+    "step3": {
+      "title": "What notifications would you like?",
+      "subtitle": "You can change these anytime in Settings.",
+      "newReviewAlerts": "New Review Alerts",
+      "newReviewAlertsDesc": "Get notified instantly when a new review is posted.",
+      "weeklySummary": "Weekly Summary Email",
+      "weeklySummaryDesc": "Receive a weekly review summary every Monday.",
+      "negativeAlerts": "Negative Review Alerts",
+      "negativeAlertsDesc": "Get urgent alerts when negative reviews are detected."
+    },
+    "step4": {
+      "title": "You're all set!",
+      "subtitle": "Your dashboard is ready. Start managing your reviews now.",
+      "connectedPlatforms": "Connected Platforms",
+      "goToDashboard": "Go to Dashboard"
+    },
+    "skipForNow": "Skip for now",
+    "failedToCreateBusiness": "Failed to create business",
+    "somethingWentWrong": "Something went wrong. Please try again.",
+    "industries": {
+      "restaurant": "Restaurant / Cafe",
+      "beauty": "Beauty / Salon",
+      "medical": "Medical / Dental",
+      "hospitality": "Hospitality / Hotel",
+      "retail": "Retail / Shopping",
+      "professional": "Professional Services",
+      "education": "Education / Tutoring",
+      "other": "Other"
+    },
+    "platforms": {
+      "google": "Google",
+      "googleDesc": "Google Business Profile",
+      "yelp": "Yelp",
+      "yelpDesc": "Yelp Fusion API",
+      "facebook": "Facebook",
+      "facebookDesc": "Facebook Page Reviews",
+      "whatsapp": "WhatsApp",
+      "whatsappDesc": "WhatsApp Business"
+    }
+  },
+  "landing": {
+    "navbar": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "testimonials": "Testimonials",
+      "logIn": "Log In",
+      "startForFree": "Start for Free"
+    },
+    "hero": {
+      "title": "All Reviews,\nOne Dashboard",
+      "subtitle": "Manage Google · Yelp · Facebook · WhatsApp reviews in one place.",
+      "startingAt": "Starting at $19/mo.",
+      "startForFree": "Start for Free",
+      "viewDemo": "View Demo"
+    },
+    "stats": {
+      "activeBusinesses": "Active Businesses",
+      "reviewsManaged": "Reviews Managed",
+      "customerSatisfaction": "Customer Satisfaction"
+    },
+    "mockup": {
+      "rating": "Rating",
+      "reviews": "Reviews",
+      "positive": "Positive",
+      "pending": "Pending"
+    },
+    "painPoints": {
+      "title": "Small Business Owner, Sound Familiar?",
+      "subtitle": "A single review can change your revenue. But managing them is too much hassle.",
+      "wastedTime": "Wasted Time",
+      "wastedTimeDesc": "Spending 30+ minutes daily checking each platform one by one",
+      "lateResponses": "Late Responses",
+      "lateResponsesDesc": "Discovering negative reviews too late, missing the window to respond and losing ratings",
+      "expensiveTools": "Expensive Tools",
+      "expensiveToolsDesc": "Review management tools cost $44–$399, a burden for small businesses"
+    },
+    "solutions": {
+      "title": "ReviewHub Has the Solution",
+      "subtitle": "Simplify complex review management with one tool.",
+      "unifiedDashboard": "Unified Dashboard",
+      "unifiedDashboardDesc": "View and manage reviews from all platforms in one screen, in real time.",
+      "whatsappRequests": "WhatsApp Review Requests",
+      "whatsappRequestsDesc": "Request reviews from customers via WhatsApp with a 98% open rate. Watch your review count skyrocket.",
+      "aiReplyGeneration": "AI Reply Generation",
+      "aiReplyGenerationDesc": "Auto-generate professional replies with one click. Choose tone and adjust length.",
+      "realTimeAlerts": "Real-Time Alerts",
+      "realTimeAlertsDesc": "Detect negative reviews instantly and respond quickly with email notifications."
+    },
+    "comparison": {
+      "title": "Why ReviewHub?",
+      "subtitle": "Clear value compared to the competition.",
+      "feature": "Feature",
+      "reviewAggregation": "Review Aggregation",
+      "whatsappAutomation": "WhatsApp Automation",
+      "aiReplyGeneration": "AI Reply Generation",
+      "smallBusinessPricing": "Small Business Pricing",
+      "sentimentAnalysis": "Sentiment Analysis",
+      "competitorBenchmarking": "Competitor Benchmarking",
+      "limited": "Limited"
+    },
+    "pricing": {
+      "title": "Affordable Pricing",
+      "subtitle": "14-day free trial, no credit card required",
+      "startForFree": "Start for Free"
+    },
+    "testimonials": {
+      "title": "What Our Customers Say",
+      "subtitle": "Real stories from business owners using ReviewHub",
+      "review1Name": "K. M.",
+      "review1Business": "Cafe Owner",
+      "review1Text": "Our average review response time dropped from 6 hours to 30 minutes. Thanks to the AI reply feature, we can send professional responses quickly.",
+      "review2Name": "L. J.",
+      "review2Business": "Hair Salon",
+      "review2Text": "After requesting reviews via WhatsApp, we gained 40 new Google reviews in just one month. New customer traffic has noticeably increased.",
+      "review3Name": "P. S.",
+      "review3Business": "Restaurant",
+      "review3Text": "At $19/month, this is the best value out there. Negative review alerts let us respond immediately, and our rating went from 4.2 to 4.7."
+    },
+    "cta": {
+      "title": "Get Started Now",
+      "subtitle": "14-day free trial · No credit card required · Set up in 5 minutes",
+      "startForFree": "Start for Free"
+    },
+    "footer": {
+      "tagline": "All-in-one review management\nplatform for small businesses",
+      "product": "Product",
+      "company": "Company",
+      "legal": "Legal",
+      "features": "Features",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "about": "About",
+      "contactUs": "Contact Us",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "cookiePolicy": "Cookie Policy",
+      "copyright": "© {year} ReviewHub. All rights reserved."
+    }
+  },
+  "waitlist": {
+    "title": "Join the Waitlist",
+    "subtitle": "We're currently in private beta. Sign up and we'll send you an invite code.",
+    "nameLabel": "Name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email *",
+    "emailPlaceholder": "you@example.com",
+    "businessNameLabel": "Business Name",
+    "businessNamePlaceholder": "My Cafe",
+    "joinWaitlist": "Join Waitlist",
+    "submitting": "Submitting...",
+    "failedToJoin": "Failed to join waitlist",
+    "networkError": "Network error. Please try again.",
+    "success": {
+      "title": "Thank you!",
+      "message": "You've been added to the waitlist. We'll email you when your invite code is ready.",
+      "backToHome": "Back to Home"
+    }
+  },
+  "pricing": {
+    "title": "Choose Your Plan",
+    "subtitle": "Start with a 14-day free trial. No credit card required.",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "save20": "Save 20%",
+    "mostPopular": "MOST POPULAR",
+    "getStarted": "Get Started",
+    "billedAnnually": "${price}/year billed annually",
+    "allPlansIncludeTrial": "All plans include a 14-day free trial.",
+    "signInToStart": "Sign in",
+    "toGetStarted": "to get started.",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "features": {
+          "locations": "1 Business Location",
+          "aiReplies": "10 AI Replies / month",
+          "whatsapp": "100 WhatsApp Requests / month",
+          "integrations": "Google & Yelp Integration",
+          "analytics": "Basic Analytics"
+        }
+      },
+      "growth": {
+        "name": "Growth",
+        "features": {
+          "locations": "3 Business Locations",
+          "aiReplies": "50 AI Replies / month",
+          "whatsapp": "500 WhatsApp Requests / month",
+          "integrations": "All Platform Integrations",
+          "analytics": "Advanced Analytics",
+          "sentiment": "Sentiment Analysis",
+          "competitors": "3 Competitor Tracking"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "features": {
+          "locations": "10 Business Locations",
+          "aiReplies": "Unlimited AI Replies",
+          "whatsapp": "Unlimited WhatsApp Requests",
+          "integrations": "All Platform Integrations",
+          "analytics": "Advanced Analytics & Reports",
+          "sentiment": "Sentiment Analysis",
+          "competitors": "10 Competitor Tracking",
+          "support": "Priority Support"
+        }
+      }
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: April 1, 2026",
+      "intro": "ReviewHub (\"Company\") values your privacy and protects your personal information in accordance with the New Zealand Privacy Act 2020 and other applicable laws. This Privacy Policy describes how we collect, use, and share personal information when you use our review management service.",
+      "section1Title": "1. Information We Collect",
+      "section1Sub1Title": "Required Information",
+      "section1Sub1Items": [
+        "Email address, name (upon registration)",
+        "Business name, industry, location (during service use)",
+        "Payment information (processed via Stripe; card numbers are not stored by us)"
+      ],
+      "section1Sub2Title": "Automatically Collected Information",
+      "section1Sub2Items": [
+        "IP address, browser information, access time",
+        "Usage patterns via cookies and similar technologies"
+      ],
+      "section1Sub3Title": "Third-Party Platform Data",
+      "section1Sub3Items": [
+        "Google Business Profile: OAuth tokens, business review data",
+        "Facebook/Meta: Page access tokens, recommendation data",
+        "Yelp: Review data via API",
+        "WhatsApp Business: Message delivery records"
+      ],
+      "section2Title": "2. How We Use Your Information",
+      "section2Items": [
+        "Providing integrated review management services",
+        "Sending review request messages via WhatsApp",
+        "Generating AI-powered review responses (using Anthropic API)",
+        "Sentiment analysis and business insights",
+        "Service improvement and analytics",
+        "Customer support and notifications"
+      ],
+      "section3Title": "3. Third-Party Sharing",
+      "section3Intro": "We share data with the following service providers to operate our service:",
+      "section3Items": [
+        { "name": "Google", "desc": "Business review synchronization" },
+        { "name": "Meta (Facebook/WhatsApp)", "desc": "Recommendation sync, messaging" },
+        { "name": "Yelp", "desc": "Review data retrieval" },
+        { "name": "Stripe", "desc": "Payment processing" },
+        { "name": "Anthropic", "desc": "AI response generation, sentiment analysis" },
+        { "name": "Resend", "desc": "Email delivery" },
+        { "name": "Vercel", "desc": "Hosting and analytics" },
+        { "name": "Sentry", "desc": "Error monitoring" }
+      ],
+      "section4Title": "4. Data Retention",
+      "section4Content": "Personal information is retained for the duration of your account. Upon account deletion request, data is permanently deleted within 30 days, except where retention is required by law (including the Privacy Act 2020).",
+      "section5Title": "5. Your Rights",
+      "section5Intro": "Under the Privacy Act 2020, you have the right to:",
+      "section5Items": [
+        { "name": "Access", "desc": "Request access to your collected personal data." },
+        { "name": "Correction", "desc": "Request correction of inaccurate information." },
+        { "name": "Deletion", "desc": "Request deletion of your personal data." },
+        { "name": "Portability", "desc": "Request transfer of your data to another service." },
+        { "name": "Restriction", "desc": "Request restriction of data processing." }
+      ],
+      "section5Outro": "You can exercise these rights via the Settings page or by emailing support@reviewhub.app. You may also lodge a complaint with the Office of the Privacy Commissioner.",
+      "section6Title": "6. Cookies",
+      "section6Content": "We use cookies for authentication, functionality, and analytics purposes. For details, see our Cookie Policy.",
+      "section7Title": "7. Security",
+      "section7Content": "We implement technical and organizational measures including SSL encryption, access controls, and regular security audits. OAuth tokens are stored encrypted, and passwords are hashed with bcrypt.",
+      "section8Title": "8. Contact",
+      "section8Content": "For privacy inquiries: support@reviewhub.app"
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: April 1, 2026",
+      "section1Title": "1. About the Service",
+      "section1Content": "ReviewHub (\"Service\") is an integrated review management platform for small businesses, providing a SaaS solution to manage reviews from Google, Yelp, Facebook, WhatsApp, and other platforms in one place.",
+      "section2Title": "2. Terms of Use",
+      "section2Items": [
+        "Registration is required to use the Service.",
+        "Users must provide accurate information and keep it up to date.",
+        "Accounts are personal and may not be transferred to others.",
+        "The Service may not be used for illegal or inappropriate purposes."
+      ],
+      "section3Title": "3. Pricing and Payments",
+      "section3Items": [
+        "After the 14-day free trial, a paid plan must be selected.",
+        "Payments are processed via Stripe and auto-renew monthly or annually.",
+        "Plan changes can be made anytime in Settings and take effect at the next billing cycle.",
+        "Prices may change with prior notice."
+      ],
+      "section4Title": "4. Service Limits",
+      "section4Content": "Each plan has usage limits (AI responses, WhatsApp requests, number of businesses, etc.). Features may be restricted when limits are exceeded.",
+      "section5Title": "5. Intellectual Property",
+      "section5Items": [
+        "All software, design, logos, and other intellectual property of the Service belong to the Company.",
+        "Business information and review responses entered by users remain the property of the user.",
+        "AI-generated responses may be freely used by the user."
+      ],
+      "section6Title": "6. Consumer Guarantees",
+      "section6Content": "If you are a consumer under the Consumer Guarantees Act 1993, the Service must be provided with reasonable care and skill. Nothing in these terms limits your rights under the Consumer Guarantees Act 1993.",
+      "section7Title": "7. Disclaimers",
+      "section7Items": [
+        "The Company is not responsible for API changes or service disruptions by external platforms (Google, Yelp, Facebook, WhatsApp).",
+        "We do not guarantee the accuracy or appropriateness of AI-generated responses; final review is the user's responsibility.",
+        "The Company is not liable for service interruptions caused by force majeure, system failures, or similar events."
+      ],
+      "section8Title": "8. Cancellation and Refunds",
+      "section8Items": [
+        "Users may cancel the Service at any time.",
+        "Upon cancellation, the Service remains accessible until the end of the current billing period.",
+        "Annual subscriptions may be refunded within 14 days of payment.",
+        "Account deletion requests have a 30-day grace period during which cancellation is possible."
+      ],
+      "section9Title": "9. Changes to Terms",
+      "section9Content": "The Company may modify these terms with prior notice via email and in-app notification. If you do not agree to the updated terms, you may cancel the Service.",
+      "section10Title": "10. Governing Law",
+      "section10Content": "These terms are governed by the laws of New Zealand. Any disputes will be subject to the non-exclusive jurisdiction of the New Zealand courts.",
+      "section11Title": "11. Contact",
+      "section11Content": "For inquiries about these terms: support@reviewhub.app"
+    },
+    "cookie": {
+      "title": "Cookie Policy",
+      "lastUpdated": "Last updated: April 1, 2026",
+      "intro": "This Cookie Policy explains how ReviewHub (\"Service\") uses cookies and similar technologies.",
+      "section1Title": "1. What Are Cookies?",
+      "section1Content": "Cookies are small text files stored in your browser when you visit a website. They allow websites to remember your preferences and provide a better experience.",
+      "section2Title": "2. Types of Cookies We Use",
+      "section2Sub1Title": "Essential Cookies",
+      "section2Sub1Intro": "Required for the Service to function. These cannot be disabled.",
+      "section2Sub1Items": [
+        { "name": "Authentication cookies", "desc": "Maintain your login session (NextAuth)" },
+        { "name": "CSRF tokens", "desc": "Request verification for security" },
+        { "name": "Cookie consent", "desc": "Remember your cookie preferences" }
+      ],
+      "section2Sub2Title": "Functional Cookies",
+      "section2Sub2Intro": "Enhance your experience with personalized settings.",
+      "section2Sub2Items": [
+        { "name": "Theme preference", "desc": "Remember dark/light mode selection" },
+        { "name": "Active business", "desc": "Remember your last selected business" }
+      ],
+      "section2Sub3Title": "Analytics Cookies",
+      "section2Sub3Intro": "Help us analyze usage patterns to improve the Service. Activated only with your consent.",
+      "section2Sub3Items": [
+        { "name": "Vercel Analytics", "desc": "Page visit statistics" },
+        { "name": "Sentry", "desc": "Error tracking and performance monitoring" }
+      ],
+      "section3Title": "3. Managing Cookies",
+      "section3Content1": "You can decline analytics cookies via the cookie banner at the bottom of the page. You can also manage or delete cookies through your browser settings.",
+      "section3Content2": "Disabling cookies may limit some features of the Service.",
+      "section4Title": "4. Third-Party Cookies",
+      "section4Content": "When connecting external platforms such as Google or Facebook, those platforms may set their own cookies. These cookies are subject to each platform's cookie policy.",
+      "section5Title": "5. Contact",
+      "section5Content": "For cookie policy inquiries: support@reviewhub.app"
+    }
+  },
+  "reviewRequests": {
+    "title": "Review Requests",
+    "subtitle": "Send review requests via WhatsApp and track their status.",
+    "sendIndividual": {
+      "title": "Send Individual Request",
+      "customerName": "Customer Name",
+      "customerNamePlaceholder": "John Doe",
+      "phoneNumber": "Phone Number",
+      "phonePlaceholder": "+1234567890",
+      "reviewPlatform": "Review Platform",
+      "sendRequest": "Send Request",
+      "sending": "Sending...",
+      "messageSent": "Message sent successfully!",
+      "failedToSend": "Failed to send",
+      "networkError": "Network error"
+    },
+    "bulkSend": {
+      "title": "Bulk Send (CSV)",
+      "description": "Upload a CSV file with columns: phone, customerName",
+      "contactsReady": "{count} contacts ready to send",
+      "sendAll": "Send All",
+      "sent": "Sent: {count}",
+      "failed": "Failed: {count}",
+      "total": "Total: {count}"
+    },
+    "history": {
+      "title": "Send History",
+      "noRequests": "No review requests sent yet.",
+      "customer": "Customer",
+      "phone": "Phone",
+      "platform": "Platform",
+      "status": "Status",
+      "sentAt": "Sent At"
+    },
+    "status": {
+      "sent": "Sent",
+      "delivered": "Delivered",
+      "read": "Read",
+      "failed": "Failed"
+    },
+    "qr": {
+      "title": "QR Review Cards",
+      "subtitle": "Generate QR codes to collect reviews from customers.",
+      "createQrCode": "Create QR Code",
+      "newQrCode": "New QR Code",
+      "platform": "Platform",
+      "reviewPageUrl": "Review Page URL",
+      "reviewPageUrlPlaceholder": "https://g.page/r/...",
+      "noQrCodes": "No QR codes yet. Create one to start collecting reviews.",
+      "scans": "{count} scans",
+      "scanToLeaveReview": "Scan to leave a review",
+      "weValueFeedback": "We value your feedback!",
+      "printCard": "Print"
+    }
+  },
+  "feedback": {
+    "title": "Send Feedback",
+    "buttonTitle": "Send Feedback",
+    "placeholder": "Enter your feedback...",
+    "emailPlaceholder": "Email (optional)",
+    "submit": "Submit",
+    "sending": "Sending...",
+    "successTitle": "Thank you!",
+    "successMessage": "Your feedback has been submitted.",
+    "categories": {
+      "bug": "Bug Report",
+      "feature": "Feature Request",
+      "general": "General Feedback",
+      "ux": "UX Issue"
+    }
+  },
+  "cookieBanner": {
+    "message": "This site uses cookies for service delivery and analytics.",
+    "learnMore": "Learn more",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "referral": {
+    "title": "Refer & Earn",
+    "subtitle": "Invite friends and both of you get rewarded.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "shareText": "Manage your reviews easily with ReviewHub! {link}",
+    "shareEmailSubject": "ReviewHub Referral",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "invited": "Invited",
+    "signedUp": "Signed Up",
+    "rewarded": "Rewarded"
+  },
+  "account": {
+    "deleteModal": {
+      "title": "Delete Account",
+      "warningTitle": "Warning: This action cannot be undone.",
+      "warningItems": [
+        "All business data, reviews, and settings will be deleted",
+        "Active subscriptions will be automatically canceled",
+        "Permanent deletion occurs after a 30-day grace period"
+      ],
+      "confirmPassword": "Confirm Password",
+      "passwordPlaceholder": "Enter your current password",
+      "confirmCheckbox": "I understand that all data will be permanently deleted after 30 days.",
+      "requestDeletion": "Request Account Deletion",
+      "processing": "Processing...",
+      "successMessage": "Account deletion has been requested. All data will be permanently deleted after 30 days. You can cancel the deletion from Settings within this period.",
+      "failedToDelete": "Failed to request account deletion",
+      "networkError": "Network error. Please try again."
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Review management tips and insights for small businesses",
+    "noPosts": "No posts yet.",
+    "backToBlog": "← Back to Blog",
+    "metaTitle": "ReviewHub Blog",
+    "metaDescription": "Review management tips and insights for small businesses"
+  },
+  "tour": {
+    "kpi": {
+      "title": "KPIs at a Glance",
+      "description": "View total reviews, average rating, and other key metrics in real time."
+    },
+    "chart": {
+      "title": "Review Trends",
+      "description": "Track review volume over time with interactive charts."
+    },
+    "platform": {
+      "title": "Platform Performance",
+      "description": "Compare review stats across Google, Yelp, and other platforms."
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "description": "See the latest reviews and respond to them right away."
+    }
+  },
+  "unsubscribe": {
+    "invalidLink": {
+      "title": "Invalid Link",
+      "message": "This unsubscribe link is invalid or has expired.",
+      "backToHome": "Back to Home"
+    },
+    "success": {
+      "title": "You've been unsubscribed",
+      "message": "You will no longer receive marketing emails.",
+      "settingsNote": "Service notifications (new reviews, weekly summary) can be managed in Settings.",
+      "backToHome": "Back to Home"
+    }
+  },
+  "email": {
+    "welcome": {
+      "title": "Welcome to ReviewHub!",
+      "greeting": "Hi {name},",
+      "intro": "Thank you for signing up for ReviewHub. You can now manage all your reviews from a single dashboard.",
+      "gettingStartedTitle": "Getting Started",
+      "gettingStartedItems": [
+        "Connect your Google, Yelp, and Facebook platforms",
+        "Respond to reviews quickly with AI reply suggestions",
+        "Send review requests via WhatsApp",
+        "Track your market position with competitor benchmarking"
+      ],
+      "goToDashboard": "Go to Dashboard",
+      "trialNote": "Explore all features during your 14-day free trial.",
+      "footer": "ReviewHub - Review Management",
+      "unsubscribe": "Unsubscribe from marketing emails"
+    },
+    "trialReminder": {
+      "day11Title": "Have you replied to your first review?",
+      "day11Tip": "Responding to reviews increases customer return rate by 33%. Check your dashboard for reviews that need a reply.",
+      "day7Title": "Have you tried the AI reply feature?",
+      "day7Tip": "Using AI reply suggestions reduces average response time by 80%. Click the \"AI Reply Suggestion\" button on the review detail page.",
+      "day4Title": "{days} days left until your trial expires",
+      "day4Tip": "Have you been making the most of ReviewHub? Make sure to explore all features during the remaining trial period.",
+      "day1Title": "Your trial expires tomorrow",
+      "day1Tip": "Your free trial ends tomorrow. Choose a plan now to keep managing your reviews without interruption.",
+      "defaultTip": "Explore all features during your trial period.",
+      "daysUntilExpiry": "{days} day(s) until free trial expires",
+      "choosePlan": "Choose a Plan",
+      "goToDashboard": "Go to Dashboard"
+    },
+    "upgradePrompt": {
+      "title": "Your Free Trial Has Ended",
+      "greeting": "Hi {name},",
+      "message": "Your 14-day free trial has ended. Please choose a plan to continue managing your reviews.",
+      "achievementsTitle": "What You Accomplished During the Trial",
+      "achievements": [
+        "Unified review management",
+        "AI reply suggestions",
+        "Real-time alerts",
+        "WhatsApp review requests"
+      ],
+      "starterPlan": "Starter Plan",
+      "starterPrice": "$19",
+      "starterPriceNote": "The perfect price for small businesses",
+      "choosePlan": "Choose a Plan"
+    },
+    "winback": {
+      "title": "You Might Be Missing Reviews",
+      "greeting": "Hi {name},",
+      "message": "It's been a week since you left ReviewHub. New reviews may have come in since then. Unanswered reviews can leave a negative impression on potential customers.",
+      "stat": "45% of potential customers avoid businesses with unanswered negative reviews.",
+      "ctaMessage": "Come back now to check and respond to your reviews right away.",
+      "ctaButton": "Get Started Again"
+    },
+    "reviewAlert": {
+      "title": "New Review for {businessName}",
+      "viewAndReply": "View & Reply",
+      "footer": "ReviewHub - Review Management"
+    },
+    "negativeAlert": {
+      "banner": "Negative Review Requires Attention",
+      "respondNow": "Respond Now",
+      "footer": "ReviewHub - Review Management"
+    },
+    "weeklySummary": {
+      "title": "Weekly Review Summary",
+      "newReviews": "New Reviews",
+      "avgRating": "Avg Rating",
+      "positive": "Positive",
+      "unanswered": "Unanswered",
+      "replyNow": "Reply Now ({count} waiting)",
+      "allResponded": "All reviews responded to!",
+      "footer": "ReviewHub - Review Management"
+    }
+  },
+  "jsonLd": {
+    "organizationDescription": "All-in-one review management platform for small businesses",
+    "softwareDescription": "Manage Google, Yelp, and Facebook reviews from a single dashboard."
   }
 }

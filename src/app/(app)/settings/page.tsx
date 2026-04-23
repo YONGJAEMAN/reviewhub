@@ -11,7 +11,9 @@ import TeamMembers from '@/components/settings/TeamMembers';
 import CompetitorTracking from '@/components/settings/CompetitorTracking';
 import ReferralSection from '@/components/settings/ReferralSection';
 import DeleteAccountModal from '@/components/settings/DeleteAccountModal';
-import type { PlatformConnection } from '@/types';
+import GoogleConnectModal from '@/components/settings/GoogleConnectModal';
+import PlatformManageModal from '@/components/settings/PlatformManageModal';
+import type { PlatformConnection, Platform } from '@/types';
 
 export default function SettingsPage() {
   const t = useTranslations('settings');
@@ -20,6 +22,8 @@ export default function SettingsPage() {
   const [platforms, setPlatforms] = useState<PlatformConnection[]>([]);
   const [loading, setLoading] = useState(true);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [connectModalPlatform, setConnectModalPlatform] = useState<Platform | null>(null);
+  const [managePlatform, setManagePlatform] = useState<PlatformConnection | null>(null);
 
   useEffect(() => {
     if (!bid) return;
@@ -31,6 +35,14 @@ export default function SettingsPage() {
   }, [bid]);
 
   const activeCount = platforms.filter((c) => c.connected).length;
+
+  function refreshPlatforms() {
+    if (!bid) return;
+    fetch(`/api/platforms?businessId=${bid}`)
+      .then((res) => res.json())
+      .then((json) => setPlatforms(json.data))
+      .catch(console.error);
+  }
 
   if (loading) {
     return (
@@ -58,7 +70,12 @@ export default function SettingsPage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {platforms.map((conn) => (
-            <PlatformConnectionCard key={conn.platform} connection={conn} />
+            <PlatformConnectionCard
+              key={conn.platform}
+              connection={conn}
+              onConnect={() => setConnectModalPlatform(conn.platform)}
+              onManage={() => setManagePlatform(conn)}
+            />
           ))}
         </div>
       </div>
@@ -97,6 +114,22 @@ export default function SettingsPage() {
         </button>
       </div>
       {showDeleteModal && <DeleteAccountModal onClose={() => setShowDeleteModal(false)} />}
+
+      {connectModalPlatform === 'google' && bid && (
+        <GoogleConnectModal
+          businessId={bid}
+          onClose={() => setConnectModalPlatform(null)}
+          onConnected={() => { setConnectModalPlatform(null); refreshPlatforms(); }}
+        />
+      )}
+
+      {managePlatform && (
+        <PlatformManageModal
+          platform={managePlatform}
+          onClose={() => setManagePlatform(null)}
+          onUpdated={() => { setManagePlatform(null); refreshPlatforms(); }}
+        />
+      )}
     </div>
   );
 }

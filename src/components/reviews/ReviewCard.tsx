@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import type { Review } from '@/types';
 import { renderStars, ratingLabel, platformLabel } from '@/lib/utils';
@@ -9,24 +10,25 @@ import { platformConfig } from '@/lib/platformConfig';
 import { Calendar, Reply, CheckCircle, Send, ExternalLink, Archive } from 'lucide-react';
 
 function StatusBadge({ status }: { status: Review['status'] }) {
+  const t = useTranslations('reviews');
   switch (status) {
     case 'action_required':
       return (
         <span className="rounded-full px-3 py-1 text-[10px] font-semibold uppercase bg-navy text-white tracking-wide">
-          Action Required
+          {t('actionRequired')}
         </span>
       );
     case 'high_priority':
       return (
         <span className="rounded-full px-3 py-1 text-[10px] font-semibold uppercase bg-danger text-white tracking-wide">
-          High Priority
+          {t('highPriority')}
         </span>
       );
     case 'replied':
       return (
         <span className="flex items-center gap-1.5 rounded-full border border-success/30 px-3 py-1 text-[10px] font-semibold uppercase text-success tracking-wide">
           <CheckCircle size={12} />
-          Replied
+          {t('replied')}
         </span>
       );
   }
@@ -39,6 +41,7 @@ interface Props {
 }
 
 export default function ReviewCard({ review, onReply, highlight }: Props) {
+  const t = useTranslations('reviews');
   const router = useRouter();
   const isHighPriority = review.status === 'high_priority';
   const pIcon = platformConfig[review.platform];
@@ -123,12 +126,12 @@ export default function ReviewCard({ review, onReply, highlight }: Props) {
               </span>
               <p className="text-[11px] text-text-secondary mt-0.5">
                 {review.localGuide
-                  ? `Local Guide • ${review.reviewCount} reviews`
+                  ? `${t('localGuide')} • ${review.reviewCount} reviews`
                   : review.reviewCount
                     ? review.reviewCount > 5
-                      ? 'Top Reviewer'
-                      : 'New Reviewer'
-                    : 'New Reviewer'}
+                      ? t('topReviewer')
+                      : t('newReviewer')
+                    : t('newReviewer')}
               </p>
             </div>
 
@@ -153,7 +156,7 @@ export default function ReviewCard({ review, onReply, highlight }: Props) {
               </div>
               <div>
                 <p className="text-[10px] font-medium uppercase tracking-wider text-text-secondary">
-                  Platform
+                  {t('platform')}
                 </p>
                 <p className="text-xs font-medium text-text-primary">
                   {platformLabel(review.platform)}
@@ -168,7 +171,7 @@ export default function ReviewCard({ review, onReply, highlight }: Props) {
               </div>
               <div>
                 <p className="text-[10px] font-medium uppercase tracking-wider text-text-secondary">
-                  Posted
+                  {t('posted')}
                 </p>
                 <p className="text-xs font-medium text-text-primary">{review.postedAt}</p>
               </div>
@@ -206,9 +209,9 @@ export default function ReviewCard({ review, onReply, highlight }: Props) {
                   <div className="w-7 h-7 rounded-full bg-navy text-white flex items-center justify-center text-[10px] font-bold">
                     JM
                   </div>
-                  <span className="text-sm font-semibold text-text-primary">Your Reply</span>
+                  <span className="text-sm font-semibold text-text-primary">{t('yourReply')}</span>
                   <span className="text-xs text-text-secondary">
-                    Replied {review.reply.repliedAt}
+                    {t('repliedAt', { date: review.reply.repliedAt })}
                   </span>
                 </div>
                 <p className="text-sm text-text-secondary italic ml-[38px]">
@@ -238,7 +241,7 @@ export default function ReviewCard({ review, onReply, highlight }: Props) {
                   href="#"
                   className="text-xs font-medium text-accent-blue hover:underline hidden md:inline"
                 >
-                  View full thread →
+                  {t('viewThread')}
                 </a>
               ) : review.platform === 'yelp' ? (
                 <a
@@ -248,7 +251,7 @@ export default function ReviewCard({ review, onReply, highlight }: Props) {
                   className="hidden md:flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium bg-[#D32323] text-white hover:bg-[#b81e1e] transition-colors"
                 >
                   <ExternalLink size={14} />
-                  Open in Yelp
+                  {t('openInYelp')}
                 </a>
               ) : (
                 <div className="hidden md:flex items-center gap-2">
@@ -261,7 +264,7 @@ export default function ReviewCard({ review, onReply, highlight }: Props) {
                     }`}
                   >
                     <Reply size={14} />
-                    Reply to {review.authorName.split(' ')[0]}
+                    {t('replyTo')} {review.authorName.split(' ')[0]}
                   </button>
                   {isHighPriority && (
                     <button

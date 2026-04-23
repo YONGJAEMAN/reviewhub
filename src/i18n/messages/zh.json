@@ -1,0 +1,816 @@
+{
+  "nav": {
+    "dashboard": "仪表盘",
+    "reviews": "评价",
+    "analytics": "数据分析",
+    "reviewRequests": "评价请求",
+    "settings": "设置",
+    "help": "帮助",
+    "qrCards": "二维码卡片",
+    "trial": "试用期：剩余 {daysLeft} 天",
+    "trialExpired": "试用期已结束 — 请选择方案",
+    "upgrade": "立即升级",
+    "connectAccount": "连接账户",
+    "support": "客户支持",
+    "logout": "退出登录",
+    "tagline": "小型企业门户"
+  },
+  "dashboard": {
+    "title": "仪表盘",
+    "subtitle": "一目了然地监控您的企业评价表现。",
+    "overallRating": "综合评分",
+    "totalReviews": "评价总数",
+    "positiveSentiment": "正面情绪",
+    "responseRate": "回复率",
+    "reviewTrends": "评价趋势",
+    "thisMonth": "本月",
+    "lastMonth": "上月",
+    "platformPerformance": "平台表现",
+    "recentActivity": "最近活动",
+    "export": "导出",
+    "period": {
+      "7": "最近 7 天",
+      "30": "最近 30 天",
+      "90": "最近 90 天",
+      "365": "今年"
+    },
+    "trialExpiredBanner": "您的免费试用期已结束。请订阅以继续使用所有功能。",
+    "choosePlan": "选择方案",
+    "tour": {
+      "kpiTitle": "关键指标一览",
+      "kpiDescription": "实时查看评价总数、平均评分及其他关键指标。",
+      "chartTitle": "评价趋势",
+      "chartDescription": "通过交互式图表追踪评价数量变化。",
+      "platformTitle": "平台表现",
+      "platformDescription": "比较 Google、Yelp 等各平台的评价数据。",
+      "activityTitle": "最近活动",
+      "activityDescription": "查看最新评价并立即回复。"
+    }
+  },
+  "reviews": {
+    "title": "评价动态",
+    "subtitle": "查看并回复所有平台的评价。",
+    "searchPlaceholder": "搜索评价...",
+    "allPlatforms": "所有平台",
+    "allRatings": "所有评分",
+    "allStatus": "所有状态",
+    "actionRequired": "待处理",
+    "highPriority": "高优先级",
+    "replied": "已回复",
+    "newest": "最新优先",
+    "oldest": "最早优先",
+    "highest": "最高评分",
+    "lowest": "最低评分",
+    "clearAll": "清除全部",
+    "filters": "筛选",
+    "replyTo": "回复",
+    "viewThread": "查看完整对话 →",
+    "openInYelp": "在 Yelp 中打开",
+    "yourReply": "您的回复",
+    "noReviews": "未找到评价。",
+    "backToFeed": "返回评价动态",
+    "notFound": "未找到该评价。",
+    "writeReply": "撰写回复",
+    "writePlaceholder": "输入您的回复...",
+    "aiSuggest": "AI 建议",
+    "generating": "生成中...",
+    "sendReply": "发送回复",
+    "previousReviews": "历史评价",
+    "averageRating": "平均评分",
+    "localGuide": "本地向导",
+    "topReviewer": "资深评价者",
+    "newReviewer": "新评价者",
+    "platform": "平台",
+    "posted": "发布时间",
+    "verified": "已验证",
+    "repliedAt": "已于 {date} 回复",
+    "noPreviousReviews": "未找到历史评价。",
+    "previousReviewsBy": "{name} 的历史评价"
+  },
+  "analytics": {
+    "title": "数据分析",
+    "subtitle": "深入分析您的评价数据。",
+    "sentimentTrends": "情绪趋势",
+    "positive": "正面",
+    "negative": "负面",
+    "ratingDistribution": "评分分布",
+    "platformComparison": "平台对比",
+    "topKeywords": "热门关键词",
+    "competitorBenchmark": "竞争对手基准",
+    "responseTime": "平均响应时间",
+    "responseRate": "回复率",
+    "last30Days": "最近 30 天",
+    "quarterly": "季度",
+    "topPlatform": "首选平台",
+    "criticalAction": "紧急事项",
+    "unreadNegatives": "{count} 条未读差评",
+    "requiresAttention": "需要立即处理",
+    "sentimentTrend": "情绪趋势",
+    "growth": "+{percent}% 增长",
+    "positiveMentionsIncreasing": "正面提及持续增加",
+    "ofTotalVolume": "占总量的 {percent}%"
+  },
+  "settings": {
+    "title": "设置",
+    "subtitle": "在一个中心管理您的企业资料和平台集成。",
+    "platformConnections": "平台连接",
+    "activeChannels": "活跃渠道",
+    "connected": "已连接",
+    "disconnected": "未连接",
+    "connect": "连接",
+    "manage": "管理",
+    "businessProfile": "企业资料",
+    "notifications": "通知设置",
+    "subscription": "订阅",
+    "teamMembers": "团队成员",
+    "competitors": "竞争对手追踪",
+    "referral": "推荐奖励",
+    "dangerZone": "危险操作",
+    "dangerDescription": "删除账户将永久移除所有企业数据、评价和设置。此操作无法撤消。",
+    "deleteAccount": "申请删除账户",
+    "autoMonthlyReport": "自动月度报告",
+    "autoMonthlyReportDesc": "每月 1 日通过电子邮件接收月度报告。"
+  },
+  "export": {
+    "title": "导出报告",
+    "format": "文件格式",
+    "period": "时间范围",
+    "download": "下载",
+    "generating": "生成中..."
+  },
+  "common": {
+    "search": "搜索...",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "loading": "加载中...",
+    "error": "发生错误。",
+    "success": "处理成功。",
+    "confirm": "确认",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "close": "关闭",
+    "noResults": "未找到结果",
+    "switchToLight": "切换至浅色模式",
+    "switchToDark": "切换至深色模式",
+    "home": "首页",
+    "owner": "所有者",
+    "ok": "确定",
+    "create": "创建",
+    "print": "打印",
+    "copyLink": "复制链接",
+    "copied": "已复制",
+    "copy": "复制",
+    "sending": "发送中...",
+    "submit": "提交",
+    "processing": "处理中...",
+    "redirecting": "跳转中...",
+    "page": "第 {current} 页，共 {total} 页",
+    "perMonth": "/月",
+    "reviewHub": "ReviewHub"
+  },
+  "auth": {
+    "login": {
+      "title": "欢迎回来",
+      "subtitle": "登录以管理您的评价",
+      "emailLabel": "电子邮箱",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "密码",
+      "passwordPlaceholder": "输入您的密码",
+      "signIn": "登录",
+      "signingIn": "登录中...",
+      "orContinueWith": "或通过以下方式继续",
+      "signInWithGoogle": "使用 Google 登录",
+      "noAccount": "还没有账户？",
+      "signUp": "注册",
+      "invalidCredentials": "邮箱或密码无效"
+    },
+    "signup": {
+      "title": "创建您的账户",
+      "subtitle": "立即开始管理您的评价",
+      "fullNameLabel": "姓名",
+      "fullNamePlaceholder": "张三",
+      "emailLabel": "电子邮箱",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "密码",
+      "passwordPlaceholder": "至少 6 个字符",
+      "inviteCodeLabel": "邀请码",
+      "inviteCodePlaceholder": "BETA-XXXXXX",
+      "noInviteCode": "没有邀请码？",
+      "joinWaitlist": "加入等候名单",
+      "createAccount": "创建账户",
+      "creatingAccount": "正在创建账户...",
+      "orContinueWith": "或通过以下方式继续",
+      "signUpWithGoogle": "使用 Google 注册",
+      "hasAccount": "已有账户？",
+      "signIn": "登录",
+      "failedToCreate": "账户创建失败",
+      "somethingWentWrong": "出了点问题，请重试。"
+    }
+  },
+  "onboarding": {
+    "stepOf": "第 {step} 步，共 {total} 步",
+    "step1": {
+      "title": "欢迎使用 ReviewHub！",
+      "subtitle": "输入您的企业信息以获取个性化设置。",
+      "businessNameLabel": "企业名称 *",
+      "businessNamePlaceholder": "例如：街角咖啡馆",
+      "industryLabel": "行业",
+      "selectIndustry": "选择行业",
+      "locationLabel": "位置",
+      "locationPlaceholder": "例如：上海市浦东新区"
+    },
+    "step2": {
+      "title": "连接您的评价平台",
+      "subtitle": "您可以稍后在设置中连接更多平台。",
+      "connected": "已连接"
+    },
+    "step3": {
+      "title": "您希望接收哪些通知？",
+      "subtitle": "您可以随时在设置中更改。",
+      "newReviewAlerts": "新评价提醒",
+      "newReviewAlertsDesc": "有新评价发布时立即通知您。",
+      "weeklySummary": "每周摘要邮件",
+      "weeklySummaryDesc": "每周一接收一份评价周报。",
+      "negativeAlerts": "差评提醒",
+      "negativeAlertsDesc": "检测到差评时发送紧急提醒。"
+    },
+    "step4": {
+      "title": "一切就绪！",
+      "subtitle": "您的仪表盘已准备好。立即开始管理您的评价。",
+      "connectedPlatforms": "已连接的平台",
+      "goToDashboard": "前往仪表盘"
+    },
+    "skipForNow": "暂时跳过",
+    "failedToCreateBusiness": "企业创建失败",
+    "somethingWentWrong": "出了点问题，请重试。",
+    "industries": {
+      "restaurant": "餐厅 / 咖啡馆",
+      "beauty": "美容 / 美发",
+      "medical": "医疗 / 牙科",
+      "hospitality": "酒店 / 民宿",
+      "retail": "零售 / 购物",
+      "professional": "专业服务",
+      "education": "教育 / 培训",
+      "other": "其他"
+    },
+    "platforms": {
+      "google": "Google",
+      "googleDesc": "Google Business Profile",
+      "yelp": "Yelp",
+      "yelpDesc": "Yelp Fusion API",
+      "facebook": "Facebook",
+      "facebookDesc": "Facebook 页面评价",
+      "whatsapp": "WhatsApp",
+      "whatsappDesc": "WhatsApp Business"
+    }
+  },
+  "landing": {
+    "navbar": {
+      "features": "功能",
+      "pricing": "定价",
+      "testimonials": "客户评价",
+      "logIn": "登录",
+      "startForFree": "免费开始"
+    },
+    "hero": {
+      "title": "所有评价，\n一个仪表盘",
+      "subtitle": "在一个平台管理 Google · Yelp · Facebook · WhatsApp 的评价。",
+      "startingAt": "低至 $19/月",
+      "startForFree": "免费开始",
+      "viewDemo": "查看演示"
+    },
+    "stats": {
+      "activeBusinesses": "活跃企业",
+      "reviewsManaged": "管理的评价",
+      "customerSatisfaction": "客户满意度"
+    },
+    "mockup": {
+      "rating": "评分",
+      "reviews": "评价",
+      "positive": "正面",
+      "pending": "待处理"
+    },
+    "painPoints": {
+      "title": "小型企业主，是否感同身受？",
+      "subtitle": "一条评价就能影响您的营收，但管理评价却费时费力。",
+      "wastedTime": "浪费时间",
+      "wastedTimeDesc": "每天花费 30 分钟以上逐一查看各个平台",
+      "lateResponses": "回复滞后",
+      "lateResponsesDesc": "发现差评时为时已晚，错过回复窗口，导致评分下降",
+      "expensiveTools": "工具昂贵",
+      "expensiveToolsDesc": "评价管理工具费用在 $44–$399 之间，对小型企业来说负担沉重"
+    },
+    "solutions": {
+      "title": "ReviewHub 为您提供解决方案",
+      "subtitle": "用一个工具简化复杂的评价管理。",
+      "unifiedDashboard": "统一仪表盘",
+      "unifiedDashboardDesc": "在一个界面实时查看和管理所有平台的评价。",
+      "whatsappRequests": "WhatsApp 评价请求",
+      "whatsappRequestsDesc": "通过 WhatsApp 向客户请求评价，打开率高达 98%。让您的评价数量飞速增长。",
+      "aiReplyGeneration": "AI 回复生成",
+      "aiReplyGenerationDesc": "一键自动生成专业回复。可选择语气并调整长度。",
+      "realTimeAlerts": "实时提醒",
+      "realTimeAlertsDesc": "即时检测差评并通过邮件通知，帮助您快速响应。"
+    },
+    "comparison": {
+      "title": "为什么选择 ReviewHub？",
+      "subtitle": "与竞品相比，价值清晰可见。",
+      "feature": "功能",
+      "reviewAggregation": "评价聚合",
+      "whatsappAutomation": "WhatsApp 自动化",
+      "aiReplyGeneration": "AI 回复生成",
+      "smallBusinessPricing": "小型企业定价",
+      "sentimentAnalysis": "情绪分析",
+      "competitorBenchmarking": "竞争对手基准分析",
+      "limited": "有限"
+    },
+    "pricing": {
+      "title": "价格实惠",
+      "subtitle": "14 天免费试用，无需信用卡",
+      "startForFree": "免费开始"
+    },
+    "testimonials": {
+      "title": "客户怎么说",
+      "subtitle": "来自使用 ReviewHub 的企业主的真实故事",
+      "review1Name": "K. M.",
+      "review1Business": "咖啡馆老板",
+      "review1Text": "我们的平均评价响应时间从 6 小时降到了 30 分钟。多亏了 AI 回复功能，我们可以快速发送专业的回复。",
+      "review2Name": "L. J.",
+      "review2Business": "美发沙龙",
+      "review2Text": "通过 WhatsApp 请求评价后，一个月内我们就获得了 40 条新的 Google 评价。新客户明显增多了。",
+      "review3Name": "P. S.",
+      "review3Business": "餐厅",
+      "review3Text": "每月 $19，性价比最高。差评提醒让我们能立即回应，评分从 4.2 提升到了 4.7。"
+    },
+    "cta": {
+      "title": "立即开始",
+      "subtitle": "14 天免费试用 · 无需信用卡 · 5 分钟完成设置",
+      "startForFree": "免费开始"
+    },
+    "footer": {
+      "tagline": "小型企业一站式\n评价管理平台",
+      "product": "产品",
+      "company": "公司",
+      "legal": "法律",
+      "features": "功能",
+      "pricing": "定价",
+      "faq": "常见问题",
+      "blog": "博客",
+      "about": "关于我们",
+      "contactUs": "联系我们",
+      "privacyPolicy": "隐私政策",
+      "termsOfService": "服务条款",
+      "cookiePolicy": "Cookie 政策",
+      "copyright": "© {year} ReviewHub. 保留所有权利。"
+    }
+  },
+  "waitlist": {
+    "title": "加入等候名单",
+    "subtitle": "我们目前处于内测阶段。注册后我们将向您发送邀请码。",
+    "nameLabel": "姓名",
+    "namePlaceholder": "张三",
+    "emailLabel": "电子邮箱 *",
+    "emailPlaceholder": "you@example.com",
+    "businessNameLabel": "企业名称",
+    "businessNamePlaceholder": "我的咖啡馆",
+    "joinWaitlist": "加入等候名单",
+    "submitting": "提交中...",
+    "failedToJoin": "加入等候名单失败",
+    "networkError": "网络错误，请重试。",
+    "success": {
+      "title": "感谢您！",
+      "message": "您已成功加入等候名单。邀请码准备好后我们将通过邮件通知您。",
+      "backToHome": "返回首页"
+    }
+  },
+  "pricing": {
+    "title": "选择您的方案",
+    "subtitle": "14 天免费试用，无需信用卡。",
+    "monthly": "月付",
+    "yearly": "年付",
+    "save20": "节省 20%",
+    "mostPopular": "最受欢迎",
+    "getStarted": "立即开始",
+    "billedAnnually": "年付 ${price}",
+    "allPlansIncludeTrial": "所有方案均包含 14 天免费试用。",
+    "signInToStart": "登录",
+    "toGetStarted": "即可开始。",
+    "plans": {
+      "starter": {
+        "name": "入门版",
+        "features": {
+          "locations": "1 个营业地点",
+          "aiReplies": "每月 10 次 AI 回复",
+          "whatsapp": "每月 100 次 WhatsApp 请求",
+          "integrations": "Google 和 Yelp 集成",
+          "analytics": "基础数据分析"
+        }
+      },
+      "growth": {
+        "name": "成长版",
+        "features": {
+          "locations": "3 个营业地点",
+          "aiReplies": "每月 50 次 AI 回复",
+          "whatsapp": "每月 500 次 WhatsApp 请求",
+          "integrations": "所有平台集成",
+          "analytics": "高级数据分析",
+          "sentiment": "情绪分析",
+          "competitors": "3 个竞争对手追踪"
+        }
+      },
+      "pro": {
+        "name": "专业版",
+        "features": {
+          "locations": "10 个营业地点",
+          "aiReplies": "无限 AI 回复",
+          "whatsapp": "无限 WhatsApp 请求",
+          "integrations": "所有平台集成",
+          "analytics": "高级数据分析与报告",
+          "sentiment": "情绪分析",
+          "competitors": "10 个竞争对手追踪",
+          "support": "优先客户支持"
+        }
+      }
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "隐私政策",
+      "lastUpdated": "最后更新：2026 年 4 月 1 日",
+      "intro": "ReviewHub（\u201c本公司\u201d）重视您的隐私，并根据 New Zealand Privacy Act 2020 及其他适用法律保护您的个人信息。本隐私政策说明了我们在您使用评价管理服务时如何收集、使用和共享个人信息。",
+      "section1Title": "1. 我们收集的信息",
+      "section1Sub1Title": "必需信息",
+      "section1Sub1Items": [
+        "电子邮箱地址、姓名（注册时提供）",
+        "企业名称、行业、位置（使用服务时提供）",
+        "付款信息（通过 Stripe 处理；我们不存储卡号）"
+      ],
+      "section1Sub2Title": "自动收集的信息",
+      "section1Sub2Items": [
+        "IP 地址、浏览器信息、访问时间",
+        "通过 Cookie 及类似技术收集的使用模式"
+      ],
+      "section1Sub3Title": "第三方平台数据",
+      "section1Sub3Items": [
+        "Google Business Profile：OAuth 令牌、企业评价数据",
+        "Facebook/Meta：页面访问令牌、推荐数据",
+        "Yelp：通过 API 获取的评价数据",
+        "WhatsApp Business：消息投递记录"
+      ],
+      "section2Title": "2. 我们如何使用您的信息",
+      "section2Items": [
+        "提供一站式评价管理服务",
+        "通过 WhatsApp 发送评价请求消息",
+        "使用 Anthropic API 生成 AI 评价回复",
+        "情绪分析和商业洞察",
+        "服务改进和数据分析",
+        "客户支持和通知"
+      ],
+      "section3Title": "3. 第三方共享",
+      "section3Intro": "为运营本服务，我们与以下服务提供商共享数据：",
+      "section3Items": [
+        { "name": "Google", "desc": "企业评价同步" },
+        { "name": "Meta (Facebook/WhatsApp)", "desc": "推荐同步、消息通讯" },
+        { "name": "Yelp", "desc": "评价数据获取" },
+        { "name": "Stripe", "desc": "支付处理" },
+        { "name": "Anthropic", "desc": "AI 回复生成、情绪分析" },
+        { "name": "Resend", "desc": "电子邮件投递" },
+        { "name": "Vercel", "desc": "托管和分析" },
+        { "name": "Sentry", "desc": "错误监控" }
+      ],
+      "section4Title": "4. 数据保留",
+      "section4Content": "个人信息在您的账户存续期间予以保留。收到账户删除请求后，数据将在 30 天内永久删除，但法律（包括 Privacy Act 2020）要求保留的情形除外。",
+      "section5Title": "5. 您的权利",
+      "section5Intro": "根据 Privacy Act 2020，您有权：",
+      "section5Items": [
+        { "name": "访问", "desc": "请求访问已收集的个人数据。" },
+        { "name": "更正", "desc": "请求更正不准确的信息。" },
+        { "name": "删除", "desc": "请求删除您的个人数据。" },
+        { "name": "可携带性", "desc": "请求将您的数据转移至其他服务。" },
+        { "name": "限制", "desc": "请求限制数据处理。" }
+      ],
+      "section5Outro": "您可以通过设置页面或发送邮件至 support@reviewhub.app 行使这些权利。您也可以向 Office of the Privacy Commissioner 提出投诉。",
+      "section6Title": "6. Cookie",
+      "section6Content": "我们使用 Cookie 用于身份验证、功能和分析目的。详情请参阅我们的 Cookie 政策。",
+      "section7Title": "7. 安全",
+      "section7Content": "我们采取包括 SSL 加密、访问控制和定期安全审计在内的技术和组织措施。OAuth 令牌加密存储，密码使用 bcrypt 哈希处理。",
+      "section8Title": "8. 联系方式",
+      "section8Content": "隐私相关咨询：support@reviewhub.app"
+    },
+    "terms": {
+      "title": "服务条款",
+      "lastUpdated": "最后更新：2026 年 4 月 1 日",
+      "section1Title": "1. 关于本服务",
+      "section1Content": "ReviewHub（\u201c本服务\u201d）是面向小型企业的一站式评价管理平台，提供 SaaS 解决方案，在一个平台管理来自 Google、Yelp、Facebook、WhatsApp 等平台的评价。",
+      "section2Title": "2. 使用条款",
+      "section2Items": [
+        "使用本服务需要注册账户。",
+        "用户必须提供准确的信息并保持更新。",
+        "账户仅限个人使用，不得转让给他人。",
+        "不得将本服务用于违法或不当目的。"
+      ],
+      "section3Title": "3. 定价与付款",
+      "section3Items": [
+        "14 天免费试用结束后，需选择付费方案。",
+        "付款通过 Stripe 处理，按月或按年自动续费。",
+        "可随时在设置中更改方案，新方案将在下一个计费周期生效。",
+        "价格可能会在提前通知后进行调整。"
+      ],
+      "section4Title": "4. 服务限制",
+      "section4Content": "每个方案有使用限制（AI 回复次数、WhatsApp 请求次数、企业数量等）。超出限制后部分功能可能受到限制。",
+      "section5Title": "5. 知识产权",
+      "section5Items": [
+        "本服务的所有软件、设计、标识及其他知识产权归本公司所有。",
+        "用户输入的企业信息和评价回复归用户所有。",
+        "AI 生成的回复可由用户自由使用。"
+      ],
+      "section6Title": "6. 消费者保障",
+      "section6Content": "如果您是 Consumer Guarantees Act 1993 下的消费者，本服务必须以合理的注意和技能提供。本条款中的任何内容均不限制您在 Consumer Guarantees Act 1993 下的权利。",
+      "section7Title": "7. 免责声明",
+      "section7Items": [
+        "本公司不对外部平台（Google、Yelp、Facebook、WhatsApp）的 API 变更或服务中断承担责任。",
+        "我们不保证 AI 生成回复的准确性或适当性；最终审核由用户负责。",
+        "本公司不对因不可抗力、系统故障或类似事件导致的服务中断承担责任。"
+      ],
+      "section8Title": "8. 取消与退款",
+      "section8Items": [
+        "用户可随时取消服务。",
+        "取消后，服务将持续至当前计费周期结束。",
+        "年度订阅可在付款后 14 天内申请退款。",
+        "账户删除请求有 30 天的宽限期，期间可撤销删除。"
+      ],
+      "section9Title": "9. 条款变更",
+      "section9Content": "本公司可能会通过电子邮件和应用内通知提前告知条款修改。如您不同意更新后的条款，可以取消服务。",
+      "section10Title": "10. 适用法律",
+      "section10Content": "本条款受新西兰法律管辖。任何争议将提交至新西兰法院的非排他性管辖。",
+      "section11Title": "11. 联系方式",
+      "section11Content": "条款相关咨询：support@reviewhub.app"
+    },
+    "cookie": {
+      "title": "Cookie 政策",
+      "lastUpdated": "最后更新：2026 年 4 月 1 日",
+      "intro": "本 Cookie 政策说明了 ReviewHub（\u201c本服务\u201d）如何使用 Cookie 及类似技术。",
+      "section1Title": "1. 什么是 Cookie？",
+      "section1Content": "Cookie 是您访问网站时存储在浏览器中的小型文本文件。它们使网站能够记住您的偏好并提供更好的体验。",
+      "section2Title": "2. 我们使用的 Cookie 类型",
+      "section2Sub1Title": "必要 Cookie",
+      "section2Sub1Intro": "服务运行所必需的 Cookie，无法禁用。",
+      "section2Sub1Items": [
+        { "name": "身份验证 Cookie", "desc": "维持您的登录会话（NextAuth）" },
+        { "name": "CSRF 令牌", "desc": "安全请求验证" },
+        { "name": "Cookie 偏好", "desc": "记住您的 Cookie 选择" }
+      ],
+      "section2Sub2Title": "功能性 Cookie",
+      "section2Sub2Intro": "通过个性化设置提升您的体验。",
+      "section2Sub2Items": [
+        { "name": "主题偏好", "desc": "记住深色/浅色模式的选择" },
+        { "name": "活跃企业", "desc": "记住您上次选择的企业" }
+      ],
+      "section2Sub3Title": "分析 Cookie",
+      "section2Sub3Intro": "帮助我们分析使用模式以改进服务。仅在您同意后启用。",
+      "section2Sub3Items": [
+        { "name": "Vercel Analytics", "desc": "页面访问统计" },
+        { "name": "Sentry", "desc": "错误追踪和性能监控" }
+      ],
+      "section3Title": "3. 管理 Cookie",
+      "section3Content1": "您可以通过页面底部的 Cookie 横幅拒绝分析 Cookie。也可以通过浏览器设置管理或删除 Cookie。",
+      "section3Content2": "禁用 Cookie 可能会限制本服务的部分功能。",
+      "section4Title": "4. 第三方 Cookie",
+      "section4Content": "连接 Google 或 Facebook 等外部平台时，这些平台可能会设置自己的 Cookie。这些 Cookie 受各平台自身的 Cookie 政策约束。",
+      "section5Title": "5. 联系方式",
+      "section5Content": "Cookie 政策相关咨询：support@reviewhub.app"
+    }
+  },
+  "reviewRequests": {
+    "title": "评价请求",
+    "subtitle": "通过 WhatsApp 发送评价请求并追踪状态。",
+    "sendIndividual": {
+      "title": "发送单条请求",
+      "customerName": "客户姓名",
+      "customerNamePlaceholder": "张三",
+      "phoneNumber": "电话号码",
+      "phonePlaceholder": "+1234567890",
+      "reviewPlatform": "评价平台",
+      "sendRequest": "发送请求",
+      "sending": "发送中...",
+      "messageSent": "消息发送成功！",
+      "failedToSend": "发送失败",
+      "networkError": "网络错误"
+    },
+    "bulkSend": {
+      "title": "批量发送（CSV）",
+      "description": "上传包含 phone、customerName 列的 CSV 文件",
+      "contactsReady": "{count} 个联系人已准备发送",
+      "sendAll": "全部发送",
+      "sent": "已发送：{count}",
+      "failed": "失败：{count}",
+      "total": "总计：{count}"
+    },
+    "history": {
+      "title": "发送历史",
+      "noRequests": "尚未发送过评价请求。",
+      "customer": "客户",
+      "phone": "电话",
+      "platform": "平台",
+      "status": "状态",
+      "sentAt": "发送时间"
+    },
+    "status": {
+      "sent": "已发送",
+      "delivered": "已送达",
+      "read": "已读",
+      "failed": "失败"
+    },
+    "qr": {
+      "title": "二维码评价卡片",
+      "subtitle": "生成二维码以收集客户评价。",
+      "createQrCode": "创建二维码",
+      "newQrCode": "新建二维码",
+      "platform": "平台",
+      "reviewPageUrl": "评价页面 URL",
+      "reviewPageUrlPlaceholder": "https://g.page/r/...",
+      "noQrCodes": "暂无二维码。创建一个开始收集评价吧。",
+      "scans": "{count} 次扫描",
+      "scanToLeaveReview": "扫码留下评价",
+      "weValueFeedback": "您的反馈对我们很重要！",
+      "printCard": "打印"
+    }
+  },
+  "feedback": {
+    "title": "发送反馈",
+    "buttonTitle": "发送反馈",
+    "placeholder": "输入您的反馈...",
+    "emailPlaceholder": "电子邮箱（选填）",
+    "submit": "提交",
+    "sending": "发送中...",
+    "successTitle": "感谢您！",
+    "successMessage": "您的反馈已提交。",
+    "categories": {
+      "bug": "Bug 报告",
+      "feature": "功能建议",
+      "general": "一般反馈",
+      "ux": "用户体验问题"
+    }
+  },
+  "cookieBanner": {
+    "message": "本网站使用 Cookie 以提供服务和进行数据分析。",
+    "learnMore": "了解更多",
+    "accept": "接受",
+    "decline": "拒绝"
+  },
+  "referral": {
+    "title": "推荐奖励",
+    "subtitle": "邀请朋友，双方均可获得奖励。",
+    "copy": "复制",
+    "copied": "已复制",
+    "shareText": "使用 ReviewHub 轻松管理您的评价！{link}",
+    "shareEmailSubject": "ReviewHub 推荐",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "email": "电子邮件",
+    "invited": "已邀请",
+    "signedUp": "已注册",
+    "rewarded": "已奖励"
+  },
+  "account": {
+    "deleteModal": {
+      "title": "删除账户",
+      "warningTitle": "警告：此操作无法撤消。",
+      "warningItems": [
+        "所有企业数据、评价和设置将被删除",
+        "活跃订阅将自动取消",
+        "30 天宽限期后将永久删除"
+      ],
+      "confirmPassword": "确认密码",
+      "passwordPlaceholder": "输入您的当前密码",
+      "confirmCheckbox": "我了解 30 天后所有数据将被永久删除。",
+      "requestDeletion": "申请删除账户",
+      "processing": "处理中...",
+      "successMessage": "已提交账户删除请求。所有数据将在 30 天后永久删除。在此期间，您可以在设置中撤销删除。",
+      "failedToDelete": "账户删除请求失败",
+      "networkError": "网络错误，请重试。"
+    }
+  },
+  "blog": {
+    "title": "博客",
+    "subtitle": "面向小型企业的评价管理技巧与洞察",
+    "noPosts": "暂无文章。",
+    "backToBlog": "← 返回博客",
+    "metaTitle": "ReviewHub 博客",
+    "metaDescription": "面向小型企业的评价管理技巧与洞察"
+  },
+  "tour": {
+    "kpi": {
+      "title": "关键指标一览",
+      "description": "实时查看评价总数、平均评分及其他关键指标。"
+    },
+    "chart": {
+      "title": "评价趋势",
+      "description": "通过交互式图表追踪评价数量变化。"
+    },
+    "platform": {
+      "title": "平台表现",
+      "description": "比较 Google、Yelp 等各平台的评价数据。"
+    },
+    "activity": {
+      "title": "最近活动",
+      "description": "查看最新评价并立即回复。"
+    }
+  },
+  "unsubscribe": {
+    "invalidLink": {
+      "title": "无效链接",
+      "message": "此退订链接无效或已过期。",
+      "backToHome": "返回首页"
+    },
+    "success": {
+      "title": "已退订",
+      "message": "您将不再收到营销邮件。",
+      "settingsNote": "服务通知（新评价、每周摘要）可在设置中管理。",
+      "backToHome": "返回首页"
+    }
+  },
+  "email": {
+    "welcome": {
+      "title": "欢迎使用 ReviewHub！",
+      "greeting": "您好 {name}，",
+      "intro": "感谢您注册 ReviewHub。现在您可以在一个仪表盘中管理所有评价。",
+      "gettingStartedTitle": "快速上手",
+      "gettingStartedItems": [
+        "连接您的 Google、Yelp 和 Facebook 平台",
+        "使用 AI 回复建议快速回复评价",
+        "通过 WhatsApp 发送评价请求",
+        "通过竞争对手基准分析追踪市场地位"
+      ],
+      "goToDashboard": "前往仪表盘",
+      "trialNote": "在 14 天免费试用期内体验所有功能。",
+      "footer": "ReviewHub - 评价管理",
+      "unsubscribe": "退订营销邮件"
+    },
+    "trialReminder": {
+      "day11Title": "您回复了第一条评价了吗？",
+      "day11Tip": "回复评价可将客户回头率提升 33%。查看您的仪表盘，找到需要回复的评价。",
+      "day7Title": "您试过 AI 回复功能了吗？",
+      "day7Tip": "使用 AI 回复建议可将平均响应时间缩短 80%。在评价详情页点击\u201cAI 回复建议\u201d按钮即可体验。",
+      "day4Title": "距离试用期结束还有 {days} 天",
+      "day4Tip": "您充分利用 ReviewHub 了吗？请确保在试用期内体验所有功能。",
+      "day1Title": "您的试用期明天到期",
+      "day1Tip": "免费试用将于明天结束。立即选择方案，确保评价管理不中断。",
+      "defaultTip": "在试用期内体验所有功能。",
+      "daysUntilExpiry": "距离免费试用期结束还有 {days} 天",
+      "choosePlan": "选择方案",
+      "goToDashboard": "前往仪表盘"
+    },
+    "upgradePrompt": {
+      "title": "您的免费试用期已结束",
+      "greeting": "您好 {name}，",
+      "message": "您的 14 天免费试用已结束。请选择一个方案以继续管理您的评价。",
+      "achievementsTitle": "试用期间您的成果",
+      "achievements": [
+        "统一评价管理",
+        "AI 回复建议",
+        "实时提醒",
+        "WhatsApp 评价请求"
+      ],
+      "starterPlan": "入门版方案",
+      "starterPrice": "$19",
+      "starterPriceNote": "小型企业的理想价格",
+      "choosePlan": "选择方案"
+    },
+    "winback": {
+      "title": "您可能正在错过评价",
+      "greeting": "您好 {name}，",
+      "message": "距离您离开 ReviewHub 已经一周了。这段时间可能有新的评价。未回复的评价可能会给潜在客户留下负面印象。",
+      "stat": "45% 的潜在客户会避开有未回复差评的商家。",
+      "ctaMessage": "立即回来查看并回复您的评价。",
+      "ctaButton": "重新开始"
+    },
+    "reviewAlert": {
+      "title": "{businessName} 收到新评价",
+      "viewAndReply": "查看并回复",
+      "footer": "ReviewHub - 评价管理"
+    },
+    "negativeAlert": {
+      "banner": "差评需要关注",
+      "respondNow": "立即回复",
+      "footer": "ReviewHub - 评价管理"
+    },
+    "weeklySummary": {
+      "title": "每周评价摘要",
+      "newReviews": "新评价",
+      "avgRating": "平均评分",
+      "positive": "正面",
+      "unanswered": "未回复",
+      "replyNow": "立即回复（{count} 条待回复）",
+      "allResponded": "所有评价均已回复！",
+      "footer": "ReviewHub - 评价管理"
+    }
+  },
+  "jsonLd": {
+    "organizationDescription": "面向小型企业的一站式评价管理平台",
+    "softwareDescription": "在一个仪表盘中管理 Google、Yelp 和 Facebook 的评价。"
+  }
+}

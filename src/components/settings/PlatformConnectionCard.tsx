@@ -1,7 +1,13 @@
 import type { PlatformConnection } from '@/types';
 import { platformConfig } from '@/lib/platformConfig';
 
-export default function PlatformConnectionCard({ connection }: { connection: PlatformConnection }) {
+interface Props {
+  connection: PlatformConnection;
+  onConnect: () => void;
+  onManage: () => void;
+}
+
+export default function PlatformConnectionCard({ connection, onConnect, onManage }: Props) {
   const icon = platformConfig[connection.platform];
 
   return (
@@ -31,11 +37,17 @@ export default function PlatformConnectionCard({ connection }: { connection: Pla
       {connection.platform !== 'yelp' && <div className="mb-3" />}
 
       {connection.connected ? (
-        <button className="w-full border border-border rounded-lg px-4 py-2.5 text-sm font-medium text-text-primary hover:bg-background transition-colors">
+        <button
+          onClick={onManage}
+          className="w-full border border-border rounded-lg px-4 py-2.5 text-sm font-medium text-text-primary hover:bg-background transition-colors"
+        >
           Manage
         </button>
       ) : (
-        <button className="w-full bg-navy text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors">
+        <button
+          onClick={onConnect}
+          className="w-full bg-navy text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors"
+        >
           Connect
         </button>
       )}

@@ -120,7 +120,7 @@ export default function TopBar() {
 
         {showResults && debouncedQuery.trim() && results.length === 0 && (
           <div className="absolute top-full left-0 right-0 mt-1 bg-surface rounded-xl border border-border shadow-lg p-4 z-50">
-            <p className="text-sm text-text-secondary text-center">No results found</p>
+            <p className="text-sm text-text-secondary text-center">{t('noResults')}</p>
           </div>
         )}
       </div>
@@ -131,7 +131,7 @@ export default function TopBar() {
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background transition-colors"
-            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? t('switchToLight') : t('switchToDark')}
           >
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -145,7 +145,7 @@ export default function TopBar() {
           </div>
           <div className="text-right">
             <p className="text-sm font-semibold text-text-primary leading-tight">{userName}</p>
-            <p className="text-xs text-text-secondary leading-tight">Owner</p>
+            <p className="text-xs text-text-secondary leading-tight">{t('owner')}</p>
           </div>
         </div>
       </div>

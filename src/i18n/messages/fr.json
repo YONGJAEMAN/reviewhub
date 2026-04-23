@@ -1,0 +1,816 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "reviews": "Avis",
+    "analytics": "Analytique",
+    "reviewRequests": "Demandes d'avis",
+    "settings": "Paramètres",
+    "help": "Aide",
+    "qrCards": "Cartes QR",
+    "trial": "Essai : {daysLeft} jour(s) restant(s)",
+    "trialExpired": "Essai expiré — Choisissez un forfait",
+    "upgrade": "Passer à un forfait supérieur",
+    "connectAccount": "Connecter un compte",
+    "support": "Support",
+    "logout": "Déconnexion",
+    "tagline": "Portail PME"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "subtitle": "Suivez les performances de vos avis en un coup d'œil.",
+    "overallRating": "Note globale",
+    "totalReviews": "Total des avis",
+    "positiveSentiment": "Sentiment positif",
+    "responseRate": "Taux de réponse",
+    "reviewTrends": "Tendances des avis",
+    "thisMonth": "Ce mois-ci",
+    "lastMonth": "Le mois dernier",
+    "platformPerformance": "Performance par plateforme",
+    "recentActivity": "Activité récente",
+    "export": "Exporter",
+    "period": {
+      "7": "7 derniers jours",
+      "30": "30 derniers jours",
+      "90": "90 derniers jours",
+      "365": "Cette année"
+    },
+    "trialExpiredBanner": "Votre essai gratuit est terminé. Abonnez-vous pour continuer à utiliser toutes les fonctionnalités.",
+    "choosePlan": "Choisir un forfait",
+    "tour": {
+      "kpiTitle": "KPI en un coup d'œil",
+      "kpiDescription": "Consultez le nombre total d'avis, la note moyenne et d'autres indicateurs clés en temps réel.",
+      "chartTitle": "Tendances des avis",
+      "chartDescription": "Suivez le volume d'avis au fil du temps avec des graphiques interactifs.",
+      "platformTitle": "Performance par plateforme",
+      "platformDescription": "Comparez les statistiques des avis sur Google, Yelp et d'autres plateformes.",
+      "activityTitle": "Activité récente",
+      "activityDescription": "Consultez les derniers avis et répondez-y immédiatement."
+    }
+  },
+  "reviews": {
+    "title": "Fil des avis",
+    "subtitle": "Consultez et répondez aux avis sur toutes les plateformes.",
+    "searchPlaceholder": "Rechercher des avis...",
+    "allPlatforms": "Toutes les plateformes",
+    "allRatings": "Toutes les notes",
+    "allStatus": "Tous les statuts",
+    "actionRequired": "Action requise",
+    "highPriority": "Priorité élevée",
+    "replied": "Répondu",
+    "newest": "Plus récents",
+    "oldest": "Plus anciens",
+    "highest": "Meilleure note",
+    "lowest": "Plus basse note",
+    "clearAll": "Tout effacer",
+    "filters": "Filtres",
+    "replyTo": "Répondre à",
+    "viewThread": "Voir le fil complet →",
+    "openInYelp": "Ouvrir dans Yelp",
+    "yourReply": "Votre réponse",
+    "noReviews": "Aucun avis trouvé.",
+    "backToFeed": "Retour au fil des avis",
+    "notFound": "Avis introuvable.",
+    "writeReply": "Rédiger une réponse",
+    "writePlaceholder": "Rédigez votre réponse...",
+    "aiSuggest": "Suggestion IA",
+    "generating": "Génération en cours...",
+    "sendReply": "Envoyer la réponse",
+    "previousReviews": "Avis précédents",
+    "averageRating": "Note moyenne",
+    "localGuide": "Guide local",
+    "topReviewer": "Évaluateur principal",
+    "newReviewer": "Nouvel évaluateur",
+    "platform": "Plateforme",
+    "posted": "Publié",
+    "verified": "Vérifié",
+    "repliedAt": "Répondu le {date}",
+    "noPreviousReviews": "Aucun avis précédent trouvé.",
+    "previousReviewsBy": "Avis précédents de {name}"
+  },
+  "analytics": {
+    "title": "Analytique",
+    "subtitle": "Analysez en profondeur vos données d'avis.",
+    "sentimentTrends": "Tendances du sentiment",
+    "positive": "Positif",
+    "negative": "Négatif",
+    "ratingDistribution": "Répartition des notes",
+    "platformComparison": "Comparaison des plateformes",
+    "topKeywords": "Mots-clés principaux",
+    "competitorBenchmark": "Comparaison concurrentielle",
+    "responseTime": "Temps de réponse moyen",
+    "responseRate": "Taux de réponse",
+    "last30Days": "30 derniers jours",
+    "quarterly": "Trimestriel",
+    "topPlatform": "Plateforme principale",
+    "criticalAction": "Action critique",
+    "unreadNegatives": "{count} avis négatifs non lus",
+    "requiresAttention": "Nécessite une attention immédiate",
+    "sentimentTrend": "Tendance du sentiment",
+    "growth": "+{percent}% de croissance",
+    "positiveMentionsIncreasing": "Les mentions positives sont en hausse",
+    "ofTotalVolume": "{percent}% du volume total"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "subtitle": "Gérez votre profil d'entreprise et vos intégrations de plateformes depuis un point central.",
+    "platformConnections": "Connexions aux plateformes",
+    "activeChannels": "Canaux actifs",
+    "connected": "Connecté",
+    "disconnected": "Déconnecté",
+    "connect": "Connecter",
+    "manage": "Gérer",
+    "businessProfile": "Profil de l'entreprise",
+    "notifications": "Paramètres de notification",
+    "subscription": "Abonnement",
+    "teamMembers": "Membres de l'équipe",
+    "competitors": "Suivi des concurrents",
+    "referral": "Parrainage",
+    "dangerZone": "Zone de danger",
+    "dangerDescription": "La suppression de votre compte entraînera la suppression définitive de toutes les données commerciales, avis et paramètres. Cette action est irréversible.",
+    "deleteAccount": "Demander la suppression du compte",
+    "autoMonthlyReport": "Rapport mensuel automatique",
+    "autoMonthlyReportDesc": "Recevez un rapport par e-mail le 1er de chaque mois."
+  },
+  "export": {
+    "title": "Exporter le rapport",
+    "format": "Format de fichier",
+    "period": "Période",
+    "download": "Télécharger",
+    "generating": "Génération en cours..."
+  },
+  "common": {
+    "search": "Rechercher...",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue.",
+    "success": "Traitement réussi.",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "close": "Fermer",
+    "noResults": "Aucun résultat trouvé",
+    "switchToLight": "Passer en mode clair",
+    "switchToDark": "Passer en mode sombre",
+    "home": "Accueil",
+    "owner": "Propriétaire",
+    "ok": "OK",
+    "create": "Créer",
+    "print": "Imprimer",
+    "copyLink": "Copier le lien",
+    "copied": "Copié",
+    "copy": "Copier",
+    "sending": "Envoi en cours...",
+    "submit": "Soumettre",
+    "processing": "Traitement en cours...",
+    "redirecting": "Redirection en cours...",
+    "page": "Page {current} sur {total}",
+    "perMonth": "/mois",
+    "reviewHub": "ReviewHub"
+  },
+  "auth": {
+    "login": {
+      "title": "Bon retour parmi nous",
+      "subtitle": "Connectez-vous pour gérer vos avis",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "vous@exemple.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "signIn": "Se connecter",
+      "signingIn": "Connexion en cours...",
+      "orContinueWith": "ou continuer avec",
+      "signInWithGoogle": "Se connecter avec Google",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "signUp": "S'inscrire",
+      "invalidCredentials": "E-mail ou mot de passe invalide"
+    },
+    "signup": {
+      "title": "Créez votre compte",
+      "subtitle": "Commencez à gérer vos avis dès aujourd'hui",
+      "fullNameLabel": "Nom complet",
+      "fullNamePlaceholder": "Jean Dupont",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "vous@exemple.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Au moins 6 caractères",
+      "inviteCodeLabel": "Code d'invitation",
+      "inviteCodePlaceholder": "BETA-XXXXXX",
+      "noInviteCode": "Vous n'avez pas de code d'invitation ?",
+      "joinWaitlist": "Rejoindre la liste d'attente",
+      "createAccount": "Créer un compte",
+      "creatingAccount": "Création du compte...",
+      "orContinueWith": "ou continuer avec",
+      "signUpWithGoogle": "S'inscrire avec Google",
+      "hasAccount": "Vous avez déjà un compte ?",
+      "signIn": "Se connecter",
+      "failedToCreate": "Échec de la création du compte",
+      "somethingWentWrong": "Une erreur est survenue. Veuillez réessayer."
+    }
+  },
+  "onboarding": {
+    "stepOf": "Étape {step} sur {total}",
+    "step1": {
+      "title": "Bienvenue sur ReviewHub !",
+      "subtitle": "Entrez les informations de votre entreprise pour obtenir des paramètres personnalisés.",
+      "businessNameLabel": "Nom de l'entreprise *",
+      "businessNamePlaceholder": "ex. Café du Centre",
+      "industryLabel": "Secteur d'activité",
+      "selectIndustry": "Sélectionnez un secteur",
+      "locationLabel": "Emplacement",
+      "locationPlaceholder": "ex. Paris, France"
+    },
+    "step2": {
+      "title": "Connectez vos plateformes d'avis",
+      "subtitle": "Vous pourrez en connecter d'autres ultérieurement dans les Paramètres.",
+      "connected": "Connecté"
+    },
+    "step3": {
+      "title": "Quelles notifications souhaitez-vous recevoir ?",
+      "subtitle": "Vous pouvez modifier ces préférences à tout moment dans les Paramètres.",
+      "newReviewAlerts": "Alertes de nouveaux avis",
+      "newReviewAlertsDesc": "Soyez notifié instantanément lorsqu'un nouvel avis est publié.",
+      "weeklySummary": "Résumé hebdomadaire par e-mail",
+      "weeklySummaryDesc": "Recevez un résumé hebdomadaire des avis chaque lundi.",
+      "negativeAlerts": "Alertes d'avis négatifs",
+      "negativeAlertsDesc": "Recevez des alertes urgentes lorsque des avis négatifs sont détectés."
+    },
+    "step4": {
+      "title": "Tout est prêt !",
+      "subtitle": "Votre tableau de bord est prêt. Commencez à gérer vos avis maintenant.",
+      "connectedPlatforms": "Plateformes connectées",
+      "goToDashboard": "Accéder au tableau de bord"
+    },
+    "skipForNow": "Passer pour le moment",
+    "failedToCreateBusiness": "Échec de la création de l'entreprise",
+    "somethingWentWrong": "Une erreur est survenue. Veuillez réessayer.",
+    "industries": {
+      "restaurant": "Restaurant / Café",
+      "beauty": "Beauté / Salon",
+      "medical": "Médical / Dentaire",
+      "hospitality": "Hôtellerie / Hôtel",
+      "retail": "Commerce / Boutique",
+      "professional": "Services professionnels",
+      "education": "Éducation / Soutien scolaire",
+      "other": "Autre"
+    },
+    "platforms": {
+      "google": "Google",
+      "googleDesc": "Google Business Profile",
+      "yelp": "Yelp",
+      "yelpDesc": "Yelp Fusion API",
+      "facebook": "Facebook",
+      "facebookDesc": "Avis de page Facebook",
+      "whatsapp": "WhatsApp",
+      "whatsappDesc": "WhatsApp Business"
+    }
+  },
+  "landing": {
+    "navbar": {
+      "features": "Fonctionnalités",
+      "pricing": "Tarifs",
+      "testimonials": "Témoignages",
+      "logIn": "Connexion",
+      "startForFree": "Commencer gratuitement"
+    },
+    "hero": {
+      "title": "Tous les avis,\nun seul tableau de bord",
+      "subtitle": "Gérez vos avis Google · Yelp · Facebook · WhatsApp en un seul endroit.",
+      "startingAt": "À partir de 19 $/mois.",
+      "startForFree": "Commencer gratuitement",
+      "viewDemo": "Voir la démo"
+    },
+    "stats": {
+      "activeBusinesses": "Entreprises actives",
+      "reviewsManaged": "Avis gérés",
+      "customerSatisfaction": "Satisfaction client"
+    },
+    "mockup": {
+      "rating": "Note",
+      "reviews": "Avis",
+      "positive": "Positif",
+      "pending": "En attente"
+    },
+    "painPoints": {
+      "title": "Propriétaire de PME, ça vous parle ?",
+      "subtitle": "Un seul avis peut changer votre chiffre d'affaires. Mais les gérer demande trop d'efforts.",
+      "wastedTime": "Temps perdu",
+      "wastedTimeDesc": "Passer plus de 30 minutes par jour à vérifier chaque plateforme une par une",
+      "lateResponses": "Réponses tardives",
+      "lateResponsesDesc": "Découvrir les avis négatifs trop tard, manquer le moment de répondre et perdre des points de notation",
+      "expensiveTools": "Outils coûteux",
+      "expensiveToolsDesc": "Les outils de gestion d'avis coûtent entre 44 $ et 399 $, un fardeau pour les petites entreprises"
+    },
+    "solutions": {
+      "title": "ReviewHub a la solution",
+      "subtitle": "Simplifiez la gestion complexe des avis avec un seul outil.",
+      "unifiedDashboard": "Tableau de bord unifié",
+      "unifiedDashboardDesc": "Consultez et gérez les avis de toutes les plateformes sur un seul écran, en temps réel.",
+      "whatsappRequests": "Demandes d'avis via WhatsApp",
+      "whatsappRequestsDesc": "Demandez des avis à vos clients via WhatsApp avec un taux d'ouverture de 98 %. Regardez votre nombre d'avis monter en flèche.",
+      "aiReplyGeneration": "Génération de réponses par IA",
+      "aiReplyGenerationDesc": "Générez automatiquement des réponses professionnelles en un clic. Choisissez le ton et ajustez la longueur.",
+      "realTimeAlerts": "Alertes en temps réel",
+      "realTimeAlertsDesc": "Détectez instantanément les avis négatifs et répondez rapidement grâce aux notifications par e-mail."
+    },
+    "comparison": {
+      "title": "Pourquoi ReviewHub ?",
+      "subtitle": "Une valeur ajoutée évidente face à la concurrence.",
+      "feature": "Fonctionnalité",
+      "reviewAggregation": "Agrégation des avis",
+      "whatsappAutomation": "Automatisation WhatsApp",
+      "aiReplyGeneration": "Génération de réponses par IA",
+      "smallBusinessPricing": "Tarifs pour les PME",
+      "sentimentAnalysis": "Analyse de sentiment",
+      "competitorBenchmarking": "Comparaison concurrentielle",
+      "limited": "Limité"
+    },
+    "pricing": {
+      "title": "Tarifs abordables",
+      "subtitle": "Essai gratuit de 14 jours, aucune carte de crédit requise",
+      "startForFree": "Commencer gratuitement"
+    },
+    "testimonials": {
+      "title": "Ce que disent nos clients",
+      "subtitle": "Témoignages réels de propriétaires d'entreprises utilisant ReviewHub",
+      "review1Name": "K. M.",
+      "review1Business": "Propriétaire de café",
+      "review1Text": "Notre temps de réponse moyen aux avis est passé de 6 heures à 30 minutes. Grâce à la fonction de réponse par IA, nous pouvons envoyer des réponses professionnelles rapidement.",
+      "review2Name": "L. J.",
+      "review2Business": "Salon de coiffure",
+      "review2Text": "Après avoir demandé des avis via WhatsApp, nous avons obtenu 40 nouveaux avis Google en seulement un mois. Le trafic de nouveaux clients a sensiblement augmenté.",
+      "review3Name": "P. S.",
+      "review3Business": "Restaurant",
+      "review3Text": "À 19 $/mois, c'est le meilleur rapport qualité-prix sur le marché. Les alertes d'avis négatifs nous permettent de répondre immédiatement, et notre note est passée de 4,2 à 4,7."
+    },
+    "cta": {
+      "title": "Lancez-vous maintenant",
+      "subtitle": "Essai gratuit de 14 jours · Aucune carte de crédit requise · Configuration en 5 minutes",
+      "startForFree": "Commencer gratuitement"
+    },
+    "footer": {
+      "tagline": "Plateforme tout-en-un de gestion\ndes avis pour les petites entreprises",
+      "product": "Produit",
+      "company": "Entreprise",
+      "legal": "Mentions légales",
+      "features": "Fonctionnalités",
+      "pricing": "Tarifs",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "about": "À propos",
+      "contactUs": "Nous contacter",
+      "privacyPolicy": "Politique de confidentialité",
+      "termsOfService": "Conditions d'utilisation",
+      "cookiePolicy": "Politique de cookies",
+      "copyright": "© {year} ReviewHub. Tous droits réservés."
+    }
+  },
+  "waitlist": {
+    "title": "Rejoindre la liste d'attente",
+    "subtitle": "Nous sommes actuellement en bêta privée. Inscrivez-vous et nous vous enverrons un code d'invitation.",
+    "nameLabel": "Nom",
+    "namePlaceholder": "Jean Dupont",
+    "emailLabel": "E-mail *",
+    "emailPlaceholder": "vous@exemple.com",
+    "businessNameLabel": "Nom de l'entreprise",
+    "businessNamePlaceholder": "Mon Café",
+    "joinWaitlist": "Rejoindre la liste d'attente",
+    "submitting": "Envoi en cours...",
+    "failedToJoin": "Impossible de rejoindre la liste d'attente",
+    "networkError": "Erreur réseau. Veuillez réessayer.",
+    "success": {
+      "title": "Merci !",
+      "message": "Vous avez été ajouté à la liste d'attente. Nous vous enverrons un e-mail lorsque votre code d'invitation sera prêt.",
+      "backToHome": "Retour à l'accueil"
+    }
+  },
+  "pricing": {
+    "title": "Choisissez votre forfait",
+    "subtitle": "Commencez avec un essai gratuit de 14 jours. Aucune carte de crédit requise.",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "save20": "Économisez 20 %",
+    "mostPopular": "LE PLUS POPULAIRE",
+    "getStarted": "Commencer",
+    "billedAnnually": "${price}/an facturé annuellement",
+    "allPlansIncludeTrial": "Tous les forfaits incluent un essai gratuit de 14 jours.",
+    "signInToStart": "Se connecter",
+    "toGetStarted": "pour commencer.",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "features": {
+          "locations": "1 emplacement commercial",
+          "aiReplies": "10 réponses IA / mois",
+          "whatsapp": "100 demandes WhatsApp / mois",
+          "integrations": "Intégration Google & Yelp",
+          "analytics": "Analytique de base"
+        }
+      },
+      "growth": {
+        "name": "Growth",
+        "features": {
+          "locations": "3 emplacements commerciaux",
+          "aiReplies": "50 réponses IA / mois",
+          "whatsapp": "500 demandes WhatsApp / mois",
+          "integrations": "Toutes les intégrations",
+          "analytics": "Analytique avancée",
+          "sentiment": "Analyse de sentiment",
+          "competitors": "Suivi de 3 concurrents"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "features": {
+          "locations": "10 emplacements commerciaux",
+          "aiReplies": "Réponses IA illimitées",
+          "whatsapp": "Demandes WhatsApp illimitées",
+          "integrations": "Toutes les intégrations",
+          "analytics": "Analytique avancée et rapports",
+          "sentiment": "Analyse de sentiment",
+          "competitors": "Suivi de 10 concurrents",
+          "support": "Support prioritaire"
+        }
+      }
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "lastUpdated": "Dernière mise à jour : 1er avril 2026",
+      "intro": "ReviewHub (« Société ») accorde une grande importance à votre vie privée et protège vos informations personnelles conformément au Privacy Act 2020 de Nouvelle-Zélande et aux autres lois applicables. Cette politique de confidentialité décrit comment nous collectons, utilisons et partageons les informations personnelles lorsque vous utilisez notre service de gestion d'avis.",
+      "section1Title": "1. Informations que nous collectons",
+      "section1Sub1Title": "Informations requises",
+      "section1Sub1Items": [
+        "Adresse e-mail, nom (lors de l'inscription)",
+        "Nom de l'entreprise, secteur d'activité, emplacement (lors de l'utilisation du service)",
+        "Informations de paiement (traitées via Stripe ; les numéros de carte ne sont pas stockés par nos soins)"
+      ],
+      "section1Sub2Title": "Informations collectées automatiquement",
+      "section1Sub2Items": [
+        "Adresse IP, informations du navigateur, heure d'accès",
+        "Habitudes d'utilisation via les cookies et technologies similaires"
+      ],
+      "section1Sub3Title": "Données des plateformes tierces",
+      "section1Sub3Items": [
+        "Google Business Profile : jetons OAuth, données des avis de l'entreprise",
+        "Facebook/Meta : jetons d'accès aux pages, données de recommandation",
+        "Yelp : données des avis via API",
+        "WhatsApp Business : relevés de livraison des messages"
+      ],
+      "section2Title": "2. Comment nous utilisons vos informations",
+      "section2Items": [
+        "Fourniture de services intégrés de gestion des avis",
+        "Envoi de demandes d'avis via WhatsApp",
+        "Génération de réponses aux avis par IA (via l'API Anthropic)",
+        "Analyse de sentiment et informations commerciales",
+        "Amélioration du service et analytique",
+        "Support client et notifications"
+      ],
+      "section3Title": "3. Partage avec des tiers",
+      "section3Intro": "Nous partageons des données avec les prestataires de services suivants pour le fonctionnement de notre service :",
+      "section3Items": [
+        { "name": "Google", "desc": "Synchronisation des avis de l'entreprise" },
+        { "name": "Meta (Facebook/WhatsApp)", "desc": "Synchronisation des recommandations, messagerie" },
+        { "name": "Yelp", "desc": "Récupération des données d'avis" },
+        { "name": "Stripe", "desc": "Traitement des paiements" },
+        { "name": "Anthropic", "desc": "Génération de réponses par IA, analyse de sentiment" },
+        { "name": "Resend", "desc": "Envoi d'e-mails" },
+        { "name": "Vercel", "desc": "Hébergement et analytique" },
+        { "name": "Sentry", "desc": "Surveillance des erreurs" }
+      ],
+      "section4Title": "4. Conservation des données",
+      "section4Content": "Les informations personnelles sont conservées pendant la durée de votre compte. Lors d'une demande de suppression de compte, les données sont définitivement supprimées dans un délai de 30 jours, sauf si la conservation est requise par la loi (notamment le Privacy Act 2020).",
+      "section5Title": "5. Vos droits",
+      "section5Intro": "En vertu du Privacy Act 2020, vous avez le droit de :",
+      "section5Items": [
+        { "name": "Accès", "desc": "Demander l'accès à vos données personnelles collectées." },
+        { "name": "Rectification", "desc": "Demander la correction d'informations inexactes." },
+        { "name": "Suppression", "desc": "Demander la suppression de vos données personnelles." },
+        { "name": "Portabilité", "desc": "Demander le transfert de vos données vers un autre service." },
+        { "name": "Restriction", "desc": "Demander la restriction du traitement des données." }
+      ],
+      "section5Outro": "Vous pouvez exercer ces droits via la page Paramètres ou en envoyant un e-mail à support@reviewhub.app. Vous pouvez également déposer une plainte auprès de l'Office of the Privacy Commissioner.",
+      "section6Title": "6. Cookies",
+      "section6Content": "Nous utilisons des cookies à des fins d'authentification, de fonctionnalité et d'analytique. Pour plus de détails, consultez notre Politique de cookies.",
+      "section7Title": "7. Sécurité",
+      "section7Content": "Nous mettons en œuvre des mesures techniques et organisationnelles comprenant le chiffrement SSL, les contrôles d'accès et des audits de sécurité réguliers. Les jetons OAuth sont stockés de manière chiffrée et les mots de passe sont hachés avec bcrypt.",
+      "section8Title": "8. Contact",
+      "section8Content": "Pour toute question relative à la confidentialité : support@reviewhub.app"
+    },
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "lastUpdated": "Dernière mise à jour : 1er avril 2026",
+      "section1Title": "1. À propos du service",
+      "section1Content": "ReviewHub (« Service ») est une plateforme intégrée de gestion des avis pour les petites entreprises, offrant une solution SaaS permettant de gérer les avis provenant de Google, Yelp, Facebook, WhatsApp et d'autres plateformes en un seul endroit.",
+      "section2Title": "2. Conditions d'utilisation",
+      "section2Items": [
+        "L'inscription est requise pour utiliser le Service.",
+        "Les utilisateurs doivent fournir des informations exactes et les tenir à jour.",
+        "Les comptes sont personnels et ne peuvent pas être transférés à des tiers.",
+        "Le Service ne peut pas être utilisé à des fins illégales ou inappropriées."
+      ],
+      "section3Title": "3. Tarifs et paiements",
+      "section3Items": [
+        "Après l'essai gratuit de 14 jours, un forfait payant doit être sélectionné.",
+        "Les paiements sont traités via Stripe et se renouvellent automatiquement mensuellement ou annuellement.",
+        "Les changements de forfait peuvent être effectués à tout moment dans les Paramètres et prennent effet au prochain cycle de facturation.",
+        "Les prix peuvent être modifiés avec un préavis."
+      ],
+      "section4Title": "4. Limites du service",
+      "section4Content": "Chaque forfait a des limites d'utilisation (réponses IA, demandes WhatsApp, nombre d'entreprises, etc.). Les fonctionnalités peuvent être restreintes lorsque les limites sont dépassées.",
+      "section5Title": "5. Propriété intellectuelle",
+      "section5Items": [
+        "Tous les logiciels, designs, logos et autres éléments de propriété intellectuelle du Service appartiennent à la Société.",
+        "Les informations commerciales et les réponses aux avis saisies par les utilisateurs restent la propriété de l'utilisateur.",
+        "Les réponses générées par IA peuvent être librement utilisées par l'utilisateur."
+      ],
+      "section6Title": "6. Garanties aux consommateurs",
+      "section6Content": "Si vous êtes un consommateur au sens du Consumer Guarantees Act 1993, le Service doit être fourni avec un soin et une compétence raisonnables. Rien dans ces conditions ne limite vos droits en vertu du Consumer Guarantees Act 1993.",
+      "section7Title": "7. Exclusions de responsabilité",
+      "section7Items": [
+        "La Société n'est pas responsable des changements d'API ou des interruptions de service par les plateformes externes (Google, Yelp, Facebook, WhatsApp).",
+        "Nous ne garantissons pas l'exactitude ou la pertinence des réponses générées par IA ; la vérification finale incombe à l'utilisateur.",
+        "La Société n'est pas responsable des interruptions de service causées par des cas de force majeure, des défaillances système ou des événements similaires."
+      ],
+      "section8Title": "8. Résiliation et remboursements",
+      "section8Items": [
+        "Les utilisateurs peuvent résilier le Service à tout moment.",
+        "Après résiliation, le Service reste accessible jusqu'à la fin de la période de facturation en cours.",
+        "Les abonnements annuels peuvent être remboursés dans les 14 jours suivant le paiement.",
+        "Les demandes de suppression de compte disposent d'un délai de grâce de 30 jours pendant lequel l'annulation est possible."
+      ],
+      "section9Title": "9. Modification des conditions",
+      "section9Content": "La Société peut modifier ces conditions avec un préavis par e-mail et par notification dans l'application. Si vous n'acceptez pas les conditions mises à jour, vous pouvez résilier le Service.",
+      "section10Title": "10. Droit applicable",
+      "section10Content": "Ces conditions sont régies par les lois de Nouvelle-Zélande. Tout litige sera soumis à la juridiction non exclusive des tribunaux néo-zélandais.",
+      "section11Title": "11. Contact",
+      "section11Content": "Pour toute question relative à ces conditions : support@reviewhub.app"
+    },
+    "cookie": {
+      "title": "Politique de cookies",
+      "lastUpdated": "Dernière mise à jour : 1er avril 2026",
+      "intro": "Cette Politique de cookies explique comment ReviewHub (« Service ») utilise les cookies et les technologies similaires.",
+      "section1Title": "1. Qu'est-ce qu'un cookie ?",
+      "section1Content": "Les cookies sont de petits fichiers texte stockés dans votre navigateur lorsque vous visitez un site web. Ils permettent aux sites web de mémoriser vos préférences et de vous offrir une meilleure expérience.",
+      "section2Title": "2. Types de cookies que nous utilisons",
+      "section2Sub1Title": "Cookies essentiels",
+      "section2Sub1Intro": "Nécessaires au fonctionnement du Service. Ils ne peuvent pas être désactivés.",
+      "section2Sub1Items": [
+        { "name": "Cookies d'authentification", "desc": "Maintiennent votre session de connexion (NextAuth)" },
+        { "name": "Jetons CSRF", "desc": "Vérification des requêtes pour la sécurité" },
+        { "name": "Consentement aux cookies", "desc": "Mémorisent vos préférences en matière de cookies" }
+      ],
+      "section2Sub2Title": "Cookies fonctionnels",
+      "section2Sub2Intro": "Améliorent votre expérience avec des paramètres personnalisés.",
+      "section2Sub2Items": [
+        { "name": "Préférence de thème", "desc": "Mémorise le choix du mode sombre/clair" },
+        { "name": "Entreprise active", "desc": "Mémorise la dernière entreprise sélectionnée" }
+      ],
+      "section2Sub3Title": "Cookies analytiques",
+      "section2Sub3Intro": "Nous aident à analyser les habitudes d'utilisation pour améliorer le Service. Activés uniquement avec votre consentement.",
+      "section2Sub3Items": [
+        { "name": "Vercel Analytics", "desc": "Statistiques de visite des pages" },
+        { "name": "Sentry", "desc": "Suivi des erreurs et surveillance des performances" }
+      ],
+      "section3Title": "3. Gestion des cookies",
+      "section3Content1": "Vous pouvez refuser les cookies analytiques via la bannière de cookies en bas de la page. Vous pouvez également gérer ou supprimer les cookies dans les paramètres de votre navigateur.",
+      "section3Content2": "La désactivation des cookies peut limiter certaines fonctionnalités du Service.",
+      "section4Title": "4. Cookies tiers",
+      "section4Content": "Lors de la connexion à des plateformes externes telles que Google ou Facebook, ces plateformes peuvent placer leurs propres cookies. Ces cookies sont soumis à la politique de cookies de chaque plateforme.",
+      "section5Title": "5. Contact",
+      "section5Content": "Pour toute question relative à la politique de cookies : support@reviewhub.app"
+    }
+  },
+  "reviewRequests": {
+    "title": "Demandes d'avis",
+    "subtitle": "Envoyez des demandes d'avis via WhatsApp et suivez leur statut.",
+    "sendIndividual": {
+      "title": "Envoyer une demande individuelle",
+      "customerName": "Nom du client",
+      "customerNamePlaceholder": "Jean Dupont",
+      "phoneNumber": "Numéro de téléphone",
+      "phonePlaceholder": "+33123456789",
+      "reviewPlatform": "Plateforme d'avis",
+      "sendRequest": "Envoyer la demande",
+      "sending": "Envoi en cours...",
+      "messageSent": "Message envoyé avec succès !",
+      "failedToSend": "Échec de l'envoi",
+      "networkError": "Erreur réseau"
+    },
+    "bulkSend": {
+      "title": "Envoi en masse (CSV)",
+      "description": "Importez un fichier CSV avec les colonnes : phone, customerName",
+      "contactsReady": "{count} contacts prêts à envoyer",
+      "sendAll": "Tout envoyer",
+      "sent": "Envoyés : {count}",
+      "failed": "Échoués : {count}",
+      "total": "Total : {count}"
+    },
+    "history": {
+      "title": "Historique des envois",
+      "noRequests": "Aucune demande d'avis envoyée pour le moment.",
+      "customer": "Client",
+      "phone": "Téléphone",
+      "platform": "Plateforme",
+      "status": "Statut",
+      "sentAt": "Envoyé le"
+    },
+    "status": {
+      "sent": "Envoyé",
+      "delivered": "Livré",
+      "read": "Lu",
+      "failed": "Échoué"
+    },
+    "qr": {
+      "title": "Cartes QR d'avis",
+      "subtitle": "Générez des codes QR pour recueillir les avis de vos clients.",
+      "createQrCode": "Créer un code QR",
+      "newQrCode": "Nouveau code QR",
+      "platform": "Plateforme",
+      "reviewPageUrl": "URL de la page d'avis",
+      "reviewPageUrlPlaceholder": "https://g.page/r/...",
+      "noQrCodes": "Aucun code QR pour le moment. Créez-en un pour commencer à recueillir des avis.",
+      "scans": "{count} scans",
+      "scanToLeaveReview": "Scannez pour laisser un avis",
+      "weValueFeedback": "Vos retours nous sont précieux !",
+      "printCard": "Imprimer"
+    }
+  },
+  "feedback": {
+    "title": "Envoyer un commentaire",
+    "buttonTitle": "Envoyer un commentaire",
+    "placeholder": "Saisissez votre commentaire...",
+    "emailPlaceholder": "E-mail (facultatif)",
+    "submit": "Soumettre",
+    "sending": "Envoi en cours...",
+    "successTitle": "Merci !",
+    "successMessage": "Votre commentaire a été soumis.",
+    "categories": {
+      "bug": "Rapport de bug",
+      "feature": "Demande de fonctionnalité",
+      "general": "Commentaire général",
+      "ux": "Problème d'ergonomie"
+    }
+  },
+  "cookieBanner": {
+    "message": "Ce site utilise des cookies pour le fonctionnement du service et l'analytique.",
+    "learnMore": "En savoir plus",
+    "accept": "Accepter",
+    "decline": "Refuser"
+  },
+  "referral": {
+    "title": "Parrainage",
+    "subtitle": "Invitez vos amis et vous serez tous les deux récompensés.",
+    "copy": "Copier",
+    "copied": "Copié",
+    "shareText": "Gérez vos avis facilement avec ReviewHub ! {link}",
+    "shareEmailSubject": "Parrainage ReviewHub",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "email": "E-mail",
+    "invited": "Invité",
+    "signedUp": "Inscrit",
+    "rewarded": "Récompensé"
+  },
+  "account": {
+    "deleteModal": {
+      "title": "Supprimer le compte",
+      "warningTitle": "Attention : cette action est irréversible.",
+      "warningItems": [
+        "Toutes les données commerciales, avis et paramètres seront supprimés",
+        "Les abonnements actifs seront automatiquement résiliés",
+        "La suppression définitive intervient après un délai de grâce de 30 jours"
+      ],
+      "confirmPassword": "Confirmer le mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe actuel",
+      "confirmCheckbox": "Je comprends que toutes les données seront définitivement supprimées après 30 jours.",
+      "requestDeletion": "Demander la suppression du compte",
+      "processing": "Traitement en cours...",
+      "successMessage": "La suppression du compte a été demandée. Toutes les données seront définitivement supprimées après 30 jours. Vous pouvez annuler la suppression depuis les Paramètres pendant cette période.",
+      "failedToDelete": "Échec de la demande de suppression du compte",
+      "networkError": "Erreur réseau. Veuillez réessayer."
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Conseils et informations sur la gestion des avis pour les petites entreprises",
+    "noPosts": "Aucun article pour le moment.",
+    "backToBlog": "← Retour au Blog",
+    "metaTitle": "Blog ReviewHub",
+    "metaDescription": "Conseils et informations sur la gestion des avis pour les petites entreprises"
+  },
+  "tour": {
+    "kpi": {
+      "title": "KPI en un coup d'œil",
+      "description": "Consultez le nombre total d'avis, la note moyenne et d'autres indicateurs clés en temps réel."
+    },
+    "chart": {
+      "title": "Tendances des avis",
+      "description": "Suivez le volume d'avis au fil du temps avec des graphiques interactifs."
+    },
+    "platform": {
+      "title": "Performance par plateforme",
+      "description": "Comparez les statistiques des avis sur Google, Yelp et d'autres plateformes."
+    },
+    "activity": {
+      "title": "Activité récente",
+      "description": "Consultez les derniers avis et répondez-y immédiatement."
+    }
+  },
+  "unsubscribe": {
+    "invalidLink": {
+      "title": "Lien invalide",
+      "message": "Ce lien de désabonnement est invalide ou a expiré.",
+      "backToHome": "Retour à l'accueil"
+    },
+    "success": {
+      "title": "Vous êtes désabonné",
+      "message": "Vous ne recevrez plus d'e-mails marketing.",
+      "settingsNote": "Les notifications de service (nouveaux avis, résumé hebdomadaire) peuvent être gérées dans les Paramètres.",
+      "backToHome": "Retour à l'accueil"
+    }
+  },
+  "email": {
+    "welcome": {
+      "title": "Bienvenue sur ReviewHub !",
+      "greeting": "Bonjour {name},",
+      "intro": "Merci de vous être inscrit sur ReviewHub. Vous pouvez désormais gérer tous vos avis depuis un seul tableau de bord.",
+      "gettingStartedTitle": "Pour commencer",
+      "gettingStartedItems": [
+        "Connectez vos plateformes Google, Yelp et Facebook",
+        "Répondez rapidement aux avis grâce aux suggestions de réponse par IA",
+        "Envoyez des demandes d'avis via WhatsApp",
+        "Suivez votre positionnement sur le marché avec la comparaison concurrentielle"
+      ],
+      "goToDashboard": "Accéder au tableau de bord",
+      "trialNote": "Explorez toutes les fonctionnalités pendant votre essai gratuit de 14 jours.",
+      "footer": "ReviewHub - Gestion des avis",
+      "unsubscribe": "Se désabonner des e-mails marketing"
+    },
+    "trialReminder": {
+      "day11Title": "Avez-vous répondu à votre premier avis ?",
+      "day11Tip": "Répondre aux avis augmente le taux de retour des clients de 33 %. Consultez votre tableau de bord pour les avis nécessitant une réponse.",
+      "day7Title": "Avez-vous essayé la fonction de réponse par IA ?",
+      "day7Tip": "L'utilisation des suggestions de réponse par IA réduit le temps de réponse moyen de 80 %. Cliquez sur le bouton « Suggestion de réponse IA » sur la page de détail de l'avis.",
+      "day4Title": "Plus que {days} jours avant l'expiration de votre essai",
+      "day4Tip": "Avez-vous tiré le meilleur parti de ReviewHub ? Assurez-vous d'explorer toutes les fonctionnalités pendant la période d'essai restante.",
+      "day1Title": "Votre essai expire demain",
+      "day1Tip": "Votre essai gratuit se termine demain. Choisissez un forfait maintenant pour continuer à gérer vos avis sans interruption.",
+      "defaultTip": "Explorez toutes les fonctionnalités pendant votre période d'essai.",
+      "daysUntilExpiry": "{days} jour(s) avant l'expiration de l'essai gratuit",
+      "choosePlan": "Choisir un forfait",
+      "goToDashboard": "Accéder au tableau de bord"
+    },
+    "upgradePrompt": {
+      "title": "Votre essai gratuit est terminé",
+      "greeting": "Bonjour {name},",
+      "message": "Votre essai gratuit de 14 jours est terminé. Veuillez choisir un forfait pour continuer à gérer vos avis.",
+      "achievementsTitle": "Ce que vous avez accompli pendant l'essai",
+      "achievements": [
+        "Gestion unifiée des avis",
+        "Suggestions de réponse par IA",
+        "Alertes en temps réel",
+        "Demandes d'avis via WhatsApp"
+      ],
+      "starterPlan": "Forfait Starter",
+      "starterPrice": "19 $",
+      "starterPriceNote": "Le prix idéal pour les petites entreprises",
+      "choosePlan": "Choisir un forfait"
+    },
+    "winback": {
+      "title": "Vous passez peut-être à côté d'avis",
+      "greeting": "Bonjour {name},",
+      "message": "Cela fait une semaine que vous avez quitté ReviewHub. De nouveaux avis ont peut-être été publiés depuis. Les avis sans réponse peuvent laisser une impression négative aux clients potentiels.",
+      "stat": "45 % des clients potentiels évitent les entreprises ayant des avis négatifs sans réponse.",
+      "ctaMessage": "Revenez maintenant pour consulter vos avis et y répondre immédiatement.",
+      "ctaButton": "Reprendre maintenant"
+    },
+    "reviewAlert": {
+      "title": "Nouvel avis pour {businessName}",
+      "viewAndReply": "Voir et répondre",
+      "footer": "ReviewHub - Gestion des avis"
+    },
+    "negativeAlert": {
+      "banner": "Un avis négatif nécessite votre attention",
+      "respondNow": "Répondre maintenant",
+      "footer": "ReviewHub - Gestion des avis"
+    },
+    "weeklySummary": {
+      "title": "Résumé hebdomadaire des avis",
+      "newReviews": "Nouveaux avis",
+      "avgRating": "Note moyenne",
+      "positive": "Positif",
+      "unanswered": "Sans réponse",
+      "replyNow": "Répondre maintenant ({count} en attente)",
+      "allResponded": "Tous les avis ont reçu une réponse !",
+      "footer": "ReviewHub - Gestion des avis"
+    }
+  },
+  "jsonLd": {
+    "organizationDescription": "Plateforme tout-en-un de gestion des avis pour les petites entreprises",
+    "softwareDescription": "Gérez vos avis Google, Yelp et Facebook depuis un seul tableau de bord."
+  }
+}

@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import { LayoutDashboard, MessageSquare, Sparkles, Bell, Menu, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import LandingSections from './LandingSections';
 import Footer from './Footer';
 
@@ -51,6 +52,7 @@ function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const t = useTranslations('landing');
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
@@ -58,17 +60,17 @@ function Navbar() {
           ReviewHub
         </Link>
         <div className="hidden md:flex items-center gap-8">
-          <a href="#solutions" className="text-sm text-text-secondary hover:text-navy transition-colors">기능</a>
-          <a href="#pricing" className="text-sm text-text-secondary hover:text-navy transition-colors">가격</a>
-          <a href="#testimonials" className="text-sm text-text-secondary hover:text-navy transition-colors">후기</a>
+          <a href="#solutions" className="text-sm text-text-secondary hover:text-navy transition-colors">{t('navbar.features')}</a>
+          <a href="#pricing" className="text-sm text-text-secondary hover:text-navy transition-colors">{t('navbar.pricing')}</a>
+          <a href="#testimonials" className="text-sm text-text-secondary hover:text-navy transition-colors">{t('navbar.testimonials')}</a>
           <Link href="/login" className="text-sm font-medium text-navy hover:text-navy-dark transition-colors">
-            로그인
+            {t('navbar.logIn')}
           </Link>
           <Link
             href="/signup"
             className="bg-navy text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-navy-dark transition-colors"
           >
-            무료로 시작하기
+            {t('navbar.startForFree')}
           </Link>
         </div>
         <button onClick={() => setOpen(!open)} className="md:hidden p-2 text-text-secondary">
@@ -77,11 +79,11 @@ function Navbar() {
       </div>
       {open && (
         <div className="md:hidden bg-white border-t border-border px-6 py-4 space-y-3">
-          <a href="#solutions" onClick={() => setOpen(false)} className="block text-sm text-text-secondary">기능</a>
-          <a href="#pricing" onClick={() => setOpen(false)} className="block text-sm text-text-secondary">가격</a>
-          <a href="#testimonials" onClick={() => setOpen(false)} className="block text-sm text-text-secondary">후기</a>
-          <Link href="/login" className="block text-sm font-medium text-navy">로그인</Link>
-          <Link href="/signup" className="block bg-navy text-white text-sm font-medium px-5 py-2.5 rounded-lg text-center">무료로 시작하기</Link>
+          <a href="#solutions" onClick={() => setOpen(false)} className="block text-sm text-text-secondary">{t('navbar.features')}</a>
+          <a href="#pricing" onClick={() => setOpen(false)} className="block text-sm text-text-secondary">{t('navbar.pricing')}</a>
+          <a href="#testimonials" onClick={() => setOpen(false)} className="block text-sm text-text-secondary">{t('navbar.testimonials')}</a>
+          <Link href="/login" className="block text-sm font-medium text-navy">{t('navbar.logIn')}</Link>
+          <Link href="/signup" className="block bg-navy text-white text-sm font-medium px-5 py-2.5 rounded-lg text-center">{t('navbar.startForFree')}</Link>
         </div>
       )}
     </nav>
@@ -89,30 +91,33 @@ function Navbar() {
 }
 
 function HeroSection() {
+  const t = useTranslations('landing');
   return (
     <section id="hero" className="pt-32 pb-20" style={{ background: 'linear-gradient(180deg, #F8F9FA 0%, #E8F4FD 100%)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <FadeIn>
             <h1 className="text-[42px] md:text-[52px] font-bold text-navy leading-tight mb-6">
-              모든 리뷰,<br />하나의 대시보드
+              {t('hero.title').split('\n').map((line, i, arr) => (
+                <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+              ))}
             </h1>
             <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-lg">
-              Google &middot; Yelp &middot; Facebook &middot; WhatsApp 리뷰를 한곳에서 관리하세요.{' '}
-              <span className="font-semibold text-navy">월 $19부터.</span>
+              {t('hero.subtitle')}{' '}
+              <span className="font-semibold text-navy">{t('hero.startingAt')}</span>
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/signup"
                 className="bg-navy text-white font-semibold px-8 py-3.5 rounded-xl text-base hover:bg-navy-dark transition-colors shadow-lg shadow-navy/20"
               >
-                무료로 시작하기
+                {t('hero.startForFree')}
               </Link>
               <a
                 href="#solutions"
                 className="border-2 border-navy text-navy font-semibold px-8 py-3.5 rounded-xl text-base hover:bg-navy/5 transition-colors"
               >
-                데모 보기
+                {t('hero.viewDemo')}
               </a>
             </div>
           </FadeIn>
@@ -139,7 +144,7 @@ function HeroSection() {
                     {['4.6', '1,247', '89%', '12'].map((val, i) => (
                       <div key={i} className="bg-white rounded-lg p-3 border border-border">
                         <div className="text-[10px] text-text-secondary uppercase mb-1">
-                          {['Rating', 'Reviews', 'Positive', 'Pending'][i]}
+                          {[t('mockup.rating'), t('mockup.reviews'), t('mockup.positive'), t('mockup.pending')][i]}
                         </div>
                         <div className="text-lg font-bold text-navy">{val}</div>
                       </div>
@@ -163,15 +168,15 @@ function HeroSection() {
           <div className="grid grid-cols-3 gap-8 mt-20 max-w-2xl mx-auto text-center">
             <div>
               <div className="text-3xl font-bold text-navy"><CountUp end={2500} suffix="+" /></div>
-              <div className="text-sm text-text-secondary mt-1">활성 비즈니스</div>
+              <div className="text-sm text-text-secondary mt-1">{t('stats.activeBusinesses')}</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-navy"><CountUp end={150000} suffix="+" /></div>
-              <div className="text-sm text-text-secondary mt-1">관리된 리뷰</div>
+              <div className="text-sm text-text-secondary mt-1">{t('stats.reviewsManaged')}</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-navy"><CountUp end={98} suffix="%" /></div>
-              <div className="text-sm text-text-secondary mt-1">고객 만족도</div>
+              <div className="text-sm text-text-secondary mt-1">{t('stats.customerSatisfaction')}</div>
             </div>
           </div>
         </FadeIn>
@@ -183,6 +188,7 @@ function HeroSection() {
 export { FadeIn };
 
 export default function LandingPage() {
+  const t = useTranslations('landing');
   return (
     <div className="min-h-screen bg-white scroll-smooth">
       <Navbar />
@@ -194,16 +200,16 @@ export default function LandingPage() {
         <div className="max-w-3xl mx-auto px-6 text-center">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              지금 바로 시작하세요
+              {t('cta.title')}
             </h2>
             <p className="text-lg text-white/70 mb-8">
-              14일 무료 체험 &middot; 카드 등록 불필요 &middot; 5분이면 설정 완료
+              {t('cta.subtitle')}
             </p>
             <Link
               href="/signup"
               className="inline-block bg-white text-navy font-semibold px-10 py-4 rounded-xl text-lg hover:bg-gray-50 transition-colors shadow-lg"
             >
-              무료로 시작하기
+              {t('cta.startForFree')}
             </Link>
           </FadeIn>
         </div>

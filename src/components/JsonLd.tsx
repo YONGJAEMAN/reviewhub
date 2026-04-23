@@ -1,3 +1,5 @@
+import { getTranslations } from 'next-intl/server';
+
 interface FaqItem {
   question: string;
   answer: string;
@@ -8,7 +10,8 @@ interface JsonLdProps {
   faqItems?: FaqItem[];
 }
 
-export default function JsonLd({ type, faqItems }: JsonLdProps) {
+export default async function JsonLd({ type, faqItems }: JsonLdProps) {
+  const t = await getTranslations('jsonLd');
   const baseUrl = process.env.NEXTAUTH_URL || 'https://reviewhub.app';
 
   const schemas: Record<string, object> = {
@@ -18,7 +21,7 @@ export default function JsonLd({ type, faqItems }: JsonLdProps) {
       name: 'ReviewHub',
       url: baseUrl,
       logo: `${baseUrl}/icon.svg`,
-      description: '소규모 비즈니스를 위한 올인원 리뷰 관리 플랫폼',
+      description: t('organizationDescription'),
       sameAs: [],
     },
     software: {
@@ -34,7 +37,7 @@ export default function JsonLd({ type, faqItems }: JsonLdProps) {
         priceCurrency: 'USD',
         offerCount: 3,
       },
-      description: 'Google, Yelp, Facebook 리뷰를 하나의 대시보드에서 관리하세요.',
+      description: t('softwareDescription'),
     },
     faq: {
       '@context': 'https://schema.org',

@@ -5,10 +5,14 @@ import { useRouter } from 'next/navigation';
 import { Globe } from 'lucide-react';
 import { useLocale } from 'next-intl';
 
-const localeLabels: Record<string, string> = {
-  ko: 'KO',
-  en: 'EN',
-};
+const languages = [
+  { code: 'en', label: 'EN', name: 'English' },
+  { code: 'ko', label: 'KO', name: '한국어' },
+  { code: 'fr', label: 'FR', name: 'Français' },
+  { code: 'es', label: 'ES', name: 'Español' },
+  { code: 'zh', label: 'ZH', name: '中文' },
+  { code: 'ja', label: 'JA', name: '日本語' },
+];
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
@@ -36,6 +40,8 @@ export default function LanguageSwitcher() {
     router.refresh();
   };
 
+  const current = languages.find((l) => l.code === locale) || languages[0];
+
   return (
     <div ref={ref} className="relative">
       <button
@@ -43,20 +49,20 @@ export default function LanguageSwitcher() {
         className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background transition-colors text-sm"
       >
         <Globe size={16} />
-        {localeLabels[locale]}
+        {current.label}
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-1 bg-surface border border-border rounded-lg shadow-lg overflow-hidden z-50 min-w-[100px]">
-          {Object.entries(localeLabels).map(([code, label]) => (
+        <div className="absolute right-0 top-full mt-1 bg-surface border border-border rounded-lg shadow-lg overflow-hidden z-50 min-w-[120px]">
+          {languages.map((lang) => (
             <button
-              key={code}
-              onClick={() => handleChange(code)}
+              key={lang.code}
+              onClick={() => handleChange(lang.code)}
               className={`w-full text-left px-4 py-2.5 text-sm hover:bg-background transition-colors ${
-                locale === code ? 'font-semibold text-navy' : 'text-text-secondary'
+                locale === lang.code ? 'font-semibold text-navy' : 'text-text-secondary'
               }`}
             >
-              {label === 'KO' ? '한국어' : 'English'}
+              {lang.name}
             </button>
           ))}
         </div>

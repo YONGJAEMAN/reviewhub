@@ -1,0 +1,816 @@
+{
+  "nav": {
+    "dashboard": "ダッシュボード",
+    "reviews": "レビュー",
+    "analytics": "分析",
+    "reviewRequests": "レビューリクエスト",
+    "settings": "設定",
+    "help": "ヘルプ",
+    "qrCards": "QRカード",
+    "trial": "トライアル: 残り{daysLeft}日",
+    "trialExpired": "トライアル期間終了 — プランを選択してください",
+    "upgrade": "アップグレード",
+    "connectAccount": "アカウント連携",
+    "support": "サポート",
+    "logout": "ログアウト",
+    "tagline": "スモールビジネスポータル"
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "subtitle": "ビジネスのレビュー実績を一目で確認できます。",
+    "overallRating": "総合評価",
+    "totalReviews": "総レビュー数",
+    "positiveSentiment": "ポジティブな評価",
+    "responseRate": "返信率",
+    "reviewTrends": "レビュートレンド",
+    "thisMonth": "今月",
+    "lastMonth": "先月",
+    "platformPerformance": "プラットフォーム別パフォーマンス",
+    "recentActivity": "最近のアクティビティ",
+    "export": "エクスポート",
+    "period": {
+      "7": "過去7日間",
+      "30": "過去30日間",
+      "90": "過去90日間",
+      "365": "今年"
+    },
+    "trialExpiredBanner": "無料トライアルが終了しました。すべての機能を引き続きご利用いただくには、プランをご契約ください。",
+    "choosePlan": "プランを選択",
+    "tour": {
+      "kpiTitle": "KPI一覧",
+      "kpiDescription": "総レビュー数、平均評価などの主要指標をリアルタイムで確認できます。",
+      "chartTitle": "レビュートレンド",
+      "chartDescription": "インタラクティブなチャートでレビューの推移を追跡できます。",
+      "platformTitle": "プラットフォーム別パフォーマンス",
+      "platformDescription": "Google、Yelpなど各プラットフォームのレビュー統計を比較できます。",
+      "activityTitle": "最近のアクティビティ",
+      "activityDescription": "最新のレビューを確認し、すぐに返信できます。"
+    }
+  },
+  "reviews": {
+    "title": "レビューフィード",
+    "subtitle": "すべてのプラットフォームのレビューを確認・返信できます。",
+    "searchPlaceholder": "レビューを検索...",
+    "allPlatforms": "すべてのプラットフォーム",
+    "allRatings": "すべての評価",
+    "allStatus": "すべてのステータス",
+    "actionRequired": "対応が必要",
+    "highPriority": "優先度高",
+    "replied": "返信済み",
+    "newest": "新しい順",
+    "oldest": "古い順",
+    "highest": "評価が高い順",
+    "lowest": "評価が低い順",
+    "clearAll": "すべてクリア",
+    "filters": "フィルター",
+    "replyTo": "返信先",
+    "viewThread": "スレッド全体を表示 →",
+    "openInYelp": "Yelpで開く",
+    "yourReply": "あなたの返信",
+    "noReviews": "レビューが見つかりません。",
+    "backToFeed": "レビューフィードに戻る",
+    "notFound": "レビューが見つかりません。",
+    "writeReply": "返信を書く",
+    "writePlaceholder": "返信を入力してください...",
+    "aiSuggest": "AI提案",
+    "generating": "生成中...",
+    "sendReply": "返信を送信",
+    "previousReviews": "過去のレビュー",
+    "averageRating": "平均評価",
+    "localGuide": "ローカルガイド",
+    "topReviewer": "トップレビュアー",
+    "newReviewer": "新規レビュアー",
+    "platform": "プラットフォーム",
+    "posted": "投稿日",
+    "verified": "認証済み",
+    "repliedAt": "{date}に返信済み",
+    "noPreviousReviews": "過去のレビューが見つかりません。",
+    "previousReviewsBy": "{name}の過去のレビュー"
+  },
+  "analytics": {
+    "title": "分析",
+    "subtitle": "レビューデータを詳しく分析します。",
+    "sentimentTrends": "感情トレンド",
+    "positive": "ポジティブ",
+    "negative": "ネガティブ",
+    "ratingDistribution": "評価分布",
+    "platformComparison": "プラットフォーム比較",
+    "topKeywords": "頻出キーワード",
+    "competitorBenchmark": "競合ベンチマーク",
+    "responseTime": "平均返信時間",
+    "responseRate": "返信率",
+    "last30Days": "過去30日間",
+    "quarterly": "四半期",
+    "topPlatform": "トッププラットフォーム",
+    "criticalAction": "要対応",
+    "unreadNegatives": "未読のネガティブレビュー{count}件",
+    "requiresAttention": "早急な対応が必要です",
+    "sentimentTrend": "感情トレンド",
+    "growth": "+{percent}% 成長",
+    "positiveMentionsIncreasing": "ポジティブな言及が増加中",
+    "ofTotalVolume": "全体の{percent}%"
+  },
+  "settings": {
+    "title": "設定",
+    "subtitle": "ビジネスプロフィールとプラットフォーム連携を一元管理します。",
+    "platformConnections": "プラットフォーム連携",
+    "activeChannels": "有効なチャネル",
+    "connected": "接続済み",
+    "disconnected": "未接続",
+    "connect": "接続",
+    "manage": "管理",
+    "businessProfile": "ビジネスプロフィール",
+    "notifications": "通知設定",
+    "subscription": "サブスクリプション",
+    "teamMembers": "チームメンバー",
+    "competitors": "競合トラッキング",
+    "referral": "紹介プログラム",
+    "dangerZone": "注意エリア",
+    "dangerDescription": "アカウントを削除すると、すべてのビジネスデータ、レビュー、設定が完全に削除されます。この操作は取り消せません。",
+    "deleteAccount": "アカウント削除をリクエスト",
+    "autoMonthlyReport": "月次レポート自動送信",
+    "autoMonthlyReportDesc": "毎月1日にメールでレポートを受け取れます。"
+  },
+  "export": {
+    "title": "レポートのエクスポート",
+    "format": "ファイル形式",
+    "period": "期間",
+    "download": "ダウンロード",
+    "generating": "生成中..."
+  },
+  "common": {
+    "search": "検索...",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました。",
+    "success": "正常に処理されました。",
+    "confirm": "確認",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "close": "閉じる",
+    "noResults": "結果が見つかりません",
+    "switchToLight": "ライトモードに切り替え",
+    "switchToDark": "ダークモードに切り替え",
+    "home": "ホーム",
+    "owner": "オーナー",
+    "ok": "OK",
+    "create": "作成",
+    "print": "印刷",
+    "copyLink": "リンクをコピー",
+    "copied": "コピーしました",
+    "copy": "コピー",
+    "sending": "送信中...",
+    "submit": "送信",
+    "processing": "処理中...",
+    "redirecting": "リダイレクト中...",
+    "page": "{total}ページ中{current}ページ",
+    "perMonth": "/月",
+    "reviewHub": "ReviewHub"
+  },
+  "auth": {
+    "login": {
+      "title": "おかえりなさい",
+      "subtitle": "サインインしてレビューを管理しましょう",
+      "emailLabel": "メールアドレス",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "パスワード",
+      "passwordPlaceholder": "パスワードを入力",
+      "signIn": "サインイン",
+      "signingIn": "サインイン中...",
+      "orContinueWith": "または以下でログイン",
+      "signInWithGoogle": "Googleでサインイン",
+      "noAccount": "アカウントをお持ちでない方",
+      "signUp": "新規登録",
+      "invalidCredentials": "メールアドレスまたはパスワードが正しくありません"
+    },
+    "signup": {
+      "title": "アカウントを作成",
+      "subtitle": "今すぐレビュー管理を始めましょう",
+      "fullNameLabel": "氏名",
+      "fullNamePlaceholder": "山田太郎",
+      "emailLabel": "メールアドレス",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "パスワード",
+      "passwordPlaceholder": "6文字以上",
+      "inviteCodeLabel": "招待コード",
+      "inviteCodePlaceholder": "BETA-XXXXXX",
+      "noInviteCode": "招待コードをお持ちでない方",
+      "joinWaitlist": "ウェイトリストに登録",
+      "createAccount": "アカウント作成",
+      "creatingAccount": "アカウント作成中...",
+      "orContinueWith": "または以下で登録",
+      "signUpWithGoogle": "Googleで登録",
+      "hasAccount": "すでにアカウントをお持ちの方",
+      "signIn": "サインイン",
+      "failedToCreate": "アカウントの作成に失敗しました",
+      "somethingWentWrong": "問題が発生しました。もう一度お試しください。"
+    }
+  },
+  "onboarding": {
+    "stepOf": "ステップ{step}/{total}",
+    "step1": {
+      "title": "ReviewHubへようこそ！",
+      "subtitle": "ビジネス情報を入力して、最適な設定を行いましょう。",
+      "businessNameLabel": "ビジネス名 *",
+      "businessNamePlaceholder": "例: ダウンタウンカフェ",
+      "industryLabel": "業種",
+      "selectIndustry": "業種を選択",
+      "locationLabel": "所在地",
+      "locationPlaceholder": "例: 東京都渋谷区"
+    },
+    "step2": {
+      "title": "レビュープラットフォームを接続",
+      "subtitle": "後からでも設定で追加できます。",
+      "connected": "接続済み"
+    },
+    "step3": {
+      "title": "通知設定を選択してください",
+      "subtitle": "設定でいつでも変更できます。",
+      "newReviewAlerts": "新規レビュー通知",
+      "newReviewAlertsDesc": "新しいレビューが投稿された際に即座に通知を受け取れます。",
+      "weeklySummary": "週次サマリーメール",
+      "weeklySummaryDesc": "毎週月曜日にレビューの週次サマリーを受け取れます。",
+      "negativeAlerts": "ネガティブレビュー通知",
+      "negativeAlertsDesc": "ネガティブなレビューが検出された際に緊急通知を受け取れます。"
+    },
+    "step4": {
+      "title": "準備完了です！",
+      "subtitle": "ダッシュボードの準備ができました。今すぐレビュー管理を始めましょう。",
+      "connectedPlatforms": "接続済みプラットフォーム",
+      "goToDashboard": "ダッシュボードへ"
+    },
+    "skipForNow": "今はスキップ",
+    "failedToCreateBusiness": "ビジネスの作成に失敗しました",
+    "somethingWentWrong": "問題が発生しました。もう一度お試しください。",
+    "industries": {
+      "restaurant": "レストラン / カフェ",
+      "beauty": "美容 / サロン",
+      "medical": "医療 / 歯科",
+      "hospitality": "ホスピタリティ / ホテル",
+      "retail": "小売 / ショッピング",
+      "professional": "専門サービス",
+      "education": "教育 / 塾",
+      "other": "その他"
+    },
+    "platforms": {
+      "google": "Google",
+      "googleDesc": "Googleビジネスプロフィール",
+      "yelp": "Yelp",
+      "yelpDesc": "Yelp Fusion API",
+      "facebook": "Facebook",
+      "facebookDesc": "Facebookページレビュー",
+      "whatsapp": "WhatsApp",
+      "whatsappDesc": "WhatsApp Business"
+    }
+  },
+  "landing": {
+    "navbar": {
+      "features": "機能",
+      "pricing": "料金",
+      "testimonials": "お客様の声",
+      "logIn": "ログイン",
+      "startForFree": "無料で始める"
+    },
+    "hero": {
+      "title": "すべてのレビューを\n一つのダッシュボードで",
+      "subtitle": "Google · Yelp · Facebook · WhatsAppのレビューをまとめて管理。",
+      "startingAt": "月額$19から。",
+      "startForFree": "無料で始める",
+      "viewDemo": "デモを見る"
+    },
+    "stats": {
+      "activeBusinesses": "利用中のビジネス",
+      "reviewsManaged": "管理されたレビュー",
+      "customerSatisfaction": "顧客満足度"
+    },
+    "mockup": {
+      "rating": "評価",
+      "reviews": "レビュー",
+      "positive": "ポジティブ",
+      "pending": "保留中"
+    },
+    "painPoints": {
+      "title": "スモールビジネスオーナー、こんなお悩みはありませんか？",
+      "subtitle": "たった一つのレビューが売上を左右する時代。でもレビュー管理は手間がかかりすぎます。",
+      "wastedTime": "時間の浪費",
+      "wastedTimeDesc": "各プラットフォームを一つずつ確認するだけで、毎日30分以上を費やしていませんか",
+      "lateResponses": "遅れる返信",
+      "lateResponsesDesc": "ネガティブなレビューの発見が遅れ、返信のタイミングを逃して評価が下がっていませんか",
+      "expensiveTools": "高額なツール",
+      "expensiveToolsDesc": "レビュー管理ツールは$44〜$399と、スモールビジネスにとって大きな負担です"
+    },
+    "solutions": {
+      "title": "ReviewHubが解決します",
+      "subtitle": "複雑なレビュー管理を一つのツールでシンプルに。",
+      "unifiedDashboard": "統合ダッシュボード",
+      "unifiedDashboardDesc": "すべてのプラットフォームのレビューを一画面でリアルタイムに確認・管理できます。",
+      "whatsappRequests": "WhatsAppレビューリクエスト",
+      "whatsappRequestsDesc": "開封率98%のWhatsAppでお客様にレビューを依頼。レビュー数が飛躍的に増加します。",
+      "aiReplyGeneration": "AI返信生成",
+      "aiReplyGenerationDesc": "ワンクリックでプロフェッショナルな返信を自動生成。トーンや長さの調整も可能です。",
+      "realTimeAlerts": "リアルタイム通知",
+      "realTimeAlertsDesc": "ネガティブなレビューを即座に検出し、メール通知で素早い対応をサポートします。"
+    },
+    "comparison": {
+      "title": "なぜReviewHub？",
+      "subtitle": "競合との明確な違いをご覧ください。",
+      "feature": "機能",
+      "reviewAggregation": "レビュー集約",
+      "whatsappAutomation": "WhatsApp自動化",
+      "aiReplyGeneration": "AI返信生成",
+      "smallBusinessPricing": "スモールビジネス向け価格",
+      "sentimentAnalysis": "感情分析",
+      "competitorBenchmarking": "競合ベンチマーク",
+      "limited": "制限あり"
+    },
+    "pricing": {
+      "title": "手頃な料金プラン",
+      "subtitle": "14日間の無料トライアル、クレジットカード不要",
+      "startForFree": "無料で始める"
+    },
+    "testimonials": {
+      "title": "お客様の声",
+      "subtitle": "ReviewHubをご利用いただいているビジネスオーナーの実際の声",
+      "review1Name": "K. M.",
+      "review1Business": "カフェオーナー",
+      "review1Text": "レビューの平均返信時間が6時間から30分に短縮されました。AI返信機能のおかげで、プロフェッショナルな返信を素早く送れるようになりました。",
+      "review2Name": "L. J.",
+      "review2Business": "ヘアサロン",
+      "review2Text": "WhatsAppでレビューをリクエストしたところ、たった1ヶ月でGoogleのレビューが40件も増えました。新規のお客様が明らかに増えています。",
+      "review3Name": "P. S.",
+      "review3Business": "レストラン",
+      "review3Text": "月額$19でこのコストパフォーマンスは最高です。ネガティブレビュー通知のおかげですぐに対応でき、評価が4.2から4.7に上がりました。"
+    },
+    "cta": {
+      "title": "今すぐ始めましょう",
+      "subtitle": "14日間無料トライアル · クレジットカード不要 · 5分で設定完了",
+      "startForFree": "無料で始める"
+    },
+    "footer": {
+      "tagline": "スモールビジネスのための\nオールインワンレビュー管理プラットフォーム",
+      "product": "プロダクト",
+      "company": "会社情報",
+      "legal": "法的情報",
+      "features": "機能",
+      "pricing": "料金",
+      "faq": "FAQ",
+      "blog": "ブログ",
+      "about": "会社概要",
+      "contactUs": "お問い合わせ",
+      "privacyPolicy": "プライバシーポリシー",
+      "termsOfService": "利用規約",
+      "cookiePolicy": "Cookieポリシー",
+      "copyright": "© {year} ReviewHub. All rights reserved."
+    }
+  },
+  "waitlist": {
+    "title": "ウェイトリストに登録",
+    "subtitle": "現在プライベートベータ版です。ご登録いただくと、招待コードをお送りします。",
+    "nameLabel": "お名前",
+    "namePlaceholder": "山田太郎",
+    "emailLabel": "メールアドレス *",
+    "emailPlaceholder": "you@example.com",
+    "businessNameLabel": "ビジネス名",
+    "businessNamePlaceholder": "マイカフェ",
+    "joinWaitlist": "ウェイトリストに登録",
+    "submitting": "送信中...",
+    "failedToJoin": "ウェイトリストへの登録に失敗しました",
+    "networkError": "ネットワークエラー。もう一度お試しください。",
+    "success": {
+      "title": "ありがとうございます！",
+      "message": "ウェイトリストに登録されました。招待コードの準備ができ次第、メールでお知らせします。",
+      "backToHome": "ホームに戻る"
+    }
+  },
+  "pricing": {
+    "title": "プランを選択",
+    "subtitle": "14日間の無料トライアル付き。クレジットカード不要。",
+    "monthly": "月額",
+    "yearly": "年額",
+    "save20": "20%お得",
+    "mostPopular": "一番人気",
+    "getStarted": "始める",
+    "billedAnnually": "年額${price}（一括払い）",
+    "allPlansIncludeTrial": "すべてのプランに14日間の無料トライアルが含まれます。",
+    "signInToStart": "サインイン",
+    "toGetStarted": "して始めましょう。",
+    "plans": {
+      "starter": {
+        "name": "スターター",
+        "features": {
+          "locations": "ビジネス拠点1件",
+          "aiReplies": "AI返信 月10件",
+          "whatsapp": "WhatsAppリクエスト 月100件",
+          "integrations": "Google & Yelp連携",
+          "analytics": "基本分析"
+        }
+      },
+      "growth": {
+        "name": "グロース",
+        "features": {
+          "locations": "ビジネス拠点3件",
+          "aiReplies": "AI返信 月50件",
+          "whatsapp": "WhatsAppリクエスト 月500件",
+          "integrations": "全プラットフォーム連携",
+          "analytics": "高度な分析",
+          "sentiment": "感情分析",
+          "competitors": "競合トラッキング3件"
+        }
+      },
+      "pro": {
+        "name": "プロ",
+        "features": {
+          "locations": "ビジネス拠点10件",
+          "aiReplies": "AI返信 無制限",
+          "whatsapp": "WhatsAppリクエスト 無制限",
+          "integrations": "全プラットフォーム連携",
+          "analytics": "高度な分析 & レポート",
+          "sentiment": "感情分析",
+          "competitors": "競合トラッキング10件",
+          "support": "優先サポート"
+        }
+      }
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "プライバシーポリシー",
+      "lastUpdated": "最終更新日: 2026年4月1日",
+      "intro": "ReviewHub（以下「当社」）は、お客様のプライバシーを尊重し、New Zealand Privacy Act 2020およびその他の適用法に基づき個人情報を保護します。本プライバシーポリシーは、当社のレビュー管理サービスをご利用いただく際の個人情報の収集、使用、共有について説明するものです。",
+      "section1Title": "1. 収集する情報",
+      "section1Sub1Title": "必須情報",
+      "section1Sub1Items": [
+        "メールアドレス、氏名（ご登録時）",
+        "ビジネス名、業種、所在地（サービス利用時）",
+        "お支払い情報（Stripeを通じて処理され、カード番号は当社では保存しません）"
+      ],
+      "section1Sub2Title": "自動収集情報",
+      "section1Sub2Items": [
+        "IPアドレス、ブラウザ情報、アクセス日時",
+        "Cookieおよび類似技術による利用パターン"
+      ],
+      "section1Sub3Title": "サードパーティプラットフォームのデータ",
+      "section1Sub3Items": [
+        "Googleビジネスプロフィール: OAuthトークン、ビジネスレビューデータ",
+        "Facebook/Meta: ページアクセストークン、おすすめデータ",
+        "Yelp: API経由のレビューデータ",
+        "WhatsApp Business: メッセージ配信記録"
+      ],
+      "section2Title": "2. 情報の利用目的",
+      "section2Items": [
+        "統合レビュー管理サービスの提供",
+        "WhatsApp経由のレビューリクエストメッセージの送信",
+        "AIを活用したレビュー返信の生成（Anthropic APIを使用）",
+        "感情分析とビジネスインサイトの提供",
+        "サービスの改善と分析",
+        "カスタマーサポートと通知"
+      ],
+      "section3Title": "3. 第三者への情報共有",
+      "section3Intro": "サービスの運営のため、以下のサービスプロバイダーとデータを共有します：",
+      "section3Items": [
+        { "name": "Google", "desc": "ビジネスレビューの同期" },
+        { "name": "Meta (Facebook/WhatsApp)", "desc": "おすすめの同期、メッセージング" },
+        { "name": "Yelp", "desc": "レビューデータの取得" },
+        { "name": "Stripe", "desc": "決済処理" },
+        { "name": "Anthropic", "desc": "AI返信生成、感情分析" },
+        { "name": "Resend", "desc": "メール配信" },
+        { "name": "Vercel", "desc": "ホスティングと分析" },
+        { "name": "Sentry", "desc": "エラー監視" }
+      ],
+      "section4Title": "4. データの保持",
+      "section4Content": "個人情報はアカウントの存続期間中保持されます。アカウント削除のリクエストを受領した場合、法律（Privacy Act 2020を含む）で保持が求められる場合を除き、30日以内にデータを完全に削除します。",
+      "section5Title": "5. お客様の権利",
+      "section5Intro": "Privacy Act 2020に基づき、お客様には以下の権利があります：",
+      "section5Items": [
+        { "name": "アクセス", "desc": "収集された個人データへのアクセスを請求できます。" },
+        { "name": "訂正", "desc": "不正確な情報の訂正を請求できます。" },
+        { "name": "削除", "desc": "個人データの削除を請求できます。" },
+        { "name": "ポータビリティ", "desc": "他のサービスへのデータ移行を請求できます。" },
+        { "name": "制限", "desc": "データ処理の制限を請求できます。" }
+      ],
+      "section5Outro": "これらの権利は、設定ページまたはsupport@reviewhub.appへのメールで行使できます。また、Office of the Privacy Commissionerに苦情を申し立てることもできます。",
+      "section6Title": "6. Cookie",
+      "section6Content": "当社は、認証、機能提供、分析の目的でCookieを使用しています。詳細については、Cookieポリシーをご覧ください。",
+      "section7Title": "7. セキュリティ",
+      "section7Content": "当社は、SSL暗号化、アクセス制御、定期的なセキュリティ監査を含む技術的・組織的な措置を講じています。OAuthトークンは暗号化して保存され、パスワードはbcryptでハッシュ化されています。",
+      "section8Title": "8. お問い合わせ",
+      "section8Content": "プライバシーに関するお問い合わせ: support@reviewhub.app"
+    },
+    "terms": {
+      "title": "利用規約",
+      "lastUpdated": "最終更新日: 2026年4月1日",
+      "section1Title": "1. サービスについて",
+      "section1Content": "ReviewHub（以下「本サービス」）は、スモールビジネス向けの統合レビュー管理プラットフォームであり、Google、Yelp、Facebook、WhatsAppなどのプラットフォームのレビューを一元管理するSaaSソリューションを提供します。",
+      "section2Title": "2. 利用条件",
+      "section2Items": [
+        "本サービスのご利用には登録が必要です。",
+        "ユーザーは正確な情報を提供し、最新の状態に保つ必要があります。",
+        "アカウントは個人のものであり、他者に譲渡することはできません。",
+        "本サービスを違法または不適切な目的に使用することはできません。"
+      ],
+      "section3Title": "3. 料金と支払い",
+      "section3Items": [
+        "14日間の無料トライアル終了後、有料プランの選択が必要です。",
+        "支払いはStripeを通じて処理され、月額または年額で自動更新されます。",
+        "プランの変更はいつでも設定から行え、次の請求サイクルから適用されます。",
+        "料金は事前通知の上、変更される場合があります。"
+      ],
+      "section4Title": "4. サービスの制限",
+      "section4Content": "各プランには利用制限（AI返信数、WhatsAppリクエスト数、ビジネス数など）があります。制限を超過した場合、機能が制限される場合があります。",
+      "section5Title": "5. 知的財産権",
+      "section5Items": [
+        "本サービスのソフトウェア、デザイン、ロゴ、その他の知的財産はすべて当社に帰属します。",
+        "ユーザーが入力したビジネス情報およびレビュー返信は、ユーザーに帰属します。",
+        "AIが生成した返信は、ユーザーが自由に使用できます。"
+      ],
+      "section6Title": "6. 消費者保証",
+      "section6Content": "Consumer Guarantees Act 1993に基づく消費者の場合、本サービスは合理的な注意と技能をもって提供されます。本規約のいかなる条項も、Consumer Guarantees Act 1993に基づくお客様の権利を制限するものではありません。",
+      "section7Title": "7. 免責事項",
+      "section7Items": [
+        "外部プラットフォーム（Google、Yelp、Facebook、WhatsApp）のAPI変更やサービス中断について、当社は責任を負いません。",
+        "AIが生成した返信の正確性や適切性を保証するものではなく、最終確認はユーザーの責任となります。",
+        "不可抗力、システム障害、その他類似の事象によるサービス中断について、当社は責任を負いません。"
+      ],
+      "section8Title": "8. 解約と返金",
+      "section8Items": [
+        "ユーザーはいつでもサービスを解約できます。",
+        "解約後も、現在の請求期間の終了まで本サービスをご利用いただけます。",
+        "年間サブスクリプションは、お支払い後14日以内であれば返金が可能です。",
+        "アカウント削除リクエストには30日間の猶予期間があり、その間はキャンセルが可能です。"
+      ],
+      "section9Title": "9. 規約の変更",
+      "section9Content": "当社は、メールおよびアプリ内通知による事前通知の上、本規約を変更する場合があります。更新された規約に同意いただけない場合は、サービスを解約いただけます。",
+      "section10Title": "10. 準拠法",
+      "section10Content": "本規約はニュージーランド法に準拠します。紛争が生じた場合は、ニュージーランドの裁判所の非専属的管轄権に服するものとします。",
+      "section11Title": "11. お問い合わせ",
+      "section11Content": "本規約に関するお問い合わせ: support@reviewhub.app"
+    },
+    "cookie": {
+      "title": "Cookieポリシー",
+      "lastUpdated": "最終更新日: 2026年4月1日",
+      "intro": "本Cookieポリシーは、ReviewHub（以下「本サービス」）がCookieおよび類似技術をどのように使用するかを説明するものです。",
+      "section1Title": "1. Cookieとは",
+      "section1Content": "Cookieとは、ウェブサイトを訪問した際にブラウザに保存される小さなテキストファイルです。ウェブサイトがお客様の設定を記憶し、より良い体験を提供するために使用されます。",
+      "section2Title": "2. 使用するCookieの種類",
+      "section2Sub1Title": "必須Cookie",
+      "section2Sub1Intro": "サービスの動作に必要なCookieです。無効にすることはできません。",
+      "section2Sub1Items": [
+        { "name": "認証Cookie", "desc": "ログインセッションの維持（NextAuth）" },
+        { "name": "CSRFトークン", "desc": "セキュリティのためのリクエスト検証" },
+        { "name": "Cookie同意", "desc": "Cookieの設定を記憶" }
+      ],
+      "section2Sub2Title": "機能Cookie",
+      "section2Sub2Intro": "パーソナライズされた設定で体験を向上させます。",
+      "section2Sub2Items": [
+        { "name": "テーマ設定", "desc": "ダーク/ライトモードの選択を記憶" },
+        { "name": "アクティブビジネス", "desc": "最後に選択したビジネスを記憶" }
+      ],
+      "section2Sub3Title": "分析Cookie",
+      "section2Sub3Intro": "サービス改善のために利用パターンを分析します。お客様の同意がある場合のみ有効になります。",
+      "section2Sub3Items": [
+        { "name": "Vercel Analytics", "desc": "ページ訪問統計" },
+        { "name": "Sentry", "desc": "エラー追跡とパフォーマンス監視" }
+      ],
+      "section3Title": "3. Cookieの管理",
+      "section3Content1": "ページ下部のCookieバナーから分析Cookieを拒否できます。また、ブラウザの設定からCookieの管理や削除が可能です。",
+      "section3Content2": "Cookieを無効にすると、本サービスの一部機能が制限される場合があります。",
+      "section4Title": "4. サードパーティCookie",
+      "section4Content": "GoogleやFacebookなどの外部プラットフォームを接続する際、それらのプラットフォームが独自のCookieを設定する場合があります。これらのCookieは各プラットフォームのCookieポリシーに準拠します。",
+      "section5Title": "5. お問い合わせ",
+      "section5Content": "Cookieポリシーに関するお問い合わせ: support@reviewhub.app"
+    }
+  },
+  "reviewRequests": {
+    "title": "レビューリクエスト",
+    "subtitle": "WhatsAppでレビューリクエストを送信し、ステータスを追跡します。",
+    "sendIndividual": {
+      "title": "個別リクエストを送信",
+      "customerName": "お客様の名前",
+      "customerNamePlaceholder": "山田太郎",
+      "phoneNumber": "電話番号",
+      "phonePlaceholder": "+1234567890",
+      "reviewPlatform": "レビュープラットフォーム",
+      "sendRequest": "リクエストを送信",
+      "sending": "送信中...",
+      "messageSent": "メッセージが正常に送信されました！",
+      "failedToSend": "送信に失敗しました",
+      "networkError": "ネットワークエラー"
+    },
+    "bulkSend": {
+      "title": "一括送信（CSV）",
+      "description": "phone, customerName の列を含むCSVファイルをアップロードしてください",
+      "contactsReady": "{count}件の連絡先が送信可能です",
+      "sendAll": "すべて送信",
+      "sent": "送信済み: {count}",
+      "failed": "失敗: {count}",
+      "total": "合計: {count}"
+    },
+    "history": {
+      "title": "送信履歴",
+      "noRequests": "レビューリクエストの送信履歴がありません。",
+      "customer": "お客様",
+      "phone": "電話番号",
+      "platform": "プラットフォーム",
+      "status": "ステータス",
+      "sentAt": "送信日時"
+    },
+    "status": {
+      "sent": "送信済み",
+      "delivered": "配信済み",
+      "read": "既読",
+      "failed": "失敗"
+    },
+    "qr": {
+      "title": "QRレビューカード",
+      "subtitle": "QRコードを生成して、お客様からレビューを収集しましょう。",
+      "createQrCode": "QRコードを作成",
+      "newQrCode": "新しいQRコード",
+      "platform": "プラットフォーム",
+      "reviewPageUrl": "レビューページURL",
+      "reviewPageUrlPlaceholder": "https://g.page/r/...",
+      "noQrCodes": "QRコードがまだありません。作成してレビューの収集を始めましょう。",
+      "scans": "{count}回スキャン",
+      "scanToLeaveReview": "スキャンしてレビューを投稿",
+      "weValueFeedback": "皆様のご意見をお待ちしております！",
+      "printCard": "印刷"
+    }
+  },
+  "feedback": {
+    "title": "フィードバックを送信",
+    "buttonTitle": "フィードバックを送信",
+    "placeholder": "フィードバックを入力してください...",
+    "emailPlaceholder": "メールアドレス（任意）",
+    "submit": "送信",
+    "sending": "送信中...",
+    "successTitle": "ありがとうございます！",
+    "successMessage": "フィードバックが送信されました。",
+    "categories": {
+      "bug": "バグ報告",
+      "feature": "機能リクエスト",
+      "general": "一般的なフィードバック",
+      "ux": "UXの問題"
+    }
+  },
+  "cookieBanner": {
+    "message": "当サイトでは、サービス提供と分析のためにCookieを使用しています。",
+    "learnMore": "詳しく見る",
+    "accept": "同意する",
+    "decline": "拒否する"
+  },
+  "referral": {
+    "title": "紹介プログラム",
+    "subtitle": "友人を招待して、双方に特典をゲットしましょう。",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "shareText": "ReviewHubでレビューを簡単に管理！ {link}",
+    "shareEmailSubject": "ReviewHubのご紹介",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "email": "メール",
+    "invited": "招待済み",
+    "signedUp": "登録済み",
+    "rewarded": "特典付与済み"
+  },
+  "account": {
+    "deleteModal": {
+      "title": "アカウント削除",
+      "warningTitle": "警告: この操作は取り消せません。",
+      "warningItems": [
+        "すべてのビジネスデータ、レビュー、設定が削除されます",
+        "有効なサブスクリプションは自動的にキャンセルされます",
+        "30日間の猶予期間後に完全に削除されます"
+      ],
+      "confirmPassword": "パスワードの確認",
+      "passwordPlaceholder": "現在のパスワードを入力",
+      "confirmCheckbox": "30日後にすべてのデータが完全に削除されることを理解しました。",
+      "requestDeletion": "アカウント削除をリクエスト",
+      "processing": "処理中...",
+      "successMessage": "アカウント削除がリクエストされました。すべてのデータは30日後に完全に削除されます。この期間中に設定から削除をキャンセルできます。",
+      "failedToDelete": "アカウント削除のリクエストに失敗しました",
+      "networkError": "ネットワークエラー。もう一度お試しください。"
+    }
+  },
+  "blog": {
+    "title": "ブログ",
+    "subtitle": "スモールビジネスのためのレビュー管理のヒントとインサイト",
+    "noPosts": "まだ投稿がありません。",
+    "backToBlog": "← ブログに戻る",
+    "metaTitle": "ReviewHub ブログ",
+    "metaDescription": "スモールビジネスのためのレビュー管理のヒントとインサイト"
+  },
+  "tour": {
+    "kpi": {
+      "title": "KPI一覧",
+      "description": "総レビュー数、平均評価などの主要指標をリアルタイムで確認できます。"
+    },
+    "chart": {
+      "title": "レビュートレンド",
+      "description": "インタラクティブなチャートでレビューの推移を追跡できます。"
+    },
+    "platform": {
+      "title": "プラットフォーム別パフォーマンス",
+      "description": "Google、Yelpなど各プラットフォームのレビュー統計を比較できます。"
+    },
+    "activity": {
+      "title": "最近のアクティビティ",
+      "description": "最新のレビューを確認し、すぐに返信できます。"
+    }
+  },
+  "unsubscribe": {
+    "invalidLink": {
+      "title": "無効なリンク",
+      "message": "この配信停止リンクは無効であるか、有効期限が切れています。",
+      "backToHome": "ホームに戻る"
+    },
+    "success": {
+      "title": "配信停止が完了しました",
+      "message": "今後、マーケティングメールは届きません。",
+      "settingsNote": "サービス通知（新規レビュー、週次サマリー）は設定で管理できます。",
+      "backToHome": "ホームに戻る"
+    }
+  },
+  "email": {
+    "welcome": {
+      "title": "ReviewHubへようこそ！",
+      "greeting": "{name}さん、こんにちは。",
+      "intro": "ReviewHubにご登録いただきありがとうございます。すべてのレビューを一つのダッシュボードで管理できるようになりました。",
+      "gettingStartedTitle": "はじめに",
+      "gettingStartedItems": [
+        "Google、Yelp、Facebookプラットフォームを接続",
+        "AI返信提案で素早くレビューに返信",
+        "WhatsAppでレビューリクエストを送信",
+        "競合ベンチマークで市場でのポジションを把握"
+      ],
+      "goToDashboard": "ダッシュボードへ",
+      "trialNote": "14日間の無料トライアルですべての機能をお試しください。",
+      "footer": "ReviewHub - レビュー管理",
+      "unsubscribe": "マーケティングメールの配信を停止"
+    },
+    "trialReminder": {
+      "day11Title": "最初のレビューに返信しましたか？",
+      "day11Tip": "レビューに返信すると、顧客のリピート率が33%向上します。ダッシュボードで返信が必要なレビューを確認しましょう。",
+      "day7Title": "AI返信機能を試しましたか？",
+      "day7Tip": "AI返信提案を使うと、平均返信時間が80%短縮されます。レビュー詳細ページの「AI返信提案」ボタンをクリックしてください。",
+      "day4Title": "トライアル終了まであと{days}日",
+      "day4Tip": "ReviewHubを十分にご活用いただけていますか？残りのトライアル期間中にすべての機能をお試しください。",
+      "day1Title": "トライアルは明日終了します",
+      "day1Tip": "無料トライアルは明日終了します。中断なくレビュー管理を続けるために、今すぐプランを選択してください。",
+      "defaultTip": "トライアル期間中にすべての機能をお試しください。",
+      "daysUntilExpiry": "無料トライアル終了まであと{days}日",
+      "choosePlan": "プランを選択",
+      "goToDashboard": "ダッシュボードへ"
+    },
+    "upgradePrompt": {
+      "title": "無料トライアルが終了しました",
+      "greeting": "{name}さん、こんにちは。",
+      "message": "14日間の無料トライアルが終了しました。引き続きレビューを管理するには、プランを選択してください。",
+      "achievementsTitle": "トライアル期間中の実績",
+      "achievements": [
+        "レビューの一元管理",
+        "AI返信提案",
+        "リアルタイム通知",
+        "WhatsAppレビューリクエスト"
+      ],
+      "starterPlan": "スタータープラン",
+      "starterPrice": "$19",
+      "starterPriceNote": "スモールビジネスに最適な価格",
+      "choosePlan": "プランを選択"
+    },
+    "winback": {
+      "title": "レビューを見逃しているかもしれません",
+      "greeting": "{name}さん、こんにちは。",
+      "message": "ReviewHubをお使いにならなくなって1週間が経ちました。その間に新しいレビューが届いている可能性があります。未返信のレビューは、潜在的なお客様にネガティブな印象を与えかねません。",
+      "stat": "潜在顧客の45%が、未返信のネガティブレビューがあるビジネスを避けています。",
+      "ctaMessage": "今すぐ戻って、レビューを確認・返信しましょう。",
+      "ctaButton": "もう一度始める"
+    },
+    "reviewAlert": {
+      "title": "{businessName}に新しいレビュー",
+      "viewAndReply": "確認して返信",
+      "footer": "ReviewHub - レビュー管理"
+    },
+    "negativeAlert": {
+      "banner": "ネガティブレビューへの対応が必要です",
+      "respondNow": "今すぐ返信",
+      "footer": "ReviewHub - レビュー管理"
+    },
+    "weeklySummary": {
+      "title": "週次レビューサマリー",
+      "newReviews": "新着レビュー",
+      "avgRating": "平均評価",
+      "positive": "ポジティブ",
+      "unanswered": "未返信",
+      "replyNow": "今すぐ返信（{count}件待ち）",
+      "allResponded": "すべてのレビューに返信済みです！",
+      "footer": "ReviewHub - レビュー管理"
+    }
+  },
+  "jsonLd": {
+    "organizationDescription": "スモールビジネスのためのオールインワンレビュー管理プラットフォーム",
+    "softwareDescription": "Google、Yelp、Facebookのレビューを一つのダッシュボードで管理できます。"
+  }
+}

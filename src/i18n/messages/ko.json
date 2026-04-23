@@ -5,7 +5,15 @@
     "analytics": "분석",
     "reviewRequests": "리뷰 요청",
     "settings": "설정",
-    "help": "도움말"
+    "help": "도움말",
+    "qrCards": "QR 카드",
+    "trial": "체험판: {daysLeft}일 남음",
+    "trialExpired": "체험 기간 만료 — 플랜을 선택하세요",
+    "upgrade": "업그레이드",
+    "connectAccount": "계정 연결",
+    "support": "고객 지원",
+    "logout": "로그아웃",
+    "tagline": "소상공인 포털"
   },
   "dashboard": {
     "title": "대시보드",
@@ -23,7 +31,20 @@
     "period": {
       "7": "최근 7일",
       "30": "최근 30일",
-      "90": "최근 90일"
+      "90": "최근 90일",
+      "365": "올해"
+    },
+    "trialExpiredBanner": "무료 체험 기간이 종료되었습니다. 모든 기능을 계속 사용하려면 구독하세요.",
+    "choosePlan": "플랜 선택",
+    "tour": {
+      "kpiTitle": "핵심 지표 한눈에 보기",
+      "kpiDescription": "총 리뷰 수, 평균 평점 등 주요 지표를 실시간으로 확인하세요.",
+      "chartTitle": "리뷰 트렌드",
+      "chartDescription": "인터랙티브 차트로 리뷰 추이를 추적하세요.",
+      "platformTitle": "플랫폼 성과",
+      "platformDescription": "Google, Yelp 등 플랫폼별 리뷰 통계를 비교하세요.",
+      "activityTitle": "최근 활동",
+      "activityDescription": "최신 리뷰를 확인하고 바로 답변하세요."
     }
   },
   "reviews": {
@@ -54,7 +75,17 @@
     "aiSuggest": "AI 추천",
     "generating": "생성 중...",
     "sendReply": "답변 보내기",
-    "previousReviews": "이전 리뷰"
+    "previousReviews": "이전 리뷰",
+    "averageRating": "평균 평점",
+    "localGuide": "로컬 가이드",
+    "topReviewer": "우수 리뷰어",
+    "newReviewer": "신규 리뷰어",
+    "platform": "플랫폼",
+    "posted": "작성일",
+    "verified": "인증됨",
+    "repliedAt": "{date}에 답변함",
+    "noPreviousReviews": "이전 리뷰가 없습니다.",
+    "previousReviewsBy": "{name}님의 이전 리뷰"
   },
   "analytics": {
     "title": "분석",
@@ -67,11 +98,21 @@
     "topKeywords": "주요 키워드",
     "competitorBenchmark": "경쟁사 벤치마크",
     "responseTime": "평균 응답 시간",
-    "responseRate": "응답률"
+    "responseRate": "응답률",
+    "last30Days": "최근 30일",
+    "quarterly": "분기별",
+    "topPlatform": "상위 플랫폼",
+    "criticalAction": "긴급 조치",
+    "unreadNegatives": "미확인 부정 리뷰 {count}건",
+    "requiresAttention": "즉시 확인이 필요합니다",
+    "sentimentTrend": "감성 추이",
+    "growth": "+{percent}% 성장",
+    "positiveMentionsIncreasing": "긍정 언급 증가 중",
+    "ofTotalVolume": "전체의 {percent}%"
   },
   "settings": {
     "title": "설정",
-    "subtitle": "비즈니스 프로필과 플랫폼 연동을 관리하세요.",
+    "subtitle": "비즈니스 프로필과 플랫폼 연동을 한곳에서 관리하세요.",
     "platformConnections": "플랫폼 연결",
     "activeChannels": "활성 채널",
     "connected": "연결됨",
@@ -110,6 +151,666 @@
     "back": "뒤로",
     "next": "다음",
     "previous": "이전",
-    "close": "닫기"
+    "close": "닫기",
+    "noResults": "검색 결과가 없습니다",
+    "switchToLight": "라이트 모드로 전환",
+    "switchToDark": "다크 모드로 전환",
+    "home": "홈",
+    "owner": "소유자",
+    "ok": "확인",
+    "create": "생성",
+    "print": "인쇄",
+    "copyLink": "링크 복사",
+    "copied": "복사됨",
+    "copy": "복사",
+    "sending": "전송 중...",
+    "submit": "제출",
+    "processing": "처리 중...",
+    "redirecting": "이동 중...",
+    "page": "{current} / {total} 페이지",
+    "perMonth": "/월",
+    "reviewHub": "ReviewHub"
+  },
+  "auth": {
+    "login": {
+      "title": "다시 오신 것을 환영합니다",
+      "subtitle": "로그인하여 리뷰를 관리하세요",
+      "emailLabel": "이메일",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "비밀번호",
+      "passwordPlaceholder": "비밀번호를 입력하세요",
+      "signIn": "로그인",
+      "signingIn": "로그인 중...",
+      "orContinueWith": "또는 다음으로 계속",
+      "signInWithGoogle": "Google로 로그인",
+      "noAccount": "계정이 없으신가요?",
+      "signUp": "회원가입",
+      "invalidCredentials": "이메일 또는 비밀번호가 올바르지 않습니다"
+    },
+    "signup": {
+      "title": "계정 만들기",
+      "subtitle": "지금 바로 리뷰 관리를 시작하세요",
+      "fullNameLabel": "이름",
+      "fullNamePlaceholder": "홍길동",
+      "emailLabel": "이메일",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "비밀번호",
+      "passwordPlaceholder": "6자 이상 입력하세요",
+      "inviteCodeLabel": "초대 코드",
+      "inviteCodePlaceholder": "BETA-XXXXXX",
+      "noInviteCode": "초대 코드가 없으신가요?",
+      "joinWaitlist": "대기자 명단 등록",
+      "createAccount": "계정 만들기",
+      "creatingAccount": "계정 생성 중...",
+      "orContinueWith": "또는 다음으로 계속",
+      "signUpWithGoogle": "Google로 회원가입",
+      "hasAccount": "이미 계정이 있으신가요?",
+      "signIn": "로그인",
+      "failedToCreate": "계정 생성에 실패했습니다",
+      "somethingWentWrong": "문제가 발생했습니다. 다시 시도해 주세요."
+    }
+  },
+  "onboarding": {
+    "stepOf": "{total}단계 중 {step}단계",
+    "step1": {
+      "title": "ReviewHub에 오신 것을 환영합니다!",
+      "subtitle": "비즈니스 정보를 입력하여 맞춤 설정을 시작하세요.",
+      "businessNameLabel": "비즈니스 이름 *",
+      "businessNamePlaceholder": "예: 다운타운 카페",
+      "industryLabel": "업종",
+      "selectIndustry": "업종을 선택하세요",
+      "locationLabel": "위치",
+      "locationPlaceholder": "예: 서울특별시 강남구"
+    },
+    "step2": {
+      "title": "리뷰 플랫폼을 연결하세요",
+      "subtitle": "나중에 설정에서 더 추가할 수 있습니다.",
+      "connected": "연결됨"
+    },
+    "step3": {
+      "title": "어떤 알림을 받으시겠습니까?",
+      "subtitle": "설정에서 언제든 변경할 수 있습니다.",
+      "newReviewAlerts": "새 리뷰 알림",
+      "newReviewAlertsDesc": "새 리뷰가 등록되면 즉시 알림을 받습니다.",
+      "weeklySummary": "주간 요약 이메일",
+      "weeklySummaryDesc": "매주 월요일에 주간 리뷰 요약을 받습니다.",
+      "negativeAlerts": "부정 리뷰 알림",
+      "negativeAlertsDesc": "부정 리뷰가 감지되면 긴급 알림을 받습니다."
+    },
+    "step4": {
+      "title": "모든 준비가 완료되었습니다!",
+      "subtitle": "대시보드가 준비되었습니다. 지금 리뷰 관리를 시작하세요.",
+      "connectedPlatforms": "연결된 플랫폼",
+      "goToDashboard": "대시보드로 이동"
+    },
+    "skipForNow": "나중에 하기",
+    "failedToCreateBusiness": "비즈니스 생성에 실패했습니다",
+    "somethingWentWrong": "문제가 발생했습니다. 다시 시도해 주세요.",
+    "industries": {
+      "restaurant": "음식점 / 카페",
+      "beauty": "뷰티 / 미용실",
+      "medical": "의료 / 치과",
+      "hospitality": "숙박 / 호텔",
+      "retail": "소매 / 쇼핑",
+      "professional": "전문 서비스",
+      "education": "교육 / 과외",
+      "other": "기타"
+    },
+    "platforms": {
+      "google": "Google",
+      "googleDesc": "Google 비즈니스 프로필",
+      "yelp": "Yelp",
+      "yelpDesc": "Yelp Fusion API",
+      "facebook": "Facebook",
+      "facebookDesc": "Facebook 페이지 리뷰",
+      "whatsapp": "WhatsApp",
+      "whatsappDesc": "WhatsApp Business"
+    }
+  },
+  "landing": {
+    "navbar": {
+      "features": "기능",
+      "pricing": "요금제",
+      "testimonials": "고객 후기",
+      "logIn": "로그인",
+      "startForFree": "무료로 시작"
+    },
+    "hero": {
+      "title": "모든 리뷰,\n하나의 대시보드",
+      "subtitle": "Google · Yelp · Facebook · WhatsApp 리뷰를 한곳에서 관리하세요.",
+      "startingAt": "월 $19부터",
+      "startForFree": "무료로 시작",
+      "viewDemo": "데모 보기"
+    },
+    "stats": {
+      "activeBusinesses": "이용 중인 비즈니스",
+      "reviewsManaged": "관리 중인 리뷰",
+      "customerSatisfaction": "고객 만족도"
+    },
+    "mockup": {
+      "rating": "평점",
+      "reviews": "리뷰",
+      "positive": "긍정",
+      "pending": "대기 중"
+    },
+    "painPoints": {
+      "title": "소상공인 사장님, 이런 경험 있으신가요?",
+      "subtitle": "리뷰 하나가 매출을 바꿀 수 있습니다. 하지만 관리하기엔 너무 번거롭죠.",
+      "wastedTime": "시간 낭비",
+      "wastedTimeDesc": "매일 30분 이상 각 플랫폼을 하나씩 확인하는 데 낭비하고 있습니다",
+      "lateResponses": "늦은 대응",
+      "lateResponsesDesc": "부정 리뷰를 너무 늦게 발견해 대응 시기를 놓치고 평점이 하락합니다",
+      "expensiveTools": "비싼 관리 툴",
+      "expensiveToolsDesc": "리뷰 관리 툴은 $44~$399로, 소상공인에게는 부담스러운 가격입니다"
+    },
+    "solutions": {
+      "title": "ReviewHub가 해결합니다",
+      "subtitle": "복잡한 리뷰 관리를 하나의 도구로 간편하게.",
+      "unifiedDashboard": "통합 대시보드",
+      "unifiedDashboardDesc": "모든 플랫폼의 리뷰를 하나의 화면에서 실시간으로 확인하고 관리하세요.",
+      "whatsappRequests": "WhatsApp 리뷰 요청",
+      "whatsappRequestsDesc": "98% 열람률의 WhatsApp으로 고객에게 리뷰를 요청하세요. 리뷰 수가 급증합니다.",
+      "aiReplyGeneration": "AI 답변 생성",
+      "aiReplyGenerationDesc": "클릭 한 번으로 전문적인 답변을 자동 생성합니다. 톤과 길이를 조절할 수 있습니다.",
+      "realTimeAlerts": "실시간 알림",
+      "realTimeAlertsDesc": "부정 리뷰를 즉시 감지하고 이메일 알림으로 빠르게 대응하세요."
+    },
+    "comparison": {
+      "title": "왜 ReviewHub인가?",
+      "subtitle": "경쟁사와 비교하면 가치가 명확합니다.",
+      "feature": "기능",
+      "reviewAggregation": "리뷰 통합",
+      "whatsappAutomation": "WhatsApp 자동화",
+      "aiReplyGeneration": "AI 답변 생성",
+      "smallBusinessPricing": "소상공인 맞춤 가격",
+      "sentimentAnalysis": "감성 분석",
+      "competitorBenchmarking": "경쟁사 벤치마킹",
+      "limited": "제한적"
+    },
+    "pricing": {
+      "title": "합리적인 가격",
+      "subtitle": "14일 무료 체험, 신용카드 불필요",
+      "startForFree": "무료로 시작"
+    },
+    "testimonials": {
+      "title": "고객 후기",
+      "subtitle": "ReviewHub를 사용하는 사장님들의 실제 이야기",
+      "review1Name": "김 모",
+      "review1Business": "카페 사장님",
+      "review1Text": "리뷰 평균 응답 시간이 6시간에서 30분으로 줄었습니다. AI 답변 기능 덕분에 전문적인 답변을 빠르게 보낼 수 있습니다.",
+      "review2Name": "이 모",
+      "review2Business": "헤어 살롱",
+      "review2Text": "WhatsApp으로 리뷰를 요청한 후 한 달 만에 Google 리뷰가 40개 늘었습니다. 신규 고객이 눈에 띄게 증가했습니다.",
+      "review3Name": "박 모",
+      "review3Business": "레스토랑",
+      "review3Text": "월 $19에 이 정도 기능이면 최고의 가성비입니다. 부정 리뷰 알림으로 즉시 대응하니 평점이 4.2에서 4.7로 올랐습니다."
+    },
+    "cta": {
+      "title": "지금 시작하세요",
+      "subtitle": "14일 무료 체험 · 신용카드 불필요 · 5분 만에 설정 완료",
+      "startForFree": "무료로 시작"
+    },
+    "footer": {
+      "tagline": "소상공인을 위한\n올인원 리뷰 관리 플랫폼",
+      "product": "제품",
+      "company": "회사",
+      "legal": "법적 고지",
+      "features": "기능",
+      "pricing": "요금제",
+      "faq": "FAQ",
+      "blog": "블로그",
+      "about": "소개",
+      "contactUs": "문의하기",
+      "privacyPolicy": "개인정보처리방침",
+      "termsOfService": "이용약관",
+      "cookiePolicy": "쿠키 정책",
+      "copyright": "© {year} ReviewHub. All rights reserved."
+    }
+  },
+  "waitlist": {
+    "title": "대기자 명단 등록",
+    "subtitle": "현재 비공개 베타 운영 중입니다. 등록하시면 초대 코드를 보내드립니다.",
+    "nameLabel": "이름",
+    "namePlaceholder": "홍길동",
+    "emailLabel": "이메일 *",
+    "emailPlaceholder": "you@example.com",
+    "businessNameLabel": "비즈니스 이름",
+    "businessNamePlaceholder": "우리 카페",
+    "joinWaitlist": "대기자 등록",
+    "submitting": "등록 중...",
+    "failedToJoin": "대기자 등록에 실패했습니다",
+    "networkError": "네트워크 오류가 발생했습니다. 다시 시도해 주세요.",
+    "success": {
+      "title": "감사합니다!",
+      "message": "대기자 명단에 등록되었습니다. 초대 코드가 준비되면 이메일로 알려드리겠습니다.",
+      "backToHome": "홈으로 돌아가기"
+    }
+  },
+  "pricing": {
+    "title": "플랜을 선택하세요",
+    "subtitle": "14일 무료 체험으로 시작하세요. 신용카드가 필요 없습니다.",
+    "monthly": "월간",
+    "yearly": "연간",
+    "save20": "20% 할인",
+    "mostPopular": "가장 인기",
+    "getStarted": "시작하기",
+    "billedAnnually": "연 ${price} 결제",
+    "allPlansIncludeTrial": "모든 플랜에 14일 무료 체험이 포함됩니다.",
+    "signInToStart": "로그인",
+    "toGetStarted": "후 시작하세요.",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "features": {
+          "locations": "비즈니스 1곳",
+          "aiReplies": "AI 답변 월 10회",
+          "whatsapp": "WhatsApp 요청 월 100건",
+          "integrations": "Google 및 Yelp 연동",
+          "analytics": "기본 분석"
+        }
+      },
+      "growth": {
+        "name": "Growth",
+        "features": {
+          "locations": "비즈니스 3곳",
+          "aiReplies": "AI 답변 월 50회",
+          "whatsapp": "WhatsApp 요청 월 500건",
+          "integrations": "전체 플랫폼 연동",
+          "analytics": "고급 분석",
+          "sentiment": "감성 분석",
+          "competitors": "경쟁사 3곳 추적"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "features": {
+          "locations": "비즈니스 10곳",
+          "aiReplies": "AI 답변 무제한",
+          "whatsapp": "WhatsApp 요청 무제한",
+          "integrations": "전체 플랫폼 연동",
+          "analytics": "고급 분석 및 리포트",
+          "sentiment": "감성 분석",
+          "competitors": "경쟁사 10곳 추적",
+          "support": "우선 지원"
+        }
+      }
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "개인정보처리방침",
+      "lastUpdated": "최종 수정일: 2026년 4월 1일",
+      "intro": "ReviewHub(\"회사\")는 귀하의 개인정보를 소중히 여기며, New Zealand Privacy Act 2020 및 관련 법률에 따라 개인정보를 보호합니다. 본 개인정보처리방침은 리뷰 관리 서비스를 이용하실 때 수집, 이용, 공유되는 개인정보에 대해 설명합니다.",
+      "section1Title": "1. 수집하는 정보",
+      "section1Sub1Title": "필수 정보",
+      "section1Sub1Items": [
+        "이메일 주소, 이름 (회원가입 시)",
+        "비즈니스 이름, 업종, 위치 (서비스 이용 시)",
+        "결제 정보 (Stripe를 통해 처리되며, 카드번호는 당사에 저장되지 않습니다)"
+      ],
+      "section1Sub2Title": "자동 수집 정보",
+      "section1Sub2Items": [
+        "IP 주소, 브라우저 정보, 접속 시간",
+        "쿠키 및 유사 기술을 통한 이용 패턴"
+      ],
+      "section1Sub3Title": "제3자 플랫폼 데이터",
+      "section1Sub3Items": [
+        "Google Business Profile: OAuth 토큰, 비즈니스 리뷰 데이터",
+        "Facebook/Meta: 페이지 액세스 토큰, 추천 데이터",
+        "Yelp: API를 통한 리뷰 데이터",
+        "WhatsApp Business: 메시지 전송 기록"
+      ],
+      "section2Title": "2. 정보 이용 목적",
+      "section2Items": [
+        "통합 리뷰 관리 서비스 제공",
+        "WhatsApp을 통한 리뷰 요청 메시지 발송",
+        "AI 기반 리뷰 답변 생성 (Anthropic API 활용)",
+        "감성 분석 및 비즈니스 인사이트 제공",
+        "서비스 개선 및 분석",
+        "고객 지원 및 알림"
+      ],
+      "section3Title": "3. 제3자 정보 제공",
+      "section3Intro": "서비스 운영을 위해 다음 서비스 제공업체와 데이터를 공유합니다:",
+      "section3Items": [
+        { "name": "Google", "desc": "비즈니스 리뷰 동기화" },
+        { "name": "Meta (Facebook/WhatsApp)", "desc": "추천 동기화, 메시지 발송" },
+        { "name": "Yelp", "desc": "리뷰 데이터 조회" },
+        { "name": "Stripe", "desc": "결제 처리" },
+        { "name": "Anthropic", "desc": "AI 답변 생성, 감성 분석" },
+        { "name": "Resend", "desc": "이메일 발송" },
+        { "name": "Vercel", "desc": "호스팅 및 분석" },
+        { "name": "Sentry", "desc": "오류 모니터링" }
+      ],
+      "section4Title": "4. 데이터 보관",
+      "section4Content": "개인정보는 계정 유지 기간 동안 보관됩니다. 계정 삭제 요청 시 30일 이내에 영구 삭제되며, Privacy Act 2020 등 법률에 따라 보관이 요구되는 경우는 예외입니다.",
+      "section5Title": "5. 이용자의 권리",
+      "section5Intro": "Privacy Act 2020에 따라 이용자는 다음과 같은 권리가 있습니다:",
+      "section5Items": [
+        { "name": "열람", "desc": "수집된 개인정보에 대한 접근을 요청할 수 있습니다." },
+        { "name": "정정", "desc": "부정확한 정보의 수정을 요청할 수 있습니다." },
+        { "name": "삭제", "desc": "개인정보의 삭제를 요청할 수 있습니다." },
+        { "name": "이동", "desc": "다른 서비스로의 데이터 이전을 요청할 수 있습니다." },
+        { "name": "제한", "desc": "데이터 처리의 제한을 요청할 수 있습니다." }
+      ],
+      "section5Outro": "이러한 권리는 설정 페이지 또는 support@reviewhub.app으로 행사할 수 있습니다. 또한 Office of the Privacy Commissioner에 민원을 제기할 수 있습니다.",
+      "section6Title": "6. 쿠키",
+      "section6Content": "인증, 기능, 분석 목적으로 쿠키를 사용합니다. 자세한 내용은 쿠키 정책을 참조하세요.",
+      "section7Title": "7. 보안",
+      "section7Content": "SSL 암호화, 접근 제어, 정기 보안 감사 등 기술적·관리적 조치를 시행합니다. OAuth 토큰은 암호화하여 저장하며, 비밀번호는 bcrypt로 해시 처리합니다.",
+      "section8Title": "8. 문의",
+      "section8Content": "개인정보 관련 문의: support@reviewhub.app"
+    },
+    "terms": {
+      "title": "이용약관",
+      "lastUpdated": "최종 수정일: 2026년 4월 1일",
+      "section1Title": "1. 서비스 소개",
+      "section1Content": "ReviewHub(\"서비스\")는 소상공인을 위한 통합 리뷰 관리 플랫폼으로, Google, Yelp, Facebook, WhatsApp 등 다양한 플랫폼의 리뷰를 한곳에서 관리할 수 있는 SaaS 솔루션을 제공합니다.",
+      "section2Title": "2. 이용 조건",
+      "section2Items": [
+        "서비스 이용을 위해 회원가입이 필요합니다.",
+        "이용자는 정확한 정보를 제공하고 최신 상태로 유지해야 합니다.",
+        "계정은 개인에게 귀속되며 타인에게 양도할 수 없습니다.",
+        "불법적이거나 부적절한 목적으로 서비스를 이용할 수 없습니다."
+      ],
+      "section3Title": "3. 요금 및 결제",
+      "section3Items": [
+        "14일 무료 체험 후 유료 플랜을 선택해야 합니다.",
+        "결제는 Stripe를 통해 처리되며 월간 또는 연간으로 자동 갱신됩니다.",
+        "플랜 변경은 설정에서 언제든 가능하며, 다음 결제 주기부터 적용됩니다.",
+        "가격은 사전 고지 후 변경될 수 있습니다."
+      ],
+      "section4Title": "4. 서비스 제한",
+      "section4Content": "각 플랜에는 이용 한도(AI 답변 수, WhatsApp 요청 수, 비즈니스 수 등)가 있습니다. 한도 초과 시 기능이 제한될 수 있습니다.",
+      "section5Title": "5. 지적 재산권",
+      "section5Items": [
+        "서비스의 모든 소프트웨어, 디자인, 로고 및 기타 지적 재산은 회사에 귀속됩니다.",
+        "이용자가 입력한 비즈니스 정보 및 리뷰 답변은 이용자의 소유입니다.",
+        "AI가 생성한 답변은 이용자가 자유롭게 사용할 수 있습니다."
+      ],
+      "section6Title": "6. 소비자 보호",
+      "section6Content": "귀하가 Consumer Guarantees Act 1993에 따른 소비자인 경우, 서비스는 합리적인 주의와 기술로 제공되어야 합니다. 본 약관의 어떠한 조항도 Consumer Guarantees Act 1993에 따른 귀하의 권리를 제한하지 않습니다.",
+      "section7Title": "7. 면책 조항",
+      "section7Items": [
+        "외부 플랫폼(Google, Yelp, Facebook, WhatsApp)의 API 변경 또는 서비스 중단에 대해 회사는 책임지지 않습니다.",
+        "AI가 생성한 답변의 정확성이나 적절성은 보장하지 않으며, 최종 검토는 이용자의 책임입니다.",
+        "불가항력, 시스템 장애 등으로 인한 서비스 중단에 대해 회사는 책임지지 않습니다."
+      ],
+      "section8Title": "8. 해지 및 환불",
+      "section8Items": [
+        "이용자는 언제든 서비스를 해지할 수 있습니다.",
+        "해지 시 현재 결제 기간이 끝날 때까지 서비스를 이용할 수 있습니다.",
+        "연간 구독은 결제 후 14일 이내에 환불 가능합니다.",
+        "계정 삭제 요청은 30일의 유예 기간이 있으며, 이 기간 내 취소할 수 있습니다."
+      ],
+      "section9Title": "9. 약관 변경",
+      "section9Content": "회사는 이메일 및 앱 내 알림을 통해 사전 고지 후 약관을 변경할 수 있습니다. 변경된 약관에 동의하지 않을 경우 서비스를 해지할 수 있습니다.",
+      "section10Title": "10. 준거법",
+      "section10Content": "본 약관은 뉴질랜드 법률에 따라 해석됩니다. 분쟁 발생 시 뉴질랜드 법원의 비전속적 관할권에 따릅니다.",
+      "section11Title": "11. 문의",
+      "section11Content": "약관 관련 문의: support@reviewhub.app"
+    },
+    "cookie": {
+      "title": "쿠키 정책",
+      "lastUpdated": "최종 수정일: 2026년 4월 1일",
+      "intro": "본 쿠키 정책은 ReviewHub(\"서비스\")가 쿠키 및 유사 기술을 사용하는 방법에 대해 설명합니다.",
+      "section1Title": "1. 쿠키란?",
+      "section1Content": "쿠키는 웹사이트 방문 시 브라우저에 저장되는 작은 텍스트 파일입니다. 웹사이트가 사용자의 설정을 기억하고 더 나은 경험을 제공할 수 있도록 합니다.",
+      "section2Title": "2. 사용하는 쿠키 유형",
+      "section2Sub1Title": "필수 쿠키",
+      "section2Sub1Intro": "서비스 작동에 필수적인 쿠키입니다. 비활성화할 수 없습니다.",
+      "section2Sub1Items": [
+        { "name": "인증 쿠키", "desc": "로그인 세션 유지 (NextAuth)" },
+        { "name": "CSRF 토큰", "desc": "보안을 위한 요청 검증" },
+        { "name": "쿠키 동의", "desc": "쿠키 환경설정 기억" }
+      ],
+      "section2Sub2Title": "기능 쿠키",
+      "section2Sub2Intro": "맞춤 설정으로 사용 경험을 향상시킵니다.",
+      "section2Sub2Items": [
+        { "name": "테마 설정", "desc": "다크/라이트 모드 선택 기억" },
+        { "name": "활성 비즈니스", "desc": "마지막으로 선택한 비즈니스 기억" }
+      ],
+      "section2Sub3Title": "분석 쿠키",
+      "section2Sub3Intro": "서비스 개선을 위해 이용 패턴을 분석합니다. 동의한 경우에만 활성화됩니다.",
+      "section2Sub3Items": [
+        { "name": "Vercel Analytics", "desc": "페이지 방문 통계" },
+        { "name": "Sentry", "desc": "오류 추적 및 성능 모니터링" }
+      ],
+      "section3Title": "3. 쿠키 관리",
+      "section3Content1": "페이지 하단의 쿠키 배너를 통해 분석 쿠키를 거부할 수 있습니다. 브라우저 설정에서도 쿠키를 관리하거나 삭제할 수 있습니다.",
+      "section3Content2": "쿠키를 비활성화하면 서비스의 일부 기능이 제한될 수 있습니다.",
+      "section4Title": "4. 제3자 쿠키",
+      "section4Content": "Google이나 Facebook 등 외부 플랫폼을 연결할 때 해당 플랫폼이 자체 쿠키를 설정할 수 있습니다. 이러한 쿠키는 각 플랫폼의 쿠키 정책에 따릅니다.",
+      "section5Title": "5. 문의",
+      "section5Content": "쿠키 정책 관련 문의: support@reviewhub.app"
+    }
+  },
+  "reviewRequests": {
+    "title": "리뷰 요청",
+    "subtitle": "WhatsApp으로 리뷰 요청을 보내고 상태를 추적하세요.",
+    "sendIndividual": {
+      "title": "개별 요청 보내기",
+      "customerName": "고객 이름",
+      "customerNamePlaceholder": "홍길동",
+      "phoneNumber": "전화번호",
+      "phonePlaceholder": "+821012345678",
+      "reviewPlatform": "리뷰 플랫폼",
+      "sendRequest": "요청 보내기",
+      "sending": "전송 중...",
+      "messageSent": "메시지가 전송되었습니다!",
+      "failedToSend": "전송에 실패했습니다",
+      "networkError": "네트워크 오류"
+    },
+    "bulkSend": {
+      "title": "일괄 전송 (CSV)",
+      "description": "phone, customerName 열이 포함된 CSV 파일을 업로드하세요",
+      "contactsReady": "{count}명의 연락처가 전송 준비되었습니다",
+      "sendAll": "전체 전송",
+      "sent": "전송 완료: {count}",
+      "failed": "전송 실패: {count}",
+      "total": "전체: {count}"
+    },
+    "history": {
+      "title": "전송 내역",
+      "noRequests": "아직 전송된 리뷰 요청이 없습니다.",
+      "customer": "고객",
+      "phone": "전화번호",
+      "platform": "플랫폼",
+      "status": "상태",
+      "sentAt": "전송 시간"
+    },
+    "status": {
+      "sent": "전송됨",
+      "delivered": "전달됨",
+      "read": "읽음",
+      "failed": "실패"
+    },
+    "qr": {
+      "title": "QR 리뷰 카드",
+      "subtitle": "QR 코드를 생성하여 고객으로부터 리뷰를 수집하세요.",
+      "createQrCode": "QR 코드 만들기",
+      "newQrCode": "새 QR 코드",
+      "platform": "플랫폼",
+      "reviewPageUrl": "리뷰 페이지 URL",
+      "reviewPageUrlPlaceholder": "https://g.page/r/...",
+      "noQrCodes": "아직 QR 코드가 없습니다. 리뷰 수집을 시작하려면 QR 코드를 만드세요.",
+      "scans": "{count}회 스캔",
+      "scanToLeaveReview": "스캔하여 리뷰를 남겨주세요",
+      "weValueFeedback": "소중한 의견을 기다립니다!",
+      "printCard": "인쇄"
+    }
+  },
+  "feedback": {
+    "title": "피드백 보내기",
+    "buttonTitle": "피드백 보내기",
+    "placeholder": "의견을 입력해 주세요...",
+    "emailPlaceholder": "이메일 (선택사항)",
+    "submit": "제출",
+    "sending": "전송 중...",
+    "successTitle": "감사합니다!",
+    "successMessage": "피드백이 제출되었습니다.",
+    "categories": {
+      "bug": "버그 신고",
+      "feature": "기능 요청",
+      "general": "일반 피드백",
+      "ux": "UX 개선 제안"
+    }
+  },
+  "cookieBanner": {
+    "message": "이 사이트는 서비스 제공 및 분석을 위해 쿠키를 사용합니다.",
+    "learnMore": "자세히 보기",
+    "accept": "동의",
+    "decline": "거부"
+  },
+  "referral": {
+    "title": "추천 & 보상",
+    "subtitle": "친구를 초대하면 두 분 모두 보상을 받습니다.",
+    "copy": "복사",
+    "copied": "복사됨",
+    "shareText": "ReviewHub로 리뷰를 쉽게 관리하세요! {link}",
+    "shareEmailSubject": "ReviewHub 추천",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "email": "이메일",
+    "invited": "초대함",
+    "signedUp": "가입 완료",
+    "rewarded": "보상 완료"
+  },
+  "account": {
+    "deleteModal": {
+      "title": "계정 삭제",
+      "warningTitle": "주의: 이 작업은 되돌릴 수 없습니다.",
+      "warningItems": [
+        "모든 비즈니스 데이터, 리뷰, 설정이 삭제됩니다",
+        "활성 구독은 자동으로 해지됩니다",
+        "30일 유예 기간 후 영구 삭제됩니다"
+      ],
+      "confirmPassword": "비밀번호 확인",
+      "passwordPlaceholder": "현재 비밀번호를 입력하세요",
+      "confirmCheckbox": "30일 후 모든 데이터가 영구적으로 삭제됨을 이해합니다.",
+      "requestDeletion": "계정 삭제 요청",
+      "processing": "처리 중...",
+      "successMessage": "계정 삭제가 요청되었습니다. 30일 후 모든 데이터가 영구 삭제됩니다. 이 기간 내에 설정에서 삭제를 취소할 수 있습니다.",
+      "failedToDelete": "계정 삭제 요청에 실패했습니다",
+      "networkError": "네트워크 오류가 발생했습니다. 다시 시도해 주세요."
+    }
+  },
+  "blog": {
+    "title": "블로그",
+    "subtitle": "소상공인을 위한 리뷰 관리 팁과 인사이트",
+    "noPosts": "아직 게시글이 없습니다.",
+    "backToBlog": "← 블로그로 돌아가기",
+    "metaTitle": "ReviewHub 블로그",
+    "metaDescription": "소상공인을 위한 리뷰 관리 팁과 인사이트"
+  },
+  "tour": {
+    "kpi": {
+      "title": "핵심 지표 한눈에 보기",
+      "description": "총 리뷰 수, 평균 평점 등 주요 지표를 실시간으로 확인하세요."
+    },
+    "chart": {
+      "title": "리뷰 트렌드",
+      "description": "인터랙티브 차트로 리뷰 추이를 추적하세요."
+    },
+    "platform": {
+      "title": "플랫폼 성과",
+      "description": "Google, Yelp 등 플랫폼별 리뷰 통계를 비교하세요."
+    },
+    "activity": {
+      "title": "최근 활동",
+      "description": "최신 리뷰를 확인하고 바로 답변하세요."
+    }
+  },
+  "unsubscribe": {
+    "invalidLink": {
+      "title": "잘못된 링크",
+      "message": "이 수신거부 링크는 유효하지 않거나 만료되었습니다.",
+      "backToHome": "홈으로 돌아가기"
+    },
+    "success": {
+      "title": "수신거부 완료",
+      "message": "더 이상 마케팅 이메일을 받지 않습니다.",
+      "settingsNote": "서비스 알림(새 리뷰, 주간 요약)은 설정에서 관리할 수 있습니다.",
+      "backToHome": "홈으로 돌아가기"
+    }
+  },
+  "email": {
+    "welcome": {
+      "title": "ReviewHub에 오신 것을 환영합니다!",
+      "greeting": "안녕하세요, {name}님",
+      "intro": "ReviewHub에 가입해 주셔서 감사합니다. 이제 하나의 대시보드에서 모든 리뷰를 관리할 수 있습니다.",
+      "gettingStartedTitle": "시작하기",
+      "gettingStartedItems": [
+        "Google, Yelp, Facebook 플랫폼 연결",
+        "AI 답변 추천으로 리뷰에 빠르게 응답",
+        "WhatsApp으로 리뷰 요청 보내기",
+        "경쟁사 벤치마킹으로 시장 위치 파악"
+      ],
+      "goToDashboard": "대시보드로 이동",
+      "trialNote": "14일 무료 체험 기간 동안 모든 기능을 이용해 보세요.",
+      "footer": "ReviewHub - 리뷰 관리",
+      "unsubscribe": "마케팅 이메일 수신거부"
+    },
+    "trialReminder": {
+      "day11Title": "첫 번째 리뷰에 답변하셨나요?",
+      "day11Tip": "리뷰에 답변하면 고객 재방문율이 33% 증가합니다. 대시보드에서 답변이 필요한 리뷰를 확인하세요.",
+      "day7Title": "AI 답변 기능을 사용해 보셨나요?",
+      "day7Tip": "AI 답변 추천을 사용하면 평균 응답 시간이 80% 단축됩니다. 리뷰 상세 페이지에서 \"AI 답변 추천\" 버튼을 클릭하세요.",
+      "day4Title": "체험 만료까지 {days}일 남았습니다",
+      "day4Tip": "ReviewHub를 충분히 활용하고 계신가요? 남은 체험 기간 동안 모든 기능을 꼭 사용해 보세요.",
+      "day1Title": "내일 체험 기간이 만료됩니다",
+      "day1Tip": "무료 체험이 내일 종료됩니다. 지금 플랜을 선택하여 끊김 없이 리뷰를 관리하세요.",
+      "defaultTip": "체험 기간 동안 모든 기능을 활용해 보세요.",
+      "daysUntilExpiry": "무료 체험 만료까지 {days}일",
+      "choosePlan": "플랜 선택",
+      "goToDashboard": "대시보드로 이동"
+    },
+    "upgradePrompt": {
+      "title": "무료 체험이 종료되었습니다",
+      "greeting": "안녕하세요, {name}님",
+      "message": "14일 무료 체험 기간이 종료되었습니다. 리뷰 관리를 계속하려면 플랜을 선택해 주세요.",
+      "achievementsTitle": "체험 기간 동안 달성한 성과",
+      "achievements": [
+        "통합 리뷰 관리",
+        "AI 답변 추천",
+        "실시간 알림",
+        "WhatsApp 리뷰 요청"
+      ],
+      "starterPlan": "Starter 플랜",
+      "starterPrice": "$19",
+      "starterPriceNote": "소상공인에게 딱 맞는 가격",
+      "choosePlan": "플랜 선택"
+    },
+    "winback": {
+      "title": "리뷰를 놓치고 계실 수 있습니다",
+      "greeting": "안녕하세요, {name}님",
+      "message": "ReviewHub를 떠나신 지 일주일이 지났습니다. 그 사이 새로운 리뷰가 들어왔을 수 있습니다. 답변되지 않은 리뷰는 잠재 고객에게 부정적인 인상을 줄 수 있습니다.",
+      "stat": "잠재 고객의 45%가 답변되지 않은 부정 리뷰가 있는 비즈니스를 피합니다.",
+      "ctaMessage": "지금 돌아와서 리뷰를 확인하고 바로 답변하세요.",
+      "ctaButton": "다시 시작하기"
+    },
+    "reviewAlert": {
+      "title": "{businessName}에 새 리뷰가 등록되었습니다",
+      "viewAndReply": "확인 및 답변",
+      "footer": "ReviewHub - 리뷰 관리"
+    },
+    "negativeAlert": {
+      "banner": "부정 리뷰에 대응이 필요합니다",
+      "respondNow": "지금 답변하기",
+      "footer": "ReviewHub - 리뷰 관리"
+    },
+    "weeklySummary": {
+      "title": "주간 리뷰 요약",
+      "newReviews": "새 리뷰",
+      "avgRating": "평균 평점",
+      "positive": "긍정",
+      "unanswered": "미답변",
+      "replyNow": "답변하기 ({count}건 대기 중)",
+      "allResponded": "모든 리뷰에 답변 완료!",
+      "footer": "ReviewHub - 리뷰 관리"
+    }
+  },
+  "jsonLd": {
+    "organizationDescription": "소상공인을 위한 올인원 리뷰 관리 플랫폼",
+    "softwareDescription": "Google, Yelp, Facebook 리뷰를 하나의 대시보드에서 관리하세요."
   }
 }

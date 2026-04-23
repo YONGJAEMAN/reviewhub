@@ -6,7 +6,7 @@ export const runtime = 'edge';
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const title = searchParams.get('title') || 'ReviewHub';
-  const description = searchParams.get('description') || '모든 리뷰, 하나의 대시보드';
+  const description = searchParams.get('description') || 'All your reviews. One dashboard.';
 
   return new ImageResponse(
     (

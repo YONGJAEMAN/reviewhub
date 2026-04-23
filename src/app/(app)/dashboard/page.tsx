@@ -73,29 +73,29 @@ export default function DashboardPage() {
         {
           element: '[data-tour="kpi"]',
           popover: {
-            title: 'KPI 한눈에 보기',
-            description: '총 리뷰 수, 평균 평점 등 핵심 지표를 실시간으로 확인하세요.',
+            title: t('tour.kpiTitle'),
+            description: t('tour.kpiDescription'),
           },
         },
         {
           element: '[data-tour="chart"]',
           popover: {
-            title: '리뷰 트렌드',
-            description: '기간별 리뷰 추이를 차트로 확인할 수 있습니다.',
+            title: t('tour.chartTitle'),
+            description: t('tour.chartDescription'),
           },
         },
         {
           element: '[data-tour="platform"]',
           popover: {
-            title: '플랫폼별 성과',
-            description: 'Google, Yelp 등 각 플랫폼별 리뷰 현황을 비교하세요.',
+            title: t('tour.platformTitle'),
+            description: t('tour.platformDescription'),
           },
         },
         {
           element: '[data-tour="activity"]',
           popover: {
-            title: '최근 활동',
-            description: '최근 등록된 리뷰를 바로 확인하고 대응할 수 있습니다.',
+            title: t('tour.activityTitle'),
+            description: t('tour.activityDescription'),
           },
         },
       ],
@@ -120,13 +120,13 @@ export default function DashboardPage() {
         <div className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 mb-6">
           <AlertTriangle size={18} className="text-amber-600 shrink-0" />
           <p className="text-sm text-amber-800 flex-1">
-            Your free trial has ended. Subscribe to continue using all features.
+            {t('trialExpiredBanner')}
           </p>
           <Link
             href="/pricing"
             className="shrink-0 bg-navy text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-navy-dark transition-colors"
           >
-            Choose Plan
+            {t('choosePlan')}
           </Link>
         </div>
       )}
@@ -159,7 +159,7 @@ export default function DashboardPage() {
               <option value="7">{t('period.7')}</option>
               <option value="30">{t('period.30')}</option>
               <option value="90">{t('period.90')}</option>
-              <option value="365">This Year</option>
+              <option value="365">{t('period.365')}</option>
             </select>
           </div>
         </div>

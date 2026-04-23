@@ -2,8 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function WaitlistPage() {
+  const t = useTranslations('waitlist');
+  const tCommon = useTranslations('common');
+  const tNav = useTranslations('nav');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
@@ -25,12 +29,12 @@ export default function WaitlistPage() {
       });
       const json = await res.json();
       if (!res.ok) {
-        setError(json.error || 'Failed to join waitlist');
+        setError(json.error || t('failedToJoin'));
         return;
       }
       setSubmitted(true);
     } catch {
-      setError('Network error. Please try again.');
+      setError(t('networkError'));
     } finally {
       setLoading(false);
     }
@@ -40,9 +44,9 @@ export default function WaitlistPage() {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-[420px]">
         <div className="text-center mb-8">
-          <Link href="/" className="text-2xl font-bold text-navy">ReviewHub</Link>
+          <Link href="/" className="text-2xl font-bold text-navy">{tCommon('reviewHub')}</Link>
           <p className="text-[11px] font-medium tracking-widest text-text-secondary uppercase">
-            Small Biz Portal
+            {tNav('tagline')}
           </p>
         </div>
 
@@ -50,19 +54,19 @@ export default function WaitlistPage() {
           {submitted ? (
             <div className="text-center">
               <div className="text-4xl mb-4">🎉</div>
-              <h2 className="text-xl font-bold text-text-primary mb-2">감사합니다!</h2>
+              <h2 className="text-xl font-bold text-text-primary mb-2">{t('success.title')}</h2>
               <p className="text-sm text-text-secondary mb-6">
-                대기 리스트에 등록되었습니다. 초대 코드가 준비되면 이메일로 알려드리겠습니다.
+                {t('success.message')}
               </p>
               <Link href="/" className="text-sm text-accent-blue hover:underline">
-                홈으로 돌아가기
+                {t('success.backToHome')}
               </Link>
             </div>
           ) : (
             <>
-              <h2 className="text-xl font-bold text-text-primary mb-1">대기 리스트 등록</h2>
+              <h2 className="text-xl font-bold text-text-primary mb-1">{t('title')}</h2>
               <p className="text-sm text-text-secondary mb-6">
-                현재 비공개 베타 운영 중입니다. 등록하시면 초대 코드를 보내드립니다.
+                {t('subtitle')}
               </p>
 
               {error && (
@@ -74,38 +78,38 @@ export default function WaitlistPage() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary mb-2">
-                    이름
+                    {t('nameLabel')}
                   </label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="홍길동"
+                    placeholder={t('namePlaceholder')}
                     className="w-full px-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent-blue"
                   />
                 </div>
                 <div>
                   <label className="block text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary mb-2">
-                    이메일 *
+                    {t('emailLabel')}
                   </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
+                    placeholder={t('emailPlaceholder')}
                     required
                     className="w-full px-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent-blue"
                   />
                 </div>
                 <div>
                   <label className="block text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary mb-2">
-                    비즈니스 이름
+                    {t('businessNameLabel')}
                   </label>
                   <input
                     type="text"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    placeholder="My Cafe"
+                    placeholder={t('businessNamePlaceholder')}
                     className="w-full px-4 py-2.5 bg-surface text-text-primary border border-border rounded-lg text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent-blue"
                   />
                 </div>
@@ -114,7 +118,7 @@ export default function WaitlistPage() {
                   disabled={loading}
                   className="w-full bg-navy text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-navy-dark transition-colors disabled:opacity-50"
                 >
-                  {loading ? '등록 중...' : '대기 리스트 등록'}
+                  {loading ? t('submitting') : t('joinWaitlist')}
                 </button>
               </form>
             </>

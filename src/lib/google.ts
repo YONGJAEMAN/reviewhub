@@ -82,20 +82,33 @@ export async function listGoogleLocations(accessToken: string, accountId: string
 
 /**
  * Fetch reviews for a Google Business location.
+ * Handles pagination via nextPageToken (max 10 pages, 50 per page).
  */
-export async function fetchGoogleReviewsAPI(accessToken: string, locationName: string) {
-  const res = await fetch(
-    `https://mybusiness.googleapis.com/v4/${locationName}/reviews`,
-    { headers: { Authorization: `Bearer ${accessToken}` } }
-  );
+export async function fetchGoogleReviewsAPI(accessToken: string, locationName: string, maxPages = 10) {
+  const allReviews: unknown[] = [];
+  let pageToken: string | undefined;
+  let page = 0;
 
-  if (res.status === 429) {
-    throw new Error('RATE_LIMITED');
-  }
-  if (!res.ok) throw new Error(`Failed to fetch reviews: ${res.status}`);
+  do {
+    const url = new URL(`https://mybusiness.googleapis.com/v4/${locationName}/reviews`);
+    url.searchParams.set('pageSize', '50');
+    if (pageToken) url.searchParams.set('pageToken', pageToken);
 
-  const data = await res.json();
-  return data.reviews ?? [];
+    const res = await fetch(url.toString(), {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+
+    if (res.status === 429) throw new Error('RATE_LIMITED');
+    if (res.status === 401 || res.status === 403) throw new Error('AUTH_ERROR');
+    if (!res.ok) throw new Error(`Failed to fetch reviews: ${res.status}`);
+
+    const data = await res.json();
+    allReviews.push(...(data.reviews ?? []));
+    pageToken = data.nextPageToken;
+    page++;
+  } while (pageToken && page < maxPages);
+
+  return allReviews;
 }
 
 /**
@@ -118,9 +131,8 @@ export async function replyToGoogleReviewAPI(
     }
   );
 
-  if (res.status === 429) {
-    throw new Error('RATE_LIMITED');
-  }
+  if (res.status === 429) throw new Error('RATE_LIMITED');
+  if (res.status === 401 || res.status === 403) throw new Error('AUTH_ERROR');
   if (!res.ok) throw new Error(`Failed to reply: ${res.status}`);
 
   return res.json();

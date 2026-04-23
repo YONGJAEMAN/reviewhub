@@ -4,54 +4,35 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Check, Sparkles } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+
+const PLAN_FEATURE_KEYS: Record<string, string[]> = {
+  STARTER: ['locations', 'aiReplies', 'whatsapp', 'integrations', 'analytics'],
+  GROWTH: ['locations', 'aiReplies', 'whatsapp', 'integrations', 'analytics', 'sentiment', 'competitors'],
+  PRO: ['locations', 'aiReplies', 'whatsapp', 'integrations', 'analytics', 'sentiment', 'competitors', 'support'],
+};
 
 const plans = [
   {
     key: 'STARTER',
-    name: 'Starter',
+    planKey: 'starter' as const,
     monthlyPrice: 19,
     yearlyPrice: 182,
     popular: false,
-    features: [
-      '1 Business Location',
-      '10 AI Replies / month',
-      '100 WhatsApp Requests / month',
-      'Google & Yelp Integration',
-      'Basic Analytics',
-    ],
   },
   {
     key: 'GROWTH',
-    name: 'Growth',
+    planKey: 'growth' as const,
     monthlyPrice: 39,
     yearlyPrice: 374,
     popular: true,
-    features: [
-      '3 Business Locations',
-      '50 AI Replies / month',
-      '500 WhatsApp Requests / month',
-      'All Platform Integrations',
-      'Advanced Analytics',
-      'Sentiment Analysis',
-      '3 Competitor Tracking',
-    ],
   },
   {
     key: 'PRO',
-    name: 'Pro',
+    planKey: 'pro' as const,
     monthlyPrice: 69,
     yearlyPrice: 662,
     popular: false,
-    features: [
-      '10 Business Locations',
-      'Unlimited AI Replies',
-      'Unlimited WhatsApp Requests',
-      'All Platform Integrations',
-      'Advanced Analytics & Reports',
-      'Sentiment Analysis',
-      '10 Competitor Tracking',
-      'Priority Support',
-    ],
   },
 ];
 
@@ -59,6 +40,8 @@ export default function PricingPage() {
   const [interval, setInterval] = useState<'monthly' | 'yearly'>('monthly');
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const router = useRouter();
+  const t = useTranslations('pricing');
+  const tc = useTranslations('common');
 
   const handleSubscribe = async (planKey: string) => {
     setLoadingPlan(planKey);
@@ -91,13 +74,13 @@ export default function PricingPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <Link href="/dashboard" className="text-xl font-bold text-navy">
-            ReviewHub
+            {tc('reviewHub')}
           </Link>
           <h1 className="text-4xl font-bold text-text-primary mt-6 mb-3">
-            Choose Your Plan
+            {t('title')}
           </h1>
           <p className="text-lg text-text-secondary max-w-xl mx-auto">
-            Start with a 14-day free trial. No credit card required.
+            {t('subtitle')}
           </p>
 
           {/* Interval Toggle */}
@@ -105,7 +88,7 @@ export default function PricingPage() {
             <span
               className={`text-sm font-medium ${interval === 'monthly' ? 'text-text-primary' : 'text-text-secondary'}`}
             >
-              Monthly
+              {t('monthly')}
             </span>
             <button
               onClick={() => setInterval(interval === 'monthly' ? 'yearly' : 'monthly')}
@@ -122,11 +105,11 @@ export default function PricingPage() {
             <span
               className={`text-sm font-medium ${interval === 'yearly' ? 'text-text-primary' : 'text-text-secondary'}`}
             >
-              Yearly
+              {t('yearly')}
             </span>
             {interval === 'yearly' && (
               <span className="ml-1 px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">
-                Save 20%
+                {t('save20')}
               </span>
             )}
           </div>
@@ -153,30 +136,30 @@ export default function PricingPage() {
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="bg-accent-blue text-white text-xs font-bold px-4 py-1 rounded-full flex items-center gap-1">
                       <Sparkles size={12} />
-                      MOST POPULAR
+                      {t('mostPopular')}
                     </span>
                   </div>
                 )}
 
-                <h3 className="text-xl font-bold text-text-primary">{plan.name}</h3>
+                <h3 className="text-xl font-bold text-text-primary">{t(`plans.${plan.planKey}.name`)}</h3>
 
                 <div className="mt-4 mb-6">
                   <div className="flex items-baseline gap-1">
                     <span className="text-4xl font-bold text-navy">${perMonth}</span>
-                    <span className="text-text-secondary text-sm">/month</span>
+                    <span className="text-text-secondary text-sm">{tc('perMonth')}</span>
                   </div>
                   {interval === 'yearly' && (
                     <p className="text-xs text-text-secondary mt-1">
-                      ${price}/year billed annually
+                      {t('billedAnnually', { price })}
                     </p>
                   )}
                 </div>
 
                 <ul className="space-y-3 flex-1">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm">
+                  {PLAN_FEATURE_KEYS[plan.key].map((featureKey) => (
+                    <li key={featureKey} className="flex items-start gap-2 text-sm">
                       <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" />
-                      <span className="text-text-secondary">{feature}</span>
+                      <span className="text-text-secondary">{t(`plans.${plan.planKey}.features.${featureKey}`)}</span>
                     </li>
                   ))}
                 </ul>
@@ -190,7 +173,7 @@ export default function PricingPage() {
                       : 'bg-background text-text-primary border border-border hover:bg-border/50'
                   }`}
                 >
-                  {loadingPlan === plan.key ? 'Redirecting...' : 'Get Started'}
+                  {loadingPlan === plan.key ? tc('redirecting') : t('getStarted')}
                 </button>
               </div>
             );
@@ -198,11 +181,11 @@ export default function PricingPage() {
         </div>
 
         <p className="text-center text-sm text-text-secondary mt-8">
-          All plans include a 14-day free trial.{' '}
+          {t('allPlansIncludeTrial')}{' '}
           <Link href="/login" className="text-accent-blue hover:underline">
-            Sign in
+            {t('signInToStart')}
           </Link>{' '}
-          to get started.
+          {t('toGetStarted')}
         </p>
       </div>
     </div>

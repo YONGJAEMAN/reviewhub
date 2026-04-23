@@ -20,6 +20,7 @@ export default function ReviewsPage() {
 
 function ReviewsContent() {
   const t = useTranslations('reviews');
+  const td = useTranslations('dashboard');
   const searchParams = useSearchParams();
   const highlightId = searchParams.get('highlight');
 
@@ -124,7 +125,7 @@ function ReviewsContent() {
         <div className="flex items-center gap-6 text-sm">
           <div>
             <span className="text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary">
-              Average Rating
+              {t('averageRating')}
             </span>
             <p className="text-lg font-bold text-navy">
               {avgRating} <span className="text-warning">★</span>
@@ -133,7 +134,7 @@ function ReviewsContent() {
           <div className="w-px h-10 bg-border" />
           <div>
             <span className="text-[12px] font-medium uppercase tracking-[0.05em] text-text-secondary">
-              Total Reviews
+              {td('totalReviews')}
             </span>
             <p className="text-lg font-bold text-navy">{total.toLocaleString()}</p>
           </div>

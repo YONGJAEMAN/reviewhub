@@ -1,0 +1,816 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "reviews": "Reseñas",
+    "analytics": "Analíticas",
+    "reviewRequests": "Solicitudes de Reseñas",
+    "settings": "Configuración",
+    "help": "Ayuda",
+    "qrCards": "Tarjetas QR",
+    "trial": "Prueba: {daysLeft} día(s) restante(s)",
+    "trialExpired": "Prueba expirada — Elige un plan",
+    "upgrade": "Actualizar ahora",
+    "connectAccount": "Conectar Cuenta",
+    "support": "Soporte",
+    "logout": "Cerrar sesión",
+    "tagline": "Portal para Pequeños Negocios"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "subtitle": "Supervisa el rendimiento de las reseñas de tu negocio de un vistazo.",
+    "overallRating": "Calificación General",
+    "totalReviews": "Total de Reseñas",
+    "positiveSentiment": "Sentimiento Positivo",
+    "responseRate": "Tasa de Respuesta",
+    "reviewTrends": "Tendencias de Reseñas",
+    "thisMonth": "Este Mes",
+    "lastMonth": "Mes Anterior",
+    "platformPerformance": "Rendimiento por Plataforma",
+    "recentActivity": "Actividad Reciente",
+    "export": "Exportar",
+    "period": {
+      "7": "Últimos 7 días",
+      "30": "Últimos 30 días",
+      "90": "Últimos 90 días",
+      "365": "Este Año"
+    },
+    "trialExpiredBanner": "Tu prueba gratuita ha finalizado. Suscríbete para seguir usando todas las funciones.",
+    "choosePlan": "Elegir Plan",
+    "tour": {
+      "kpiTitle": "KPIs de un Vistazo",
+      "kpiDescription": "Consulta el total de reseñas, calificación promedio y otras métricas clave en tiempo real.",
+      "chartTitle": "Tendencias de Reseñas",
+      "chartDescription": "Rastrea el volumen de reseñas a lo largo del tiempo con gráficos interactivos.",
+      "platformTitle": "Rendimiento por Plataforma",
+      "platformDescription": "Compara las estadísticas de reseñas en Google, Yelp y otras plataformas.",
+      "activityTitle": "Actividad Reciente",
+      "activityDescription": "Consulta las últimas reseñas y responde de inmediato."
+    }
+  },
+  "reviews": {
+    "title": "Feed de Reseñas",
+    "subtitle": "Consulta y responde reseñas en todas las plataformas.",
+    "searchPlaceholder": "Buscar reseñas...",
+    "allPlatforms": "Todas las Plataformas",
+    "allRatings": "Todas las Calificaciones",
+    "allStatus": "Todos los Estados",
+    "actionRequired": "Acción Requerida",
+    "highPriority": "Alta Prioridad",
+    "replied": "Respondida",
+    "newest": "Más Recientes",
+    "oldest": "Más Antiguas",
+    "highest": "Mayor Calificación",
+    "lowest": "Menor Calificación",
+    "clearAll": "Limpiar todo",
+    "filters": "Filtros",
+    "replyTo": "Responder a",
+    "viewThread": "Ver hilo completo →",
+    "openInYelp": "Abrir en Yelp",
+    "yourReply": "Tu Respuesta",
+    "noReviews": "No se encontraron reseñas.",
+    "backToFeed": "Volver al Feed de Reseñas",
+    "notFound": "Reseña no encontrada.",
+    "writeReply": "Escribir una Respuesta",
+    "writePlaceholder": "Escribe tu respuesta...",
+    "aiSuggest": "Sugerencia IA",
+    "generating": "Generando...",
+    "sendReply": "Enviar Respuesta",
+    "previousReviews": "Reseñas Anteriores",
+    "averageRating": "Calificación Promedio",
+    "localGuide": "Guía Local",
+    "topReviewer": "Reseñador Destacado",
+    "newReviewer": "Nuevo Reseñador",
+    "platform": "Plataforma",
+    "posted": "Publicada",
+    "verified": "Verificada",
+    "repliedAt": "Respondida el {date}",
+    "noPreviousReviews": "No se encontraron reseñas anteriores.",
+    "previousReviewsBy": "Reseñas Anteriores de {name}"
+  },
+  "analytics": {
+    "title": "Analíticas",
+    "subtitle": "Análisis detallado de tus datos de reseñas.",
+    "sentimentTrends": "Tendencias de Sentimiento",
+    "positive": "Positivo",
+    "negative": "Negativo",
+    "ratingDistribution": "Distribución de Calificaciones",
+    "platformComparison": "Comparación de Plataformas",
+    "topKeywords": "Palabras Clave Principales",
+    "competitorBenchmark": "Benchmark de Competidores",
+    "responseTime": "Tiempo Promedio de Respuesta",
+    "responseRate": "Tasa de Respuesta",
+    "last30Days": "Últimos 30 Días",
+    "quarterly": "Trimestral",
+    "topPlatform": "Plataforma Principal",
+    "criticalAction": "Acción Crítica",
+    "unreadNegatives": "{count} Negativas Sin Leer",
+    "requiresAttention": "Requiere atención inmediata",
+    "sentimentTrend": "Tendencia de Sentimiento",
+    "growth": "+{percent}% Crecimiento",
+    "positiveMentionsIncreasing": "Las menciones positivas están aumentando",
+    "ofTotalVolume": "{percent}% del volumen total"
+  },
+  "settings": {
+    "title": "Configuración",
+    "subtitle": "Administra el perfil de tu negocio y las integraciones de plataformas desde un solo lugar.",
+    "platformConnections": "Conexiones de Plataformas",
+    "activeChannels": "Canales Activos",
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "connect": "Conectar",
+    "manage": "Administrar",
+    "businessProfile": "Perfil del Negocio",
+    "notifications": "Configuración de Notificaciones",
+    "subscription": "Suscripción",
+    "teamMembers": "Miembros del Equipo",
+    "competitors": "Seguimiento de Competidores",
+    "referral": "Referir y Ganar",
+    "dangerZone": "Zona de Peligro",
+    "dangerDescription": "Eliminar tu cuenta borrará permanentemente todos los datos del negocio, reseñas y configuraciones. Esta acción no se puede deshacer.",
+    "deleteAccount": "Solicitar Eliminación de Cuenta",
+    "autoMonthlyReport": "Reporte Mensual Automático",
+    "autoMonthlyReportDesc": "Recibe un reporte por correo electrónico el primer día de cada mes."
+  },
+  "export": {
+    "title": "Exportar Reporte",
+    "format": "Formato de Archivo",
+    "period": "Período",
+    "download": "Descargar",
+    "generating": "Generando..."
+  },
+  "common": {
+    "search": "Buscar...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "loading": "Cargando...",
+    "error": "Ocurrió un error.",
+    "success": "Procesado exitosamente.",
+    "confirm": "Confirmar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "noResults": "No se encontraron resultados",
+    "switchToLight": "Cambiar a modo claro",
+    "switchToDark": "Cambiar a modo oscuro",
+    "home": "Inicio",
+    "owner": "Propietario",
+    "ok": "OK",
+    "create": "Crear",
+    "print": "Imprimir",
+    "copyLink": "Copiar Enlace",
+    "copied": "Copiado",
+    "copy": "Copiar",
+    "sending": "Enviando...",
+    "submit": "Enviar",
+    "processing": "Procesando...",
+    "redirecting": "Redirigiendo...",
+    "page": "Página {current} de {total}",
+    "perMonth": "/mes",
+    "reviewHub": "ReviewHub"
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Inicia sesión para gestionar tus reseñas",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "passwordLabel": "Contraseña",
+      "passwordPlaceholder": "Ingresa tu contraseña",
+      "signIn": "Iniciar Sesión",
+      "signingIn": "Iniciando sesión...",
+      "orContinueWith": "o continuar con",
+      "signInWithGoogle": "Iniciar sesión con Google",
+      "noAccount": "¿No tienes una cuenta?",
+      "signUp": "Regístrate",
+      "invalidCredentials": "Correo electrónico o contraseña no válidos"
+    },
+    "signup": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Comienza a gestionar tus reseñas hoy",
+      "fullNameLabel": "Nombre Completo",
+      "fullNamePlaceholder": "Juan Pérez",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "passwordLabel": "Contraseña",
+      "passwordPlaceholder": "Al menos 6 caracteres",
+      "inviteCodeLabel": "Código de Invitación",
+      "inviteCodePlaceholder": "BETA-XXXXXX",
+      "noInviteCode": "¿No tienes un código de invitación?",
+      "joinWaitlist": "Únete a la lista de espera",
+      "createAccount": "Crear Cuenta",
+      "creatingAccount": "Creando cuenta...",
+      "orContinueWith": "o continuar con",
+      "signUpWithGoogle": "Registrarse con Google",
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "signIn": "Iniciar sesión",
+      "failedToCreate": "No se pudo crear la cuenta",
+      "somethingWentWrong": "Algo salió mal. Por favor, inténtalo de nuevo."
+    }
+  },
+  "onboarding": {
+    "stepOf": "Paso {step} de {total}",
+    "step1": {
+      "title": "¡Bienvenido a ReviewHub!",
+      "subtitle": "Ingresa los datos de tu negocio para obtener configuraciones personalizadas.",
+      "businessNameLabel": "Nombre del Negocio *",
+      "businessNamePlaceholder": "ej. Café del Centro",
+      "industryLabel": "Industria",
+      "selectIndustry": "Selecciona una industria",
+      "locationLabel": "Ubicación",
+      "locationPlaceholder": "ej. Ciudad de México, MX"
+    },
+    "step2": {
+      "title": "Conecta tus plataformas de reseñas",
+      "subtitle": "Siempre puedes conectar más después en Configuración.",
+      "connected": "Conectado"
+    },
+    "step3": {
+      "title": "¿Qué notificaciones te gustaría recibir?",
+      "subtitle": "Puedes cambiar esto en cualquier momento en Configuración.",
+      "newReviewAlerts": "Alertas de Nuevas Reseñas",
+      "newReviewAlertsDesc": "Recibe notificaciones instantáneas cuando se publique una nueva reseña.",
+      "weeklySummary": "Resumen Semanal por Correo",
+      "weeklySummaryDesc": "Recibe un resumen semanal de reseñas todos los lunes.",
+      "negativeAlerts": "Alertas de Reseñas Negativas",
+      "negativeAlertsDesc": "Recibe alertas urgentes cuando se detecten reseñas negativas."
+    },
+    "step4": {
+      "title": "¡Todo listo!",
+      "subtitle": "Tu panel está listo. Comienza a gestionar tus reseñas ahora.",
+      "connectedPlatforms": "Plataformas Conectadas",
+      "goToDashboard": "Ir al Panel"
+    },
+    "skipForNow": "Omitir por ahora",
+    "failedToCreateBusiness": "No se pudo crear el negocio",
+    "somethingWentWrong": "Algo salió mal. Por favor, inténtalo de nuevo.",
+    "industries": {
+      "restaurant": "Restaurante / Café",
+      "beauty": "Belleza / Salón",
+      "medical": "Médico / Dental",
+      "hospitality": "Hospitalidad / Hotel",
+      "retail": "Comercio / Tienda",
+      "professional": "Servicios Profesionales",
+      "education": "Educación / Tutoría",
+      "other": "Otro"
+    },
+    "platforms": {
+      "google": "Google",
+      "googleDesc": "Google Business Profile",
+      "yelp": "Yelp",
+      "yelpDesc": "Yelp Fusion API",
+      "facebook": "Facebook",
+      "facebookDesc": "Reseñas de Página de Facebook",
+      "whatsapp": "WhatsApp",
+      "whatsappDesc": "WhatsApp Business"
+    }
+  },
+  "landing": {
+    "navbar": {
+      "features": "Funciones",
+      "pricing": "Precios",
+      "testimonials": "Testimonios",
+      "logIn": "Iniciar Sesión",
+      "startForFree": "Comienza Gratis"
+    },
+    "hero": {
+      "title": "Todas las Reseñas,\nUn Solo Panel",
+      "subtitle": "Gestiona reseñas de Google · Yelp · Facebook · WhatsApp en un solo lugar.",
+      "startingAt": "Desde $19/mes.",
+      "startForFree": "Comienza Gratis",
+      "viewDemo": "Ver Demo"
+    },
+    "stats": {
+      "activeBusinesses": "Negocios Activos",
+      "reviewsManaged": "Reseñas Gestionadas",
+      "customerSatisfaction": "Satisfacción del Cliente"
+    },
+    "mockup": {
+      "rating": "Calificación",
+      "reviews": "Reseñas",
+      "positive": "Positivas",
+      "pending": "Pendientes"
+    },
+    "painPoints": {
+      "title": "Dueño de Pequeño Negocio, ¿Te Suena Familiar?",
+      "subtitle": "Una sola reseña puede cambiar tus ingresos. Pero gestionarlas es demasiado complicado.",
+      "wastedTime": "Tiempo Perdido",
+      "wastedTimeDesc": "Pasando más de 30 minutos al día revisando cada plataforma una por una",
+      "lateResponses": "Respuestas Tardías",
+      "lateResponsesDesc": "Descubrir reseñas negativas demasiado tarde, perder la oportunidad de responder y bajar calificaciones",
+      "expensiveTools": "Herramientas Costosas",
+      "expensiveToolsDesc": "Las herramientas de gestión de reseñas cuestan entre $44–$399, una carga para los pequeños negocios"
+    },
+    "solutions": {
+      "title": "ReviewHub Tiene la Solución",
+      "subtitle": "Simplifica la compleja gestión de reseñas con una sola herramienta.",
+      "unifiedDashboard": "Panel Unificado",
+      "unifiedDashboardDesc": "Consulta y gestiona reseñas de todas las plataformas en una sola pantalla, en tiempo real.",
+      "whatsappRequests": "Solicitudes de Reseñas por WhatsApp",
+      "whatsappRequestsDesc": "Solicita reseñas a tus clientes vía WhatsApp con una tasa de apertura del 98%. Observa cómo se disparan tus reseñas.",
+      "aiReplyGeneration": "Generación de Respuestas con IA",
+      "aiReplyGenerationDesc": "Genera respuestas profesionales automáticamente con un solo clic. Elige el tono y ajusta la longitud.",
+      "realTimeAlerts": "Alertas en Tiempo Real",
+      "realTimeAlertsDesc": "Detecta reseñas negativas al instante y responde rápidamente con notificaciones por correo electrónico."
+    },
+    "comparison": {
+      "title": "¿Por Qué ReviewHub?",
+      "subtitle": "Valor claro en comparación con la competencia.",
+      "feature": "Función",
+      "reviewAggregation": "Agregación de Reseñas",
+      "whatsappAutomation": "Automatización de WhatsApp",
+      "aiReplyGeneration": "Generación de Respuestas con IA",
+      "smallBusinessPricing": "Precios para Pequeños Negocios",
+      "sentimentAnalysis": "Análisis de Sentimiento",
+      "competitorBenchmarking": "Benchmarking de Competidores",
+      "limited": "Limitado"
+    },
+    "pricing": {
+      "title": "Precios Accesibles",
+      "subtitle": "Prueba gratuita de 14 días, sin tarjeta de crédito",
+      "startForFree": "Comienza Gratis"
+    },
+    "testimonials": {
+      "title": "Lo Que Dicen Nuestros Clientes",
+      "subtitle": "Historias reales de dueños de negocios que usan ReviewHub",
+      "review1Name": "K. M.",
+      "review1Business": "Dueño de Café",
+      "review1Text": "Nuestro tiempo promedio de respuesta a reseñas bajó de 6 horas a 30 minutos. Gracias a la función de respuesta con IA, podemos enviar respuestas profesionales rápidamente.",
+      "review2Name": "L. J.",
+      "review2Business": "Salón de Belleza",
+      "review2Text": "Después de solicitar reseñas vía WhatsApp, obtuvimos 40 nuevas reseñas en Google en solo un mes. El tráfico de nuevos clientes ha aumentado notablemente.",
+      "review3Name": "P. S.",
+      "review3Business": "Restaurante",
+      "review3Text": "A $19/mes, es la mejor relación calidad-precio que existe. Las alertas de reseñas negativas nos permiten responder de inmediato, y nuestra calificación subió de 4.2 a 4.7."
+    },
+    "cta": {
+      "title": "Comienza Ahora",
+      "subtitle": "Prueba gratuita de 14 días · Sin tarjeta de crédito · Configura en 5 minutos",
+      "startForFree": "Comienza Gratis"
+    },
+    "footer": {
+      "tagline": "Plataforma integral de gestión\nde reseñas para pequeños negocios",
+      "product": "Producto",
+      "company": "Empresa",
+      "legal": "Legal",
+      "features": "Funciones",
+      "pricing": "Precios",
+      "faq": "Preguntas Frecuentes",
+      "blog": "Blog",
+      "about": "Acerca de",
+      "contactUs": "Contáctanos",
+      "privacyPolicy": "Política de Privacidad",
+      "termsOfService": "Términos de Servicio",
+      "cookiePolicy": "Política de Cookies",
+      "copyright": "© {year} ReviewHub. Todos los derechos reservados."
+    }
+  },
+  "waitlist": {
+    "title": "Únete a la Lista de Espera",
+    "subtitle": "Actualmente estamos en beta privada. Regístrate y te enviaremos un código de invitación.",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Juan Pérez",
+    "emailLabel": "Correo electrónico *",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "businessNameLabel": "Nombre del Negocio",
+    "businessNamePlaceholder": "Mi Café",
+    "joinWaitlist": "Unirse a la Lista de Espera",
+    "submitting": "Enviando...",
+    "failedToJoin": "No se pudo unir a la lista de espera",
+    "networkError": "Error de red. Por favor, inténtalo de nuevo.",
+    "success": {
+      "title": "¡Gracias!",
+      "message": "Has sido añadido a la lista de espera. Te enviaremos un correo cuando tu código de invitación esté listo.",
+      "backToHome": "Volver al Inicio"
+    }
+  },
+  "pricing": {
+    "title": "Elige Tu Plan",
+    "subtitle": "Comienza con una prueba gratuita de 14 días. Sin tarjeta de crédito.",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "save20": "Ahorra 20%",
+    "mostPopular": "MÁS POPULAR",
+    "getStarted": "Comenzar",
+    "billedAnnually": "${price}/año facturado anualmente",
+    "allPlansIncludeTrial": "Todos los planes incluyen una prueba gratuita de 14 días.",
+    "signInToStart": "Iniciar sesión",
+    "toGetStarted": "para comenzar.",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "features": {
+          "locations": "1 Ubicación de Negocio",
+          "aiReplies": "10 Respuestas IA / mes",
+          "whatsapp": "100 Solicitudes WhatsApp / mes",
+          "integrations": "Integración con Google y Yelp",
+          "analytics": "Analíticas Básicas"
+        }
+      },
+      "growth": {
+        "name": "Growth",
+        "features": {
+          "locations": "3 Ubicaciones de Negocio",
+          "aiReplies": "50 Respuestas IA / mes",
+          "whatsapp": "500 Solicitudes WhatsApp / mes",
+          "integrations": "Todas las Integraciones de Plataformas",
+          "analytics": "Analíticas Avanzadas",
+          "sentiment": "Análisis de Sentimiento",
+          "competitors": "Seguimiento de 3 Competidores"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "features": {
+          "locations": "10 Ubicaciones de Negocio",
+          "aiReplies": "Respuestas IA Ilimitadas",
+          "whatsapp": "Solicitudes WhatsApp Ilimitadas",
+          "integrations": "Todas las Integraciones de Plataformas",
+          "analytics": "Analíticas Avanzadas y Reportes",
+          "sentiment": "Análisis de Sentimiento",
+          "competitors": "Seguimiento de 10 Competidores",
+          "support": "Soporte Prioritario"
+        }
+      }
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Política de Privacidad",
+      "lastUpdated": "Última actualización: 1 de abril de 2026",
+      "intro": "ReviewHub (\"Empresa\") valora su privacidad y protege su información personal de acuerdo con la Privacy Act 2020 de Nueva Zelanda y otras leyes aplicables. Esta Política de Privacidad describe cómo recopilamos, usamos y compartimos información personal cuando utiliza nuestro servicio de gestión de reseñas.",
+      "section1Title": "1. Información que Recopilamos",
+      "section1Sub1Title": "Información Requerida",
+      "section1Sub1Items": [
+        "Dirección de correo electrónico, nombre (al registrarse)",
+        "Nombre del negocio, industria, ubicación (durante el uso del servicio)",
+        "Información de pago (procesada a través de Stripe; los números de tarjeta no son almacenados por nosotros)"
+      ],
+      "section1Sub2Title": "Información Recopilada Automáticamente",
+      "section1Sub2Items": [
+        "Dirección IP, información del navegador, hora de acceso",
+        "Patrones de uso mediante cookies y tecnologías similares"
+      ],
+      "section1Sub3Title": "Datos de Plataformas de Terceros",
+      "section1Sub3Items": [
+        "Google Business Profile: tokens OAuth, datos de reseñas del negocio",
+        "Facebook/Meta: tokens de acceso de página, datos de recomendaciones",
+        "Yelp: datos de reseñas a través de API",
+        "WhatsApp Business: registros de entrega de mensajes"
+      ],
+      "section2Title": "2. Cómo Usamos Su Información",
+      "section2Items": [
+        "Proporcionar servicios integrados de gestión de reseñas",
+        "Enviar solicitudes de reseñas a través de WhatsApp",
+        "Generar respuestas impulsadas por IA (usando Anthropic API)",
+        "Análisis de sentimiento e información comercial",
+        "Mejora del servicio y analíticas",
+        "Soporte al cliente y notificaciones"
+      ],
+      "section3Title": "3. Compartición con Terceros",
+      "section3Intro": "Compartimos datos con los siguientes proveedores de servicios para operar nuestro servicio:",
+      "section3Items": [
+        { "name": "Google", "desc": "Sincronización de reseñas del negocio" },
+        { "name": "Meta (Facebook/WhatsApp)", "desc": "Sincronización de recomendaciones, mensajería" },
+        { "name": "Yelp", "desc": "Obtención de datos de reseñas" },
+        { "name": "Stripe", "desc": "Procesamiento de pagos" },
+        { "name": "Anthropic", "desc": "Generación de respuestas con IA, análisis de sentimiento" },
+        { "name": "Resend", "desc": "Envío de correos electrónicos" },
+        { "name": "Vercel", "desc": "Alojamiento y analíticas" },
+        { "name": "Sentry", "desc": "Monitoreo de errores" }
+      ],
+      "section4Title": "4. Retención de Datos",
+      "section4Content": "La información personal se conserva mientras su cuenta esté activa. Al solicitar la eliminación de la cuenta, los datos se eliminan permanentemente dentro de 30 días, excepto cuando la retención sea requerida por ley (incluyendo la Privacy Act 2020).",
+      "section5Title": "5. Sus Derechos",
+      "section5Intro": "Bajo la Privacy Act 2020, usted tiene derecho a:",
+      "section5Items": [
+        { "name": "Acceso", "desc": "Solicitar acceso a sus datos personales recopilados." },
+        { "name": "Corrección", "desc": "Solicitar la corrección de información inexacta." },
+        { "name": "Eliminación", "desc": "Solicitar la eliminación de sus datos personales." },
+        { "name": "Portabilidad", "desc": "Solicitar la transferencia de sus datos a otro servicio." },
+        { "name": "Restricción", "desc": "Solicitar la restricción del procesamiento de datos." }
+      ],
+      "section5Outro": "Puede ejercer estos derechos a través de la página de Configuración o enviando un correo a support@reviewhub.app. También puede presentar una queja ante la Office of the Privacy Commissioner.",
+      "section6Title": "6. Cookies",
+      "section6Content": "Utilizamos cookies para autenticación, funcionalidad y analíticas. Para más detalles, consulte nuestra Política de Cookies.",
+      "section7Title": "7. Seguridad",
+      "section7Content": "Implementamos medidas técnicas y organizativas que incluyen cifrado SSL, controles de acceso y auditorías de seguridad periódicas. Los tokens OAuth se almacenan cifrados y las contraseñas se hashean con bcrypt.",
+      "section8Title": "8. Contacto",
+      "section8Content": "Para consultas de privacidad: support@reviewhub.app"
+    },
+    "terms": {
+      "title": "Términos de Servicio",
+      "lastUpdated": "Última actualización: 1 de abril de 2026",
+      "section1Title": "1. Acerca del Servicio",
+      "section1Content": "ReviewHub (\"Servicio\") es una plataforma integrada de gestión de reseñas para pequeños negocios, que ofrece una solución SaaS para gestionar reseñas de Google, Yelp, Facebook, WhatsApp y otras plataformas en un solo lugar.",
+      "section2Title": "2. Condiciones de Uso",
+      "section2Items": [
+        "Es necesario registrarse para utilizar el Servicio.",
+        "Los usuarios deben proporcionar información precisa y mantenerla actualizada.",
+        "Las cuentas son personales y no pueden transferirse a terceros.",
+        "El Servicio no puede utilizarse con fines ilegales o inapropiados."
+      ],
+      "section3Title": "3. Precios y Pagos",
+      "section3Items": [
+        "Después de la prueba gratuita de 14 días, se debe seleccionar un plan de pago.",
+        "Los pagos se procesan a través de Stripe y se renuevan automáticamente mensual o anualmente.",
+        "Los cambios de plan pueden realizarse en cualquier momento en Configuración y se aplican en el siguiente ciclo de facturación.",
+        "Los precios pueden cambiar con previo aviso."
+      ],
+      "section4Title": "4. Límites del Servicio",
+      "section4Content": "Cada plan tiene límites de uso (respuestas IA, solicitudes de WhatsApp, número de negocios, etc.). Las funciones pueden restringirse cuando se excedan los límites.",
+      "section5Title": "5. Propiedad Intelectual",
+      "section5Items": [
+        "Todo el software, diseño, logotipos y demás propiedad intelectual del Servicio pertenecen a la Empresa.",
+        "La información comercial y las respuestas a reseñas ingresadas por los usuarios siguen siendo propiedad del usuario.",
+        "Las respuestas generadas por IA pueden ser utilizadas libremente por el usuario."
+      ],
+      "section6Title": "6. Garantías al Consumidor",
+      "section6Content": "Si usted es un consumidor bajo la Consumer Guarantees Act 1993, el Servicio debe proporcionarse con cuidado y habilidad razonables. Nada en estos términos limita sus derechos bajo la Consumer Guarantees Act 1993.",
+      "section7Title": "7. Descargos de Responsabilidad",
+      "section7Items": [
+        "La Empresa no es responsable por cambios en las API o interrupciones del servicio de plataformas externas (Google, Yelp, Facebook, WhatsApp).",
+        "No garantizamos la exactitud o idoneidad de las respuestas generadas por IA; la revisión final es responsabilidad del usuario.",
+        "La Empresa no se hace responsable por interrupciones del servicio causadas por fuerza mayor, fallos del sistema o eventos similares."
+      ],
+      "section8Title": "8. Cancelación y Reembolsos",
+      "section8Items": [
+        "Los usuarios pueden cancelar el Servicio en cualquier momento.",
+        "Tras la cancelación, el Servicio permanece accesible hasta el final del período de facturación actual.",
+        "Las suscripciones anuales pueden ser reembolsadas dentro de los 14 días posteriores al pago.",
+        "Las solicitudes de eliminación de cuenta tienen un período de gracia de 30 días durante el cual es posible cancelar la eliminación."
+      ],
+      "section9Title": "9. Cambios en los Términos",
+      "section9Content": "La Empresa puede modificar estos términos con previo aviso por correo electrónico y notificación en la aplicación. Si no está de acuerdo con los términos actualizados, puede cancelar el Servicio.",
+      "section10Title": "10. Ley Aplicable",
+      "section10Content": "Estos términos se rigen por las leyes de Nueva Zelanda. Cualquier disputa estará sujeta a la jurisdicción no exclusiva de los tribunales de Nueva Zelanda.",
+      "section11Title": "11. Contacto",
+      "section11Content": "Para consultas sobre estos términos: support@reviewhub.app"
+    },
+    "cookie": {
+      "title": "Política de Cookies",
+      "lastUpdated": "Última actualización: 1 de abril de 2026",
+      "intro": "Esta Política de Cookies explica cómo ReviewHub (\"Servicio\") utiliza cookies y tecnologías similares.",
+      "section1Title": "1. ¿Qué Son las Cookies?",
+      "section1Content": "Las cookies son pequeños archivos de texto almacenados en su navegador cuando visita un sitio web. Permiten que los sitios web recuerden sus preferencias y brinden una mejor experiencia.",
+      "section2Title": "2. Tipos de Cookies que Utilizamos",
+      "section2Sub1Title": "Cookies Esenciales",
+      "section2Sub1Intro": "Necesarias para el funcionamiento del Servicio. No pueden desactivarse.",
+      "section2Sub1Items": [
+        { "name": "Cookies de autenticación", "desc": "Mantienen su sesión iniciada (NextAuth)" },
+        { "name": "Tokens CSRF", "desc": "Verificación de solicitudes por seguridad" },
+        { "name": "Consentimiento de cookies", "desc": "Recuerdan sus preferencias de cookies" }
+      ],
+      "section2Sub2Title": "Cookies Funcionales",
+      "section2Sub2Intro": "Mejoran su experiencia con configuraciones personalizadas.",
+      "section2Sub2Items": [
+        { "name": "Preferencia de tema", "desc": "Recuerdan la selección de modo oscuro/claro" },
+        { "name": "Negocio activo", "desc": "Recuerdan su último negocio seleccionado" }
+      ],
+      "section2Sub3Title": "Cookies Analíticas",
+      "section2Sub3Intro": "Nos ayudan a analizar patrones de uso para mejorar el Servicio. Se activan solo con su consentimiento.",
+      "section2Sub3Items": [
+        { "name": "Vercel Analytics", "desc": "Estadísticas de visitas a páginas" },
+        { "name": "Sentry", "desc": "Seguimiento de errores y monitoreo de rendimiento" }
+      ],
+      "section3Title": "3. Gestión de Cookies",
+      "section3Content1": "Puede rechazar las cookies analíticas a través del banner de cookies en la parte inferior de la página. También puede gestionar o eliminar cookies a través de la configuración de su navegador.",
+      "section3Content2": "Desactivar las cookies puede limitar algunas funciones del Servicio.",
+      "section4Title": "4. Cookies de Terceros",
+      "section4Content": "Al conectar plataformas externas como Google o Facebook, estas plataformas pueden establecer sus propias cookies. Estas cookies están sujetas a la política de cookies de cada plataforma.",
+      "section5Title": "5. Contacto",
+      "section5Content": "Para consultas sobre la política de cookies: support@reviewhub.app"
+    }
+  },
+  "reviewRequests": {
+    "title": "Solicitudes de Reseñas",
+    "subtitle": "Envía solicitudes de reseñas por WhatsApp y rastrea su estado.",
+    "sendIndividual": {
+      "title": "Enviar Solicitud Individual",
+      "customerName": "Nombre del Cliente",
+      "customerNamePlaceholder": "Juan Pérez",
+      "phoneNumber": "Número de Teléfono",
+      "phonePlaceholder": "+1234567890",
+      "reviewPlatform": "Plataforma de Reseñas",
+      "sendRequest": "Enviar Solicitud",
+      "sending": "Enviando...",
+      "messageSent": "¡Mensaje enviado exitosamente!",
+      "failedToSend": "Error al enviar",
+      "networkError": "Error de red"
+    },
+    "bulkSend": {
+      "title": "Envío Masivo (CSV)",
+      "description": "Sube un archivo CSV con columnas: phone, customerName",
+      "contactsReady": "{count} contactos listos para enviar",
+      "sendAll": "Enviar Todos",
+      "sent": "Enviados: {count}",
+      "failed": "Fallidos: {count}",
+      "total": "Total: {count}"
+    },
+    "history": {
+      "title": "Historial de Envíos",
+      "noRequests": "Aún no se han enviado solicitudes de reseñas.",
+      "customer": "Cliente",
+      "phone": "Teléfono",
+      "platform": "Plataforma",
+      "status": "Estado",
+      "sentAt": "Enviado el"
+    },
+    "status": {
+      "sent": "Enviado",
+      "delivered": "Entregado",
+      "read": "Leído",
+      "failed": "Fallido"
+    },
+    "qr": {
+      "title": "Tarjetas QR de Reseñas",
+      "subtitle": "Genera códigos QR para recopilar reseñas de tus clientes.",
+      "createQrCode": "Crear Código QR",
+      "newQrCode": "Nuevo Código QR",
+      "platform": "Plataforma",
+      "reviewPageUrl": "URL de la Página de Reseñas",
+      "reviewPageUrlPlaceholder": "https://g.page/r/...",
+      "noQrCodes": "Aún no hay códigos QR. Crea uno para empezar a recopilar reseñas.",
+      "scans": "{count} escaneos",
+      "scanToLeaveReview": "Escanea para dejar una reseña",
+      "weValueFeedback": "¡Valoramos tus comentarios!",
+      "printCard": "Imprimir"
+    }
+  },
+  "feedback": {
+    "title": "Enviar Comentarios",
+    "buttonTitle": "Enviar Comentarios",
+    "placeholder": "Ingresa tus comentarios...",
+    "emailPlaceholder": "Correo electrónico (opcional)",
+    "submit": "Enviar",
+    "sending": "Enviando...",
+    "successTitle": "¡Gracias!",
+    "successMessage": "Tus comentarios han sido enviados.",
+    "categories": {
+      "bug": "Reporte de Error",
+      "feature": "Solicitud de Función",
+      "general": "Comentarios Generales",
+      "ux": "Problema de UX"
+    }
+  },
+  "cookieBanner": {
+    "message": "Este sitio utiliza cookies para la prestación del servicio y analíticas.",
+    "learnMore": "Más información",
+    "accept": "Aceptar",
+    "decline": "Rechazar"
+  },
+  "referral": {
+    "title": "Referir y Ganar",
+    "subtitle": "Invita a tus amigos y ambos recibirán recompensas.",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "shareText": "¡Gestiona tus reseñas fácilmente con ReviewHub! {link}",
+    "shareEmailSubject": "Referido de ReviewHub",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "email": "Correo electrónico",
+    "invited": "Invitado",
+    "signedUp": "Registrado",
+    "rewarded": "Recompensado"
+  },
+  "account": {
+    "deleteModal": {
+      "title": "Eliminar Cuenta",
+      "warningTitle": "Advertencia: Esta acción no se puede deshacer.",
+      "warningItems": [
+        "Todos los datos del negocio, reseñas y configuraciones serán eliminados",
+        "Las suscripciones activas se cancelarán automáticamente",
+        "La eliminación permanente ocurre después de un período de gracia de 30 días"
+      ],
+      "confirmPassword": "Confirmar Contraseña",
+      "passwordPlaceholder": "Ingresa tu contraseña actual",
+      "confirmCheckbox": "Entiendo que todos los datos serán eliminados permanentemente después de 30 días.",
+      "requestDeletion": "Solicitar Eliminación de Cuenta",
+      "processing": "Procesando...",
+      "successMessage": "Se ha solicitado la eliminación de la cuenta. Todos los datos serán eliminados permanentemente después de 30 días. Puedes cancelar la eliminación desde Configuración dentro de este período.",
+      "failedToDelete": "No se pudo solicitar la eliminación de la cuenta",
+      "networkError": "Error de red. Por favor, inténtalo de nuevo."
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Consejos e información sobre gestión de reseñas para pequeños negocios",
+    "noPosts": "Aún no hay publicaciones.",
+    "backToBlog": "← Volver al Blog",
+    "metaTitle": "Blog de ReviewHub",
+    "metaDescription": "Consejos e información sobre gestión de reseñas para pequeños negocios"
+  },
+  "tour": {
+    "kpi": {
+      "title": "KPIs de un Vistazo",
+      "description": "Consulta el total de reseñas, calificación promedio y otras métricas clave en tiempo real."
+    },
+    "chart": {
+      "title": "Tendencias de Reseñas",
+      "description": "Rastrea el volumen de reseñas a lo largo del tiempo con gráficos interactivos."
+    },
+    "platform": {
+      "title": "Rendimiento por Plataforma",
+      "description": "Compara las estadísticas de reseñas en Google, Yelp y otras plataformas."
+    },
+    "activity": {
+      "title": "Actividad Reciente",
+      "description": "Consulta las últimas reseñas y responde de inmediato."
+    }
+  },
+  "unsubscribe": {
+    "invalidLink": {
+      "title": "Enlace No Válido",
+      "message": "Este enlace de cancelación de suscripción no es válido o ha expirado.",
+      "backToHome": "Volver al Inicio"
+    },
+    "success": {
+      "title": "Te has dado de baja",
+      "message": "Ya no recibirás correos de marketing.",
+      "settingsNote": "Las notificaciones del servicio (nuevas reseñas, resumen semanal) se pueden gestionar en Configuración.",
+      "backToHome": "Volver al Inicio"
+    }
+  },
+  "email": {
+    "welcome": {
+      "title": "¡Bienvenido a ReviewHub!",
+      "greeting": "Hola {name},",
+      "intro": "Gracias por registrarte en ReviewHub. Ahora puedes gestionar todas tus reseñas desde un solo panel.",
+      "gettingStartedTitle": "Primeros Pasos",
+      "gettingStartedItems": [
+        "Conecta tus plataformas de Google, Yelp y Facebook",
+        "Responde a las reseñas rápidamente con sugerencias de respuesta con IA",
+        "Envía solicitudes de reseñas a través de WhatsApp",
+        "Rastrea tu posición en el mercado con benchmarking de competidores"
+      ],
+      "goToDashboard": "Ir al Panel",
+      "trialNote": "Explora todas las funciones durante tu prueba gratuita de 14 días.",
+      "footer": "ReviewHub - Gestión de Reseñas",
+      "unsubscribe": "Cancelar suscripción de correos de marketing"
+    },
+    "trialReminder": {
+      "day11Title": "¿Ya respondiste a tu primera reseña?",
+      "day11Tip": "Responder a las reseñas aumenta la tasa de retorno de clientes en un 33%. Revisa tu panel para ver las reseñas que necesitan respuesta.",
+      "day7Title": "¿Ya probaste la función de respuesta con IA?",
+      "day7Tip": "Usar las sugerencias de respuesta con IA reduce el tiempo promedio de respuesta en un 80%. Haz clic en el botón \"Sugerencia de Respuesta IA\" en la página de detalle de la reseña.",
+      "day4Title": "Quedan {days} días para que expire tu prueba",
+      "day4Tip": "¿Has aprovechado al máximo ReviewHub? Asegúrate de explorar todas las funciones durante el período de prueba restante.",
+      "day1Title": "Tu prueba expira mañana",
+      "day1Tip": "Tu prueba gratuita termina mañana. Elige un plan ahora para seguir gestionando tus reseñas sin interrupciones.",
+      "defaultTip": "Explora todas las funciones durante tu período de prueba.",
+      "daysUntilExpiry": "{days} día(s) para que expire la prueba gratuita",
+      "choosePlan": "Elegir un Plan",
+      "goToDashboard": "Ir al Panel"
+    },
+    "upgradePrompt": {
+      "title": "Tu Prueba Gratuita Ha Finalizado",
+      "greeting": "Hola {name},",
+      "message": "Tu prueba gratuita de 14 días ha finalizado. Por favor, elige un plan para continuar gestionando tus reseñas.",
+      "achievementsTitle": "Lo Que Lograste Durante la Prueba",
+      "achievements": [
+        "Gestión unificada de reseñas",
+        "Sugerencias de respuesta con IA",
+        "Alertas en tiempo real",
+        "Solicitudes de reseñas por WhatsApp"
+      ],
+      "starterPlan": "Plan Starter",
+      "starterPrice": "$19",
+      "starterPriceNote": "El precio perfecto para pequeños negocios",
+      "choosePlan": "Elegir un Plan"
+    },
+    "winback": {
+      "title": "Podrías Estar Perdiendo Reseñas",
+      "greeting": "Hola {name},",
+      "message": "Ha pasado una semana desde que dejaste ReviewHub. Es posible que hayan llegado nuevas reseñas desde entonces. Las reseñas sin responder pueden dejar una impresión negativa en los clientes potenciales.",
+      "stat": "El 45% de los clientes potenciales evitan negocios con reseñas negativas sin responder.",
+      "ctaMessage": "Regresa ahora para revisar y responder tus reseñas de inmediato.",
+      "ctaButton": "Comenzar de Nuevo"
+    },
+    "reviewAlert": {
+      "title": "Nueva Reseña para {businessName}",
+      "viewAndReply": "Ver y Responder",
+      "footer": "ReviewHub - Gestión de Reseñas"
+    },
+    "negativeAlert": {
+      "banner": "Reseña Negativa Requiere Atención",
+      "respondNow": "Responder Ahora",
+      "footer": "ReviewHub - Gestión de Reseñas"
+    },
+    "weeklySummary": {
+      "title": "Resumen Semanal de Reseñas",
+      "newReviews": "Nuevas Reseñas",
+      "avgRating": "Calificación Promedio",
+      "positive": "Positivas",
+      "unanswered": "Sin Responder",
+      "replyNow": "Responder Ahora ({count} en espera)",
+      "allResponded": "¡Todas las reseñas han sido respondidas!",
+      "footer": "ReviewHub - Gestión de Reseñas"
+    }
+  },
+  "jsonLd": {
+    "organizationDescription": "Plataforma integral de gestión de reseñas para pequeños negocios",
+    "softwareDescription": "Gestiona reseñas de Google, Yelp y Facebook desde un solo panel."
+  }
+}

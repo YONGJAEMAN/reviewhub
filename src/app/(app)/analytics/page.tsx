@@ -84,7 +84,7 @@ export default function AnalyticsPage() {
                 : 'bg-background text-text-secondary hover:text-navy'
             }`}
           >
-            Last 30 Days
+            {t('last30Days')}
           </button>
           <button
             onClick={() => setPeriod('quarterly')}
@@ -94,7 +94,7 @@ export default function AnalyticsPage() {
                 : 'bg-background text-text-secondary hover:text-navy'
             }`}
           >
-            Quarterly
+            {t('quarterly')}
           </button>
         </div>
         </div>
@@ -133,10 +133,10 @@ export default function AnalyticsPage() {
           </div>
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-wider text-text-secondary mb-0.5">
-              Top Platform
+              {t('topPlatform')}
             </p>
             <p className="text-base font-bold text-text-primary">Google Reviews</p>
-            <p className="text-xs text-text-secondary">85% of total volume</p>
+            <p className="text-xs text-text-secondary">{t('ofTotalVolume', { percent: 85 })}</p>
           </div>
         </div>
 
@@ -146,10 +146,10 @@ export default function AnalyticsPage() {
           </div>
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-wider text-text-secondary mb-0.5">
-              Critical Action
+              {t('criticalAction')}
             </p>
-            <p className="text-base font-bold text-text-primary">9 Unread Negatives</p>
-            <p className="text-xs text-text-secondary">Requires immediate attention</p>
+            <p className="text-base font-bold text-text-primary">{t('unreadNegatives', { count: 9 })}</p>
+            <p className="text-xs text-text-secondary">{t('requiresAttention')}</p>
           </div>
         </div>
 
@@ -159,10 +159,10 @@ export default function AnalyticsPage() {
           </div>
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-wider text-text-secondary mb-0.5">
-              Sentiment Trend
+              {t('sentimentTrend')}
             </p>
-            <p className="text-base font-bold text-text-primary">+4.2% Growth</p>
-            <p className="text-xs text-text-secondary">Positive mentions increasing</p>
+            <p className="text-base font-bold text-text-primary">{t('growth', { percent: 4.2 })}</p>
+            <p className="text-xs text-text-secondary">{t('positiveMentionsIncreasing')}</p>
           </div>
         </div>
       </div>

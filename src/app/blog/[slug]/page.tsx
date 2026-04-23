@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
+import { getTranslations } from 'next-intl/server';
 import { getPostBySlug, getAllSlugs } from '@/lib/blog';
 
 interface Props {
@@ -37,6 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
+  const t = await getTranslations('blog');
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
@@ -52,11 +54,11 @@ export default async function BlogPostPage({ params }: Props) {
           href="/blog"
           className="text-sm text-accent-blue hover:underline mb-4 inline-block"
         >
-          &larr; 블로그로 돌아가기
+          {t('backToBlog')}
         </Link>
         <div className="flex items-center gap-2 mb-3">
           <span className="text-sm text-text-secondary">
-            {new Date(post.date).toLocaleDateString('ko-KR', {
+            {new Date(post.date).toLocaleDateString(undefined, {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
