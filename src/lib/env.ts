@@ -43,6 +43,7 @@ const SPEC: EnvSpec[] = [
   { key: 'STRIPE_WEBHOOK_SECRET', description: 'Stripe webhook signature verification', critical: false },
   { key: 'ANTHROPIC_API_KEY', description: 'Claude AI (suggest-reply, sentiment)', critical: false },
   { key: 'RESEND_API_KEY', description: 'Transactional email', critical: false },
+  { key: 'RESEND_WEBHOOK_SECRET', description: 'Resend webhook signature verification', critical: false },
   { key: 'CRON_SECRET', description: 'Vercel Cron authorization', critical: false },
   { key: 'SENTRY_DSN', description: 'Error monitoring', critical: false },
   { key: 'ADMIN_EMAILS', description: 'Comma-separated admin email allowlist', critical: false },
