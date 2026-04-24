@@ -29,8 +29,12 @@ export const metadata: Metadata = {
   },
   alternates: {
     languages: {
-      ko: '/',
       en: '/',
+      ko: '/',
+      ja: '/',
+      zh: '/',
+      fr: '/',
+      es: '/',
     },
   },
   metadataBase: new URL(process.env.NEXTAUTH_URL || 'https://reviewhub.app'),
