@@ -2,6 +2,8 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { getStripe, getPlanFromPriceAmount } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
+import { requireEnv } from '@/lib/env';
+import { captureError } from '@/lib/observability';
 import type Stripe from 'stripe';
 
 interface StripeSubscription {
@@ -10,6 +12,18 @@ interface StripeSubscription {
   current_period_end: number;
   items: { data: Array<{ price?: { unit_amount?: number | null } }> };
 }
+
+// Explicit Stripe → internal status mapping. Unknown statuses are left
+// unchanged (we return "no-op" rather than silently coercing to ACTIVE).
+const STATUS_MAP: Record<string, 'ACTIVE' | 'CANCELED' | 'PAST_DUE' | 'TRIALING'> = {
+  active: 'ACTIVE',
+  trialing: 'TRIALING',
+  past_due: 'PAST_DUE',
+  unpaid: 'PAST_DUE',
+  canceled: 'CANCELED',
+  incomplete: 'PAST_DUE',
+  incomplete_expired: 'CANCELED',
+};
 
 export async function POST(request: NextRequest) {
   const body = await request.text();
@@ -25,9 +39,10 @@ export async function POST(request: NextRequest) {
     event = getStripe().webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      requireEnv('STRIPE_WEBHOOK_SECRET'),
     );
   } catch (err) {
+    // Signature failure: don't log to Sentry (noise from bad actors).
     console.error('Webhook signature verification failed:', err);
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
@@ -78,6 +93,17 @@ export async function POST(request: NextRequest) {
         break;
       }
 
+      case 'invoice.payment_failed': {
+        const subId = obj.subscription as string | undefined;
+        if (subId) {
+          await prisma.subscription.updateMany({
+            where: { stripeSubscriptionId: subId },
+            data: { status: 'PAST_DUE' },
+          });
+        }
+        break;
+      }
+
       case 'customer.subscription.deleted': {
         const subId = obj.id as string;
         await prisma.subscription.updateMany({
@@ -91,19 +117,21 @@ export async function POST(request: NextRequest) {
         const sub = obj as unknown as StripeSubscription;
         const priceAmount = sub.items.data[0]?.price?.unit_amount ?? 0;
         const plan = getPlanFromPriceAmount(priceAmount);
-
-        const statusMap: Record<string, string> = {
-          active: 'ACTIVE',
-          past_due: 'PAST_DUE',
-          canceled: 'CANCELED',
-          trialing: 'TRIALING',
-        };
+        const mapped = STATUS_MAP[sub.status];
+        if (!mapped) {
+          // Unknown status — log and skip rather than coerce to ACTIVE.
+          captureError(new Error(`Unknown Stripe subscription status: ${sub.status}`), {
+            tag: 'stripe:webhook',
+            extra: { eventType: event.type, subId: sub.id, status: sub.status },
+          });
+          break;
+        }
 
         await prisma.subscription.updateMany({
           where: { stripeSubscriptionId: sub.id },
           data: {
             plan: plan as 'STARTER' | 'GROWTH' | 'PRO',
-            status: (statusMap[sub.status] ?? 'ACTIVE') as 'ACTIVE' | 'CANCELED' | 'PAST_DUE' | 'TRIALING',
+            status: mapped,
             currentPeriodEnd: new Date(sub.current_period_end * 1000),
           },
         });
@@ -111,7 +139,13 @@ export async function POST(request: NextRequest) {
       }
     }
   } catch (error) {
-    console.error('Webhook handler error:', error);
+    // Return 500 so Stripe retries. Most handlers use upsert/updateMany with
+    // where clauses, so retries are idempotent. Still log to Sentry.
+    captureError(error, {
+      tag: 'stripe:webhook',
+      extra: { eventType: event.type, eventId: event.id },
+    });
+    return NextResponse.json({ error: 'Handler failed' }, { status: 500 });
   }
 
   return NextResponse.json({ received: true });

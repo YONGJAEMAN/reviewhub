@@ -139,15 +139,71 @@ describe('POST /api/stripe/webhook', () => {
     );
   });
 
-  it('always returns received:true even on handler errors', async () => {
+  it('returns 500 on handler errors so Stripe retries', async () => {
     mockConstructEvent.mockReturnValue({
+      id: 'evt_1',
       type: 'checkout.session.completed',
       data: { object: { metadata: { businessId: 'biz-1' }, customer: 'c', subscription: 's' } },
     });
     mockUpsert.mockRejectedValue(new Error('DB error'));
 
     const res = await POST(makeRequest());
-    const json = await res.json();
-    expect(json.received).toBe(true);
+    expect(res.status).toBe(500);
+  });
+
+  it('maps invoice.payment_failed → PAST_DUE', async () => {
+    mockConstructEvent.mockReturnValue({
+      type: 'invoice.payment_failed',
+      data: { object: { subscription: 'sub_123' } },
+    });
+    mockUpdateMany.mockResolvedValue({});
+    const res = await POST(makeRequest());
+    expect(res.status).toBe(200);
+    expect(mockUpdateMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: { stripeSubscriptionId: 'sub_123' },
+        data: { status: 'PAST_DUE' },
+      }),
+    );
+  });
+
+  it('maps subscription.updated status "past_due" correctly', async () => {
+    mockConstructEvent.mockReturnValue({
+      type: 'customer.subscription.updated',
+      data: {
+        object: {
+          id: 'sub_123',
+          status: 'past_due',
+          current_period_end: 1700000000,
+          items: { data: [{ price: { unit_amount: 4900 } }] },
+        },
+      },
+    });
+    mockUpdateMany.mockResolvedValue({});
+    await POST(makeRequest());
+    expect(mockUpdateMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ status: 'PAST_DUE' }),
+      }),
+    );
+  });
+
+  it('skips update when subscription.updated has unknown status', async () => {
+    mockConstructEvent.mockReturnValue({
+      id: 'evt_x',
+      type: 'customer.subscription.updated',
+      data: {
+        object: {
+          id: 'sub_bad',
+          status: 'weird_new_status',
+          current_period_end: 1700000000,
+          items: { data: [{ price: { unit_amount: 1900 } }] },
+        },
+      },
+    });
+    const res = await POST(makeRequest());
+    expect(res.status).toBe(200);
+    // Should NOT silently coerce to ACTIVE — no update at all.
+    expect(mockUpdateMany).not.toHaveBeenCalled();
   });
 });
