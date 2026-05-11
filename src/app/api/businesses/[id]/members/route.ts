@@ -3,7 +3,33 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { verifyBusinessAccess, hasPermission } from '@/lib/business';
 import { successResponse, errorResponse } from '@/lib/api';
+import { audit, auditContextFromRequest } from '@/services/auditLogService';
+import { sendEmail } from '@/lib/email';
+import { hasEnv } from '@/lib/env';
 import type { BusinessRole } from '@/generated/prisma/client';
+
+function teamInviteEmail(params: {
+  inviterName: string;
+  businessName: string;
+  role: string;
+  dashboardUrl: string;
+}): string {
+  const { inviterName, businessName, role, dashboardUrl } = params;
+  return `
+    <div style="font-family: system-ui, sans-serif; max-width: 480px; margin: 0 auto; padding: 32px;">
+      <h1 style="color: #0F1B2D; font-size: 22px;">You've been invited to ${businessName}</h1>
+      <p style="color: #4B5563; line-height: 1.6;">
+        ${inviterName} added you as a <strong>${role}</strong> on ReviewHub.
+      </p>
+      <p style="margin-top: 24px;">
+        <a href="${dashboardUrl}" style="display: inline-block; background: #0F1B2D; color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Open dashboard</a>
+      </p>
+      <p style="color: #9CA3AF; font-size: 13px; margin-top: 24px;">
+        You won't see this business until you sign in with this email address.
+      </p>
+    </div>
+  `;
+}
 
 export async function GET(
   _request: NextRequest,
@@ -63,15 +89,56 @@ export async function POST(
     });
     if (existing) return errorResponse('This user is already a member');
 
+    const finalRole = (role as BusinessRole) || 'VIEWER';
     await prisma.userBusiness.create({
       data: {
         userId: user.id,
         businessId,
-        role: (role as BusinessRole) || 'VIEWER',
+        role: finalRole,
       },
     });
 
-    return successResponse({ userId: user.id, email: user.email, role: role || 'VIEWER' }, 201);
+    // Best-effort invite email + audit log. Both swallow failures so they
+    // can't block the membership creation.
+    const business = await prisma.business.findUnique({
+      where: { id: businessId },
+      select: { name: true },
+    });
+    const inviter = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { name: true, email: true },
+    });
+
+    if (hasEnv('RESEND_API_KEY') && business) {
+      try {
+        await sendEmail({
+          to: user.email!,
+          subject: `${inviter?.name ?? 'A teammate'} invited you to ${business.name} on ReviewHub`,
+          html: teamInviteEmail({
+            inviterName: inviter?.name ?? inviter?.email ?? 'A teammate',
+            businessName: business.name,
+            role: finalRole,
+            dashboardUrl: `${process.env.NEXTAUTH_URL ?? ''}/dashboard`,
+          }),
+        });
+      } catch {
+        // Email infra issue shouldn't block membership.
+      }
+    }
+
+    const ctx = auditContextFromRequest(request);
+    await audit({
+      actorId: session.user.id,
+      action: 'team.member_added',
+      businessId,
+      targetType: 'User',
+      targetId: user.id,
+      metadata: { email: user.email, role: finalRole },
+      ip: ctx.ip,
+      userAgent: ctx.userAgent,
+    });
+
+    return successResponse({ userId: user.id, email: user.email, role: finalRole }, 201);
   } catch {
     return errorResponse('Failed to add member', 500);
   }
@@ -97,6 +164,17 @@ export async function DELETE(
 
     await prisma.userBusiness.delete({
       where: { userId_businessId: { userId, businessId } },
+    });
+
+    const ctx = auditContextFromRequest(request);
+    await audit({
+      actorId: session.user.id,
+      action: 'team.member_removed',
+      businessId,
+      targetType: 'User',
+      targetId: userId,
+      ip: ctx.ip,
+      userAgent: ctx.userAgent,
     });
 
     return successResponse({ removed: true });
@@ -126,6 +204,18 @@ export async function PATCH(
     await prisma.userBusiness.update({
       where: { userId_businessId: { userId, businessId } },
       data: { role: role as BusinessRole },
+    });
+
+    const ctx = auditContextFromRequest(request);
+    await audit({
+      actorId: session.user.id,
+      action: 'team.role_changed',
+      businessId,
+      targetType: 'User',
+      targetId: userId,
+      metadata: { role },
+      ip: ctx.ip,
+      userAgent: ctx.userAgent,
     });
 
     return successResponse({ userId, role });
