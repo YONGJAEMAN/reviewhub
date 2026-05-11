@@ -1,7 +1,14 @@
 /**
  * @jest-environment node
  */
-import { checkRateLimit, rateLimitOrResponse } from '../rateLimit';
+import {
+  checkRateLimit,
+  rateLimitOrResponse,
+  checkRateLimitAsync,
+  _resetRateLimitBackend,
+} from '../rateLimit';
+
+beforeEach(() => _resetRateLimitBackend());
 
 function makeReq(ip = '1.1.1.1'): Request {
   return new Request('http://localhost/x', {
@@ -30,6 +37,16 @@ describe('rateLimit', () => {
     expect(checkRateLimit(makeReq('2.2.2.2'), opts2).ok).toBe(true);
     // different IP — independent count
     expect(checkRateLimit(makeReq('3.3.3.3'), opts1).ok).toBe(true);
+  });
+
+  it('falls back to in-memory when Upstash env not set (async API)', async () => {
+    delete process.env.UPSTASH_REDIS_REST_URL;
+    delete process.env.UPSTASH_REDIS_REST_TOKEN;
+    const opts = { name: 'test-fb', windowMs: 1000, max: 2 };
+    const req = makeReq('5.5.5.5');
+    expect((await checkRateLimitAsync(req, opts)).ok).toBe(true);
+    expect((await checkRateLimitAsync(req, opts)).ok).toBe(true);
+    expect((await checkRateLimitAsync(req, opts)).ok).toBe(false);
   });
 
   it('rateLimitOrResponse returns 429 with Retry-After when exceeded', async () => {

@@ -47,6 +47,8 @@ const SPEC: EnvSpec[] = [
   { key: 'CRON_SECRET', description: 'Vercel Cron authorization', critical: false },
   { key: 'SENTRY_DSN', description: 'Error monitoring', critical: false },
   { key: 'ADMIN_EMAILS', description: 'Comma-separated admin email allowlist', critical: false },
+  { key: 'UPSTASH_REDIS_REST_URL', description: 'Upstash Redis (global rate limit)', critical: false },
+  { key: 'UPSTASH_REDIS_REST_TOKEN', description: 'Upstash Redis token', critical: false },
 ];
 
 export function hasEnv(key: EnvKey): boolean {
