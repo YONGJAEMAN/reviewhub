@@ -11,6 +11,10 @@
       "schedule": "*/30 * * * *"
     },
     {
+      "path": "/api/cron/sync-yelp",
+      "schedule": "0 */2 * * *"
+    },
+    {
       "path": "/api/cron/email-campaigns",
       "schedule": "0 0 * * *"
     },
@@ -25,6 +29,14 @@
     {
       "path": "/api/cron/process-deletions",
       "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/cron/weekly-summary",
+      "schedule": "0 9 * * 1"
+    },
+    {
+      "path": "/api/cron/sync-competitors",
+      "schedule": "0 5 * * *"
     }
   ],
   "env": {

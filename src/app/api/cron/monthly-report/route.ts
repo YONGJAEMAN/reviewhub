@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getReportData } from '@/services/reportService';
-import { generateCSV } from '@/lib/csvExport';
 import { sendEmail } from '@/lib/email';
 import { verifyCronAuth } from '@/lib/cronAuth';
 import { captureError } from '@/lib/observability';
@@ -26,9 +25,9 @@ export async function GET(request: Request) {
     for (const s of settings) {
       try {
         const data = await getReportData(s.businessId, 30);
-        const csv = generateCSV(data);
 
-        // Send email with CSV summary in body (attachments would require Resend pro)
+        // Send email with summary in body (attachments would require Resend pro;
+        // users can export full CSV from the dashboard).
         const summaryHtml = `
           <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #0F1B2D;">Monthly Report - ${s.business.name}</h2>
