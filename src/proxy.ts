@@ -13,6 +13,9 @@ export default auth((req) => {
     pathname === '/privacy' ||
     pathname === '/terms' ||
     pathname === '/cookie' ||
+    pathname === '/offline' ||
+    pathname === '/sw.js' ||
+    pathname === '/manifest.json' ||
     pathname.startsWith('/r/') ||
     pathname.startsWith('/blog') ||
     pathname.startsWith('/ref/') ||

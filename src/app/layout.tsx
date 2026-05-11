@@ -7,6 +7,7 @@ import JsonLd from '@/components/JsonLd';
 import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
 import SessionProvider from '@/components/SessionProvider';
+import ServiceWorkerRegistrar from '@/components/ServiceWorkerRegistrar';
 import { validateEnv } from '@/lib/env';
 
 // Validate env on server boot. Throws on missing CRITICAL vars so deploy
@@ -54,10 +55,12 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="theme-color" content="#0F1B2D" />
+        <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       </head>
       <body className="h-full" suppressHydrationWarning>
         <JsonLd type="organization" />
+        <ServiceWorkerRegistrar />
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
             <ThemeProvider>{children}</ThemeProvider>
