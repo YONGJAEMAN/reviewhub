@@ -134,3 +134,28 @@ export async function syncYelpReviews(platformId: string): Promise<{
 
   return { synced, errors };
 }
+
+/**
+ * Sync all connected Yelp platforms (cron entry point).
+ */
+export async function syncAllYelpPlatforms(): Promise<{
+  total: number;
+  synced: number;
+  errors: string[];
+}> {
+  const platforms = await prisma.platform.findMany({
+    where: { type: 'YELP', status: 'CONNECTED' },
+  });
+
+  let totalSynced = 0;
+  const allErrors: string[] = [];
+
+  for (const platform of platforms) {
+    if (!platform.externalId) continue;
+    const result = await syncYelpReviews(platform.id);
+    totalSynced += result.synced;
+    allErrors.push(...result.errors);
+  }
+
+  return { total: platforms.length, synced: totalSynced, errors: allErrors };
+}
