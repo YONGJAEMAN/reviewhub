@@ -5,6 +5,7 @@ import Credentials from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@/lib/prisma';
 import { GOOGLE_BUSINESS_SCOPE } from '@/lib/google';
+import { exchangeForLongLivedToken } from '@/lib/facebook';
 import bcrypt from 'bcryptjs';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -56,9 +57,32 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  session: { strategy: 'jwt' },
+  session: {
+    strategy: 'jwt',
+    // 30-day rolling session — long enough for daily users, short enough to
+    // limit stolen-cookie blast radius. updateAge keeps the JWT exp fresh
+    // on activity instead of forcing re-login mid-session.
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // refresh JWT every 24h of activity
+  },
   pages: {
     signIn: '/login',
+  },
+  cookies: {
+    sessionToken: {
+      name: process.env.NODE_ENV === 'production'
+        ? '__Secure-authjs.session-token'
+        : 'authjs.session-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        // Force Secure in production. NextAuth would do this automatically
+        // when NEXTAUTH_URL is https, but being explicit prevents accidental
+        // cookie leakage if the URL is misconfigured.
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
   },
   callbacks: {
     async jwt({ token, user, account, trigger }) {
@@ -80,6 +104,28 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // Store Google access_token in JWT for easy access
       if (account?.provider === 'google') {
         token.googleAccessToken = account.access_token;
+      }
+      // Facebook: exchange the short-lived token for a long-lived (~60 day)
+      // one, then persist back to the Account row so the cron sync can read
+      // it. Failures are non-fatal — fall back to the short-lived token.
+      if (account?.provider === 'facebook' && account.access_token && user?.id) {
+        try {
+          const { accessToken, expiresIn } = await exchangeForLongLivedToken(
+            account.access_token,
+          );
+          const expiresAt = Math.floor(Date.now() / 1000) + expiresIn;
+          await prisma.account.updateMany({
+            where: {
+              userId: user.id,
+              provider: 'facebook',
+              providerAccountId: account.providerAccountId,
+            },
+            data: { access_token: accessToken, expires_at: expiresAt },
+          });
+        } catch (err) {
+          // Sentry-friendly: log but don't break login flow.
+          console.error('[fb] long-lived token exchange failed:', err);
+        }
       }
       return token;
     },

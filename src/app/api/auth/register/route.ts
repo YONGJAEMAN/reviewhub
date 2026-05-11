@@ -7,6 +7,7 @@ import { validateInviteCode, redeemInviteCode } from '@/services/inviteCodeServi
 import { generateReferralCode } from '@/services/referralService';
 import { successResponse, errorResponse } from '@/lib/api';
 import { rateLimitOrResponse } from '@/lib/rateLimit';
+import { validatePassword } from '@/lib/passwordPolicy';
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,9 +31,8 @@ export async function POST(request: NextRequest) {
       if (!validation.valid) return errorResponse(validation.error!);
     }
 
-    if (password.length < 6) {
-      return errorResponse('Password must be at least 6 characters');
-    }
+    const pwCheck = validatePassword(password);
+    if (!pwCheck.valid) return errorResponse(pwCheck.error!);
 
     const existing = await prisma.user.findUnique({ where: { email } });
     if (existing) {
