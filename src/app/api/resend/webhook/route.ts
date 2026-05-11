@@ -34,11 +34,31 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
   }
 
+  let event: {
+    type?: string;
+    data?: { email_id?: string; to?: string[]; bounce?: { type?: string } };
+  };
   try {
-    const event = JSON.parse(body) as {
-      type?: string;
-      data?: { email_id?: string; to?: string[]; bounce?: { type?: string } };
-    };
+    event = JSON.parse(body);
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
+
+  // Idempotency: use email_id + type as a stable event id (Resend doesn't
+  // expose a top-level event id). For events without email_id we skip the
+  // claim — they're rare enough that potential duplicates are acceptable.
+  const eventId = event.data?.email_id ? `${event.type}:${event.data.email_id}` : null;
+  if (eventId) {
+    try {
+      await prisma.webhookEvent.create({
+        data: { id: eventId, provider: 'resend', type: event.type ?? 'unknown' },
+      });
+    } catch {
+      return NextResponse.json({ received: true, duplicate: true });
+    }
+  }
+
+  try {
 
     const toList = event.data?.to ?? [];
     const primaryEmail = toList[0];

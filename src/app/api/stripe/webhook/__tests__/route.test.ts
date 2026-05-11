@@ -17,13 +17,21 @@ jest.mock('@/lib/stripe', () => ({
   getPlanFromPriceAmount: (amount: number) => amount >= 4900 ? 'PRO' : amount >= 2900 ? 'GROWTH' : 'STARTER',
 }));
 
+const mockWebhookEventCreate = jest.fn();
 jest.mock('@/lib/prisma', () => ({
   prisma: {
     subscription: {
       upsert: (...args: unknown[]) => mockUpsert(...args),
       updateMany: (...args: unknown[]) => mockUpdateMany(...args),
     },
+    webhookEvent: {
+      create: (...args: unknown[]) => mockWebhookEventCreate(...args),
+    },
   },
+}));
+
+jest.mock('@/services/auditLogService', () => ({
+  audit: jest.fn(),
 }));
 
 function makeRequest(body = '', sig = 'sig-123') {
@@ -37,6 +45,8 @@ function makeRequest(body = '', sig = 'sig-123') {
 beforeEach(() => {
   jest.clearAllMocks();
   process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+  // Default: webhookEvent.create succeeds (event not previously processed).
+  mockWebhookEventCreate.mockResolvedValue({});
 });
 
 describe('POST /api/stripe/webhook', () => {
@@ -55,8 +65,25 @@ describe('POST /api/stripe/webhook', () => {
     expect(res.status).toBe(400);
   });
 
+  it('skips processing when event id was already seen (idempotent)', async () => {
+    mockConstructEvent.mockReturnValue({
+      id: 'evt_dup',
+      type: 'checkout.session.completed',
+      data: { object: { metadata: { businessId: 'biz-1' }, customer: 'c', subscription: 's' } },
+    });
+    // Simulate unique-constraint violation
+    mockWebhookEventCreate.mockRejectedValueOnce(new Error('Unique constraint'));
+
+    const res = await POST(makeRequest());
+    expect(res.status).toBe(200);
+    const json = await res.json();
+    expect(json.duplicate).toBe(true);
+    expect(mockUpsert).not.toHaveBeenCalled();
+  });
+
   it('handles checkout.session.completed', async () => {
     mockConstructEvent.mockReturnValue({
+      id: 'evt_1',
       type: 'checkout.session.completed',
       data: {
         object: {

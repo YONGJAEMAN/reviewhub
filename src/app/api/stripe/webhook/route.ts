@@ -4,6 +4,7 @@ import { getStripe, getPlanFromPriceAmount } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
 import { requireEnv } from '@/lib/env';
 import { captureError } from '@/lib/observability';
+import { audit } from '@/services/auditLogService';
 import type Stripe from 'stripe';
 
 interface StripeSubscription {
@@ -47,6 +48,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
 
+  // Idempotency: skip if we've already processed this event id. We claim it
+  // first (create-or-fail) so concurrent retries are safe.
+  try {
+    await prisma.webhookEvent.create({
+      data: { id: event.id, provider: 'stripe', type: event.type },
+    });
+  } catch {
+    // Unique constraint violation → already processed. Treat as success.
+    return NextResponse.json({ received: true, duplicate: true });
+  }
+
   try {
     const obj = event.data.object as unknown as Record<string, unknown>;
 
@@ -73,6 +85,13 @@ export async function POST(request: NextRequest) {
               plan: (plan as 'STARTER' | 'GROWTH' | 'PRO') ?? 'STARTER',
               status: 'ACTIVE',
             },
+          });
+          await audit({
+            action: 'billing.plan_activated',
+            businessId,
+            targetType: 'Subscription',
+            targetId: subscription,
+            metadata: { plan, customer, source: 'checkout.session.completed' },
           });
         }
         break;

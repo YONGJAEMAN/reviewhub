@@ -111,6 +111,8 @@ model Platform {
   updatedAt    DateTime         @updatedAt
 
   @@index([businessId])
+  // Cron picks connected platforms by type — single-column scan otherwise.
+  @@index([type, status])
 }
 
 model Review {
@@ -198,6 +200,10 @@ model Subscription {
   business             Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
   createdAt            DateTime  @default(now())
   updatedAt            DateTime  @updatedAt
+
+  // trial-expiry cron scans by (status, trialEndsAt). Without this composite
+  // it has to seq-scan + filter once enough rows accumulate.
+  @@index([status, trialEndsAt])
 }
 
 model AiUsage {
@@ -429,4 +435,38 @@ enum ReferralStatus {
   PENDING
   COMPLETED
   REWARDED
+}
+
+// ─── Webhook Idempotency ────────────────────────────────
+// Track external webhook events we've already processed so retries from
+// Stripe/Resend don't cause duplicate side effects.
+
+model WebhookEvent {
+  id         String   @id // Provider event id (e.g. Stripe evt_xxx)
+  provider   String   // "stripe" | "resend" | …
+  type       String   // event.type from provider
+  receivedAt DateTime @default(now())
+
+  @@index([provider, receivedAt])
+}
+
+// ─── Audit Log ─────────────────────────────────────────
+// Append-only record of significant actions (admin, billing, team, deletion).
+// Querying by (businessId, createdAt) gives a per-tenant audit trail.
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?  // userId who took the action (null for system/cron)
+  action     String   // dotted verb, e.g. "team.member_added"
+  targetType String?  // e.g. "User", "Business", "Subscription"
+  targetId   String?
+  businessId String?
+  metadata   Json?
+  ip         String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  @@index([businessId, createdAt])
+  @@index([actorId, createdAt])
+  @@index([action, createdAt])
 }
