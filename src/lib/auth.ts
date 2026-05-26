@@ -6,6 +6,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@/lib/prisma';
 import { GOOGLE_BUSINESS_SCOPE } from '@/lib/google';
 import { exchangeForLongLivedToken } from '@/lib/facebook';
+import { verifyTotp } from '@/lib/totp';
 import bcrypt from 'bcryptjs';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -36,6 +37,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       credentials: {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
+        totp: { label: 'TOTP code', type: 'text' },
+        backupCode: { label: 'Backup code', type: 'text' },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
@@ -46,12 +49,44 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         if (!user || !user.password) return null;
 
-        const isValid = await bcrypt.compare(
+        const passwordOk = await bcrypt.compare(
           credentials.password as string,
-          user.password
+          user.password,
         );
+        if (!passwordOk) return null;
 
-        if (!isValid) return null;
+        // 2FA gate — only enforced for users who explicitly enabled it.
+        if (user.totpEnabled) {
+          const totp = (credentials.totp as string | undefined)?.trim();
+          const backupCode = (credentials.backupCode as string | undefined)
+            ?.trim()
+            .toLowerCase();
+
+          let factorOk = false;
+          if (totp && user.totpSecret && verifyTotp(user.totpSecret, totp)) {
+            factorOk = true;
+          } else if (backupCode && user.totpBackupCodes.length > 0) {
+            // Find a backup code whose hash matches; consume it on use.
+            for (const hash of user.totpBackupCodes) {
+              if (await bcrypt.compare(backupCode, hash)) {
+                factorOk = true;
+                await prisma.user.update({
+                  where: { id: user.id },
+                  data: {
+                    totpBackupCodes: user.totpBackupCodes.filter((h) => h !== hash),
+                  },
+                });
+                break;
+              }
+            }
+          }
+
+          if (!factorOk) {
+            // Distinct error for the UI to prompt for TOTP entry.
+            // CredentialsSignin maps to a generic 401 by NextAuth.
+            throw new Error('TOTP_REQUIRED');
+          }
+        }
 
         return { id: user.id, name: user.name, email: user.email };
       },

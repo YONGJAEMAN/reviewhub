@@ -28,6 +28,13 @@ model User {
   marketingOptOut     Boolean @default(false)
   referralCode        String? @unique
   locale              String  @default("ko")
+  // ─── 2FA (TOTP) ───
+  // totpSecret is base32. Persist null until the user successfully verifies
+  // a code (only then we set totpEnabled=true). Backup codes are bcrypt
+  // hashes; consumed entries are removed from the array.
+  totpSecret          String?
+  totpEnabled         Boolean @default(false)
+  totpBackupCodes     String[] @default([])
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -448,6 +455,25 @@ model WebhookEvent {
   receivedAt DateTime @default(now())
 
   @@index([provider, receivedAt])
+}
+
+// ─── Product Analytics ─────────────────────────────────
+// Provider-neutral event store for funnels (onboarding, activation,
+// conversion). Designed so we can either query in-app or export to
+// PostHog/Mixpanel later via a backfill job.
+
+model AnalyticsEvent {
+  id         String   @id @default(cuid())
+  name       String   // dotted snake, e.g. "onboarding.step_completed"
+  userId     String?
+  businessId String?
+  sessionId  String?  // anonymous session id from cookie (optional)
+  properties Json?
+  createdAt  DateTime @default(now())
+
+  @@index([name, createdAt])
+  @@index([userId, createdAt])
+  @@index([businessId, createdAt])
 }
 
 // ─── Audit Log ─────────────────────────────────────────
