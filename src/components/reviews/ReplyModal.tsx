@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { X, Sparkles, Send, RefreshCw, Minus, Plus } from 'lucide-react';
 import type { Review } from '@/types';
 import { renderStars } from '@/lib/utils';
+import Modal from '@/components/ui/Modal';
 
 interface Props {
   review: Review;
@@ -28,21 +29,12 @@ export default function ReplyModal({ review, onClose, onSend }: Props) {
   const [aiError, setAiError] = useState<string | null>(null);
   const [aiUsage, setAiUsage] = useState<{ used: number; limit: number } | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    textareaRef.current?.focus();
-
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
-
-  const handleOverlayClick = (e: React.MouseEvent) => {
-    if (e.target === overlayRef.current) onClose();
-  };
+    // Modal handles ESC + focus trap; we still autofocus the textarea on
+    // mount so users start typing immediately.
+    const t = setTimeout(() => textareaRef.current?.focus(), 0);
+    return () => clearTimeout(t);
+  }, []);
 
   const callAI = async (lengthOption?: 'shorter' | 'longer') => {
     setIsGenerating(true);
@@ -89,15 +81,16 @@ export default function ReplyModal({ review, onClose, onSend }: Props) {
   };
 
   return (
-    <div
-      ref={overlayRef}
-      onClick={handleOverlayClick}
-      className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4"
+    <Modal
+      open
+      onClose={onClose}
+      labelledBy="reply-modal-title"
+      className="bg-surface rounded-2xl shadow-xl w-full max-w-[600px] flex flex-col animate-in fade-in zoom-in-95"
     >
-      <div className="bg-surface rounded-2xl shadow-xl w-full max-w-[600px] flex flex-col animate-in fade-in zoom-in-95">
+      <>
         {/* Header */}
         <div className="flex items-center justify-between p-6 pb-4 border-b border-border">
-          <h2 className="text-lg font-bold text-text-primary">
+          <h2 id="reply-modal-title" className="text-lg font-bold text-text-primary">
             Reply to {review.authorName}
           </h2>
           <button
@@ -250,7 +243,7 @@ export default function ReplyModal({ review, onClose, onSend }: Props) {
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </>
+    </Modal>
   );
 }

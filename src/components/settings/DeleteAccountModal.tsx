@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { X, AlertTriangle } from 'lucide-react';
+import Modal from '@/components/ui/Modal';
 
 interface Props {
   onClose: () => void;
@@ -16,19 +17,6 @@ export default function DeleteAccountModal({ onClose }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
-  const overlayRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
-
-  const handleOverlayClick = (e: React.MouseEvent) => {
-    if (e.target === overlayRef.current) onClose();
-  };
 
   const handleDelete = async () => {
     if (!password || !confirmed) return;
@@ -55,20 +43,25 @@ export default function DeleteAccountModal({ onClose }: Props) {
   };
 
   return (
-    <div
-      ref={overlayRef}
-      onClick={handleOverlayClick}
-      className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4"
+    <Modal
+      open
+      onClose={onClose}
+      labelledBy="delete-account-title"
+      className="bg-surface rounded-2xl shadow-xl w-full max-w-[480px] p-6"
     >
-      <div className="bg-surface rounded-2xl shadow-xl w-full max-w-[480px] p-6">
+      <>
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-danger/10 flex items-center justify-center">
               <AlertTriangle size={20} className="text-danger" />
             </div>
-            <h2 className="text-lg font-bold text-text-primary">{t('deleteModal.title')}</h2>
+            <h2 id="delete-account-title" className="text-lg font-bold text-text-primary">{t('deleteModal.title')}</h2>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg text-text-secondary hover:bg-background">
+          <button
+            onClick={onClose}
+            aria-label={tCommon('close')}
+            className="p-1.5 rounded-lg text-text-secondary hover:bg-background"
+          >
             <X size={18} />
           </button>
         </div>
@@ -144,7 +137,7 @@ export default function DeleteAccountModal({ onClose }: Props) {
             </div>
           </div>
         )}
-      </div>
-    </div>
+      </>
+    </Modal>
   );
 }
