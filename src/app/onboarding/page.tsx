@@ -8,6 +8,21 @@ import { Check, ArrowRight, ArrowLeft, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import AddressAutocomplete from '@/components/AddressAutocomplete';
 
+// Fire-and-forget analytics ping. Failures are silent — the funnel record
+// matters less than not blocking the user.
+function track(name: string, properties?: Record<string, unknown>) {
+  try {
+    fetch('/api/analytics/events', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, properties }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* ignore */
+  }
+}
+
 const industryKeys = [
   'restaurant',
   'beauty',
@@ -59,6 +74,11 @@ export default function OnboardingPage() {
     }
   }, [step]);
 
+  // Fire ONBOARDING_STARTED exactly once when this page mounts.
+  useEffect(() => {
+    track('onboarding.started');
+  }, []);
+
   const handleNext = async () => {
     setError('');
     if (step === 0 && businessName) {
@@ -80,11 +100,18 @@ export default function OnboardingPage() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: businessName, industry, location, businessId: json.data.businessId }),
           }).catch(() => {});
+          track('onboarding.business_named', { businessId: json.data.businessId, industry });
         }
       } catch {
         setError(t('somethingWentWrong'));
         return;
       }
+    }
+    if (step === 1 && connectedPlatforms.length > 0) {
+      track('onboarding.platform_connected', {
+        businessId: createdBusinessId,
+        platforms: connectedPlatforms,
+      });
     }
     if (step === 2 && createdBusinessId) {
       try {
@@ -107,6 +134,7 @@ export default function OnboardingPage() {
 
   const handleComplete = async () => {
     await fetch('/api/account/onboarding-complete', { method: 'POST' });
+    track('onboarding.completed', { businessId: createdBusinessId });
     await update();
     router.push('/dashboard');
   };
